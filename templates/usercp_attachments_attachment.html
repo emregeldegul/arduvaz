@@ -1,0 +1,7 @@
+<tr>
+	<td class="{$altbg} ucp-icon" width="1">{$icon}</td>
+	<td class="{$altbg}"><a href="attachment.php?aid={$attachment['aid']}" target="_blank">{$attachment['filename']}</a><span class="ucp-meta">{$sizedownloads}</span></td>
+	<td class="{$altbg}"><a href="{$attachment['postlink']}#pid{$attachment['pid']}">{$attachment['subject']}</a><span class="ucp-meta">{$lang->attachment_thread} <a href="{$attachment['threadlink']}">{$attachment['threadsubject']}</a></span></td>
+	<td class="{$altbg}">{$attachdate}</td>
+	<td class="{$altbg} ucp-check"><input type="checkbox" class="checkbox mod-check" name="attachments[{$attachment['aid']}]" value="{$attachment['aid']}" /></td>
+</tr>

@@ -1,0 +1,64 @@
+<html xml:lang="{$lang->settings['htmllang']}" lang="{$lang->settings['htmllang']}" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$mybb->settings['bbname']} - {$lang->private_messaging}</title>
+{$headerinclude}
+</head>
+<body>
+{$header}
+<table width="100%" border="0" align="center">
+<tr>
+{$usercpnav}
+<td valign="top">
+	<form action="private.php" method="post" name="pmForm">
+		<input type="hidden" name="my_post_key" value="{$mybb->post_code}" />
+		<table border="0" cellspacing="0" cellpadding="0" class="tborder ucp-table pm-table">
+			<tr>
+				<td class="thead" colspan="7">
+					<div class="pm-head">
+						<strong>{$lang->pm_search_results}</strong>
+						<div class="pm-search">
+							<input type="search" name="keywords" class="textbox" placeholder="{$lang->enter_keywords}" aria-label="{$lang->search_pms}" />
+							<input type="submit" class="btn btn-light btn-sm" name="quick_search" value="{$lang->search_pms}" />
+							<a href="private.php?action=advanced_search" class="pm-adv">{$lang->advanced_search}</a>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="tcat" colspan="3">{$lang->message}</td>
+				<td class="tcat">{$lang->sender}</td>
+				<td class="tcat">{$lang->folder}</td>
+				<td class="tcat">{$lang->date_sent}</td>
+				<td class="tcat ucp-check"><input name="allbox" title="{$lang->check_all}" type="checkbox" class="checkbox checkall mod-check" value="{$lang->check_all}" /></td>
+			</tr>
+			{$messagelist}
+			<tr>
+				<td class="tfoot" colspan="7">
+					<div class="ucp-tfoot">
+						<div class="ucp-tfoot-actions">
+							<input type="submit" class="btn btn-light btn-sm" name="moveto" value="{$lang->move_to}" />
+							{$folderoplist}
+							<span>{$lang->or}</span>
+							<input type="submit" class="btn btn-light btn-sm pm-delete" name="delete" value="{$lang->delete}" />
+							<span>{$lang->selected_messages}</span>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</table>
+		<div class="pm-footer">
+			{$multipage}
+			<div class="ucp-tfoot-actions">
+				<label for="jumpto">{$lang->jump_folder}</label>
+				{$folderjump}
+				<input type="submit" class="btn btn-light btn-sm" name="hop" value="{$lang->go}" />
+			</div>
+		</div>
+		<input type="hidden" name="action" value="do_stuff" />
+	</form>
+</td>
+</tr>
+</table>
+{$footer}
+</body>
+</html>

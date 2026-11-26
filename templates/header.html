@@ -1,0 +1,40 @@
+<div id="container">
+	<a name="top" id="top"></a>
+	<div id="header" class="site-header">
+		<div class="wrapper header-inner">
+			<a href="{$mybb->settings['bburl']}/index.php" class="brand" id="logo">
+				<span class="brand-logo"><svg><use href="{$theme['imgdir']}/icons.svg#i-logo"/></svg></span>
+				<span class="brand-name">{$mybb->settings['bbname']}</span>
+			</a>
+
+			<nav class="main-nav top_links" id="mainNav">
+				<a href="{$mybb->settings['bburl']}/index.php" class="forum">{$lang->forumbit_forum}</a>
+				{$menu_portal}
+				{$menu_search}
+				{$menu_memberlist}
+				{$menu_calendar}
+				<a href="{$mybb->settings['bburl']}/misc.php?action=help" class="help">{$lang->toplinks_help}</a>
+			</nav>
+
+			<div class="header-actions" id="panel">
+				{$quicksearch}
+				{$welcomeblock}
+				<!-- TODO:lang -->
+				<button type="button" class="icon-btn nav-toggle" id="navToggle" aria-label="Menu" aria-controls="mainNav" aria-expanded="false"><svg><use href="{$theme['imgdir']}/icons.svg#i-menu"/></svg></button>
+			</div>
+		</div>
+	</div>
+
+	<div class="wrapper notices">
+		{$pm_notice}
+		{$remote_avatar_notice}
+		{$bannedwarning}
+		{$bbclosedwarning}
+		{$modnotice}
+		{$pending_joinrequests}
+		{$awaitingusers}
+	</div>
+
+	<div id="content">
+		<div class="wrapper">
+			<navigation>

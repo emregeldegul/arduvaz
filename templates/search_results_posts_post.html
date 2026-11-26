@@ -1,0 +1,16 @@
+<article class="thread-row inline_row {$bgcolor}">
+	<div class="thread-icon" data-folder="{$folder}" title="{$folder_label}"><svg><use href="{$theme['imgdir']}/icons.svg#thread_{$folder}"/></svg></div>
+	<div class="thread-main">
+		<h3>{$icon}<a href="{$post_url}{$highlight}#pid{$post['pid']}">{$post['subject']}</a></h3>
+		<span class="thread-meta">{$lang->post_thread} <a href="{$thread_url}{$highlight}">{$post['thread_subject']}</a></span>
+		<p class="search-excerpt">{$prev}</p>
+	</div>
+	<div class="c-num c-replies"><a href="{$mybb->settings['bburl']}/misc.php?action=whoposted&amp;tid={$post['tid']}" onclick="MyBB.whoPosted({$post['tid']}); return false;">{$post['thread_replies']}</a></div>
+	<div class="c-num c-views">{$post['thread_views']}</div>
+	<div class="c-forum">{$post['forumlink']}</div>
+	<div class="thread-last">
+		<span class="avatar avatar-default avatar-sm" aria-hidden="true"><svg><use href="{$theme['imgdir']}/icons.svg#i-avatar"/></svg></span>
+		<div class="last-info"><a href="{$post_url}#pid{$post['pid']}" class="last-date">{$posted}</a>{$post['profilelink']}</div>
+	</div>
+	{$inline_mod_checkbox}
+</article>

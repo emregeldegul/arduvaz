@@ -1,0 +1,22 @@
+<form action="polls.php" method="post" class="panel st-poll">
+	<input type="hidden" name="my_post_key" value="{$mybb->post_code}" />
+	<input type="hidden" name="action" value="vote" />
+	<input type="hidden" name="pid" value="{$poll['pid']}" />
+	<header class="panel-head">
+		<svg><use href="{$theme['imgdir']}/icons.svg#i-chart"/></svg>
+		<h2><span class="poll-label">{$lang->poll}</span> {$poll['question']}</h2>
+		<div class="panel-head-links">
+			<a href="polls.php?action=showresults&amp;pid={$poll['pid']}">{$lang->show_results}</a>{$edit_poll}
+		</div>
+	</header>
+	<div class="poll-options">
+		{$polloptions}
+	</div>
+	<footer class="poll-foot">
+		<input type="submit" class="button" value="{$lang->vote}" />
+		<div class="poll-notes">
+			<span>{$closeon}</span>
+			<span>{$publicnote}</span>
+		</div>
+	</footer>
+</form>

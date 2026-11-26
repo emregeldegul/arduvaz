@@ -1,0 +1,13 @@
+<section class="panel help-section">
+	<header class="panel-head help-section-head thead{$expthead}">
+		<svg><use href="{$theme['imgdir']}/icons.svg#i-book"/></svg>
+		<div class="help-section-title">
+			<h2>{$section['name']}</h2>
+			<span>{$section['description']}</span>
+		</div>
+		<div class="expcolimage collapse-btn"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" id="sid_{$section['sid']}_img" class="expander" alt="{$expaltext}" title="{$expaltext}" /></div>
+	</header>
+	<div class="help-list" style="{$expdisplay}" id="sid_{$section['sid']}_e">
+		{$helpbits}
+	</div>
+</section>

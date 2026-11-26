@@ -1,0 +1,31 @@
+<html xml:lang="{$lang->settings['htmllang']}" lang="{$lang->settings['htmllang']}" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$mybb->settings['bbname']} - {$lang->all_reports}</title>
+{$headerinclude}
+</head>
+<body>
+{$header}
+<table width="100%" border="0" align="center">
+<tr>
+{$modcp_nav}
+<td valign="top">
+	<table border="0" cellspacing="0" cellpadding="0" class="tborder ucp-table mcp-reports">
+		<tr>
+			<td class="thead" colspan="5"><strong>{$lang->all_reports}</strong><a href="modcp.php?action=reports" class="ucp-head-link">{$lang->report_center}</a></td>
+		</tr>
+		<tr>
+			<td class="tcat">{$lang->report_info}</td>
+			<td class="tcat">{$lang->report_type}</td>
+			<td class="tcat">{$lang->reporter}</td>
+			<td class="tcat ucp-num">{$lang->report_count}</td>
+			<td class="tcat">{$lang->report_time}</td>
+		</tr>
+		{$allreports}
+	</table>
+	{$allreportspages}
+</td>
+</tr>
+</table>
+{$footer}
+</body>
+</html>

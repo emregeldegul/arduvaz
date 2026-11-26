@@ -1,0 +1,66 @@
+<html xml:lang="{$lang->settings['htmllang']}" lang="{$lang->settings['htmllang']}" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$mybb->settings['bbname']} - {$lang->edit_poll}</title>
+{$headerinclude}
+</head>
+<body>
+{$header}
+<main class="post-page">
+	<form action="polls.php" method="post" class="post-form">
+		<input type="hidden" name="my_post_key" value="{$mybb->post_code}" />
+		<input type="hidden" name="action" value="do_editpoll" />
+		<input type="hidden" name="pid" value="{$pid}" />
+		<section class="panel">
+			<header class="panel-head"><svg><use href="{$theme['imgdir']}/icons.svg#i-chart"/></svg><h1>{$lang->edit_poll}</h1>{$loginbox}</header>
+			<div class="form-rows">
+				<div class="form-row">
+					<label class="form-label" for="question">{$lang->question}</label>
+					<div class="form-field"><input type="text" class="textbox" name="question" id="question" maxlength="240" value="{$question}" /></div>
+				</div>
+				<div class="form-row">
+					<label class="form-label" for="numoptions">{$lang->num_options}<span class="form-desc">{$lang->max_options} {$mybb->settings['maxpolloptions']}</span></label>
+					<div class="form-field form-inline">
+						<input type="number" class="textbox form-num" name="numoptions" id="numoptions" min="2" max="{$mybb->settings['maxpolloptions']}" value="{$numoptions}" />
+						<input type="submit" class="button" name="updateoptions" value="{$lang->update_options}" />
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-label">{$lang->poll_options}<span class="form-desc">{$lang->poll_options_note}</span></div>
+					<div class="form-field poll-form-options">
+						{$optionbits}
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-label">{$lang->options}</div>
+					<div class="form-field form-checks">
+						<label class="check"><input type="checkbox" class="checkbox" name="postoptions[multiple]" value="1" {$postoptionschecked['multiple']} /> {$lang->option_multiple}</label>
+						<label class="form-inline poll-maxoptions">{$lang->option_multiple_maxoptions} <input type="number" class="textbox form-num" name="maxoptions" min="0" value="{$maxoptions}" /></label>
+						<label class="check"><input type="checkbox" class="checkbox" name="postoptions[public]" value="1" {$postoptionschecked['public']} /> {$lang->option_public}</label>
+						<label class="check"><input type="checkbox" class="checkbox" name="postoptions[closed]" value="1" {$postoptionschecked['closed']} /> {$lang->option_closed}</label>
+					</div>
+				</div>
+				<div class="form-row">
+					<label class="form-label" for="timeout">{$lang->poll_timeout}<span class="form-desc">{$lang->timeout_note}</span></label>
+					<div class="form-field form-inline"><input type="number" class="textbox form-num" name="timeout" id="timeout" min="0" value="{$timeout}" /> {$lang->days_after} {$polldate}</div>
+				</div>
+			</div>
+		</section>
+		<div class="post-actions">
+			<input type="submit" class="btn btn-dark" name="submit" value="{$lang->update_poll}" />
+		</div>
+	</form>
+
+	<form action="moderation.php" method="post" class="panel poll-delete">
+		<input type="hidden" name="my_post_key" value="{$mybb->post_code}" />
+		<input type="hidden" name="action" value="do_deletepoll" />
+		<input type="hidden" name="tid" value="{$tid}" />
+		<header class="panel-head"><svg><use href="{$theme['imgdir']}/icons.svg#i-trash"/></svg><h2>{$lang->delete_poll}</h2></header>
+		<div class="poll-delete-body">
+			<label class="check"><input type="checkbox" class="checkbox" name="delete" value="1" /> <span><strong>{$lang->delete_q}</strong> {$lang->delete_note}<span class="form-desc">{$lang->delete_note2}</span></span></label>
+			<input type="submit" class="btn btn-light btn-sm" name="submit" value="{$lang->delete_poll}" />
+		</div>
+	</form>
+</main>
+{$footer}
+</body>
+</html>

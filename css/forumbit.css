@@ -1,0 +1,219 @@
+/* =========================================================
+   Arduvaz — forumbit.css
+   Kategori ve forum satırları. index.php ve forumdisplay.php (alt forumlar) sayfalarında yüklenir.
+   ========================================================= */
+
+.category {
+  background: var(--body-tint);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: visible;
+}
+.category-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 14px 0 20px;
+  height: 52px;
+  margin: -1px -1px 0;          /* kart kenarlığını örter */
+  background: var(--cat-head);
+  color: #fff;
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+.category-head h2 { margin: 0; font-size: 15px; font-weight: 700; letter-spacing: -.01em; }
+.category-head h2 a:hover { color: var(--slate-200); }
+.collapse-btn {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, .12);
+  color: #fff;
+  transition: background .15s;
+}
+.collapse-btn:hover { background: rgba(255, 255, 255, .22); }
+/* MyBB daraltma: görünmez <img class="expander"> tıklamayı alır, ikon CSS ile çizilir */
+.collapse-btn { position: relative; }
+.collapse-btn img { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
+.collapse-btn::before,
+.collapse-btn::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 2px;
+  margin: -1px 0 0 -6px;
+  border-radius: 1px;
+  background: currentColor;
+  pointer-events: none;
+}
+.collapse-btn::after { transform: rotate(90deg); opacity: 0; transition: opacity .15s; }
+.thead_collapsed .collapse-btn::after { opacity: 1; }
+
+.category-head.thead_collapsed { border-radius: var(--radius); margin-bottom: -1px; }
+
+
+.forum-row {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) 250px 36px;
+  gap: 18px;
+  align-items: start;
+  padding: 18px 16px 18px 20px;
+  border-top: 1px solid var(--border);
+  transition: background .15s;
+}
+.forum-row:first-child { border-top: 0; }
+.forum-row:hover { background: var(--surface); }
+.forum-row:last-child { border-radius: 0 0 var(--radius) var(--radius); }
+
+/* Alt forumlar — 2 sütun */
+.subforums {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px 24px;
+  max-width: 520px;
+}
+.subforums a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 2px 0;
+  color: var(--slate-500);
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color .15s;
+}
+.subforums a::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 1.5px solid var(--slate-300);
+}
+.subforums a:hover { color: var(--slate-900); }
+.subforums a.subforum_on,
+.subforums a.subforum_minion { color: var(--slate-800); font-weight: 600; }
+.subforums a.subforum_on::before,
+.subforums a.subforum_minion::before { background: var(--slate-700); border-color: var(--slate-700); }
+
+/* Son mesaj */
+.forum-last {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  text-align: left;
+}
+.last-info { display: flex; flex-direction: column; min-width: 0; }
+.last-title {
+  font-weight: 600;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.last-meta,
+.last-by { font-size: 12.5px; line-height: 1.45; color: var(--text-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.last-by a { font-weight: 600; color: var(--slate-700); }
+.forum-last.is-redirect .last-title { color: var(--slate-600); font-weight: 500; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--slate-300); }
+.forum-last { min-height: 58px; }
+.forum-last .avatar { --size: 58px; border-radius: 14px; }
+.forum-last .last-info { gap: 2px; }
+
+/* 3 nokta menüsü */
+.forum-more { display: flex; justify-content: center; }
+.dots-btn {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: none;
+  color: var(--slate-400);
+  transition: background .15s, color .15s, border-color .15s;
+}
+.dots-btn:hover, .dots-btn[aria-expanded="true"] {
+  background: var(--surface);
+  border-color: var(--border);
+  color: var(--slate-800);
+}
+.forum-menu { min-width: 230px; top: calc(100% + 6px); }
+.forum-menu { overflow: hidden; }
+/* Duruma göre menü öğeleri (çekirdek değişkeni yok, CSS ile):
+   okunmamış mesaj yoksa "okundu say", son mesaj yoksa "son mesaj" gizli;
+   yönlendirme forumunda menünün anlamı yok, düğme yer tutarak gizlenir */
+.forum-row:not(:has(> .forum-status.forum_on)) .fm-markread,
+.forum-row:has(> .forum-last.is-empty) .fm-lastpost { display: none; }
+.forum-row:has(> .forum-status.forum_offlink) .forum-more { visibility: hidden; }
+/* İstatistikler menünün altında, kartın "ayak" bandı olarak */
+.forum-menu-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 6px -6px -6px;
+  border-top: 1px solid var(--border);
+  background: var(--slate-50);
+}
+.forum-menu-stats div {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 5px;
+  padding: 11px 8px;
+}
+.forum-menu-stats div + div { border-left: 1px solid var(--border); }
+.forum-menu-stats strong { font-size: 15px; font-weight: 700; color: var(--slate-900); font-variant-numeric: tabular-nums; }
+.forum-menu-stats span { font-size: 12.5px; color: var(--text-3); }
+
+/* MyBB ek bilgileri: görüntüleyenler, moderatörler, onay bekleyenler */
+.forum-viewers { margin-left: 6px; font-size: 12px; font-weight: 500; color: var(--text-3); }
+.forum-mods { margin: 6px 0 0; font-size: 12.5px; color: var(--text-3); }
+.forum-mods a { font-weight: 600; color: var(--slate-600); }
+.forum-unapproved { margin-left: 4px; color: var(--c-admin); }
+
+/* Kategori içindeki alt kategori başlığı */
+.category-subhead { padding: 10px 20px; background: var(--head-tint); border-top: 1px solid var(--border); }
+.category-subhead h3 { margin: 0; font-size: 13.5px; font-weight: 700; }
+.category-subhead p { margin: 2px 0 0; font-size: 12.5px; color: var(--text-2); }
+
+/* Yönlendirme forumlarında seçenek menüsü yok */
+.forum-row:has(.forum_offlink) .forum-more { visibility: hidden; }
+/* Mesaj yok: boş alan; gizli: varsayılan temadaki gibi ortada "–" */
+.forum-last.is-hidden { justify-content: center; }
+.forum-last .last-dash { font-size: 15px; color: var(--slate-400); }
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width: 1100px) {
+  .forum-row { grid-template-columns: 44px minmax(0, 1fr) 220px 36px; }
+}
+
+@media (max-width: 760px) {
+  .forum-row {
+    grid-template-columns: 40px minmax(0, 1fr) 34px;
+    grid-template-areas:
+      "icon main more"
+      ".    last last";
+    gap: 12px 14px;
+    padding: 16px 12px 16px 14px;
+  }
+  .forum-row > .forum-status { grid-area: icon; width: 40px; height: 40px; align-self: start; }
+  .forum-main { grid-area: main; }
+  .forum-last { grid-area: last; padding: 10px 12px; border-radius: var(--radius-sm); background: var(--slate-50); }
+  .forum-more { grid-area: more; align-self: start; }
+  .subforums { display: none; }
+  /* Mobilde boş/gizli son mesaj kutusu gösterilmez */
+  .forum-last.is-empty { display: none; }
+}

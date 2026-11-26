@@ -1,0 +1,37 @@
+{
+	"name": "Arduvaz",
+	"parent": 1,
+	"properties": {
+		"imgdir": "images/arduvaz",
+		"logo": "images/arduvaz/logo.png",
+		"tablespace": "5",
+		"borderwidth": "0",
+		"editortheme": "mybb.css"
+	},
+	"stylesheets": [
+		{ "file": "global.css" },
+		{ "file": "forumbit.css", "attachedto": "index.php|forumdisplay.php|search.php" },
+		{ "file": "index.css", "attachedto": "index.php" },
+		{ "file": "forumdisplay.css", "attachedto": "forumdisplay.php|search.php" },
+		{ "file": "postbit.css", "attachedto": "showthread.php|portal.php|private.php|newreply.php|newthread.php|editpost.php|announcements.php|modcp.php?new_announcement,edit_announcement,do_new_announcement,do_edit_announcement" },
+		{ "file": "showthread.css", "attachedto": "showthread.php" },
+		{ "file": "star_ratings.css", "attachedto": "forumdisplay.php|showthread.php" },
+		{ "file": "member.css", "attachedto": "member.php?profile" },
+		{ "file": "memberlist.css", "attachedto": "memberlist.php" },
+		{ "file": "register.css", "attachedto": "member.php?register" },
+		{ "file": "posting.css", "attachedto": "newthread.php|newreply.php|editpost.php|polls.php|modcp.php?new_announcement,edit_announcement,do_new_announcement,do_edit_announcement" },
+		{ "file": "usercp.css", "attachedto": "usercp.php|private.php|modcp.php" },
+		{ "file": "search.css", "attachedto": "search.php" },
+		{ "file": "online.css", "attachedto": "online.php" },
+		{ "file": "showteam.css", "attachedto": "showteam.php" },
+		{ "file": "poll.css", "attachedto": "showthread.php|polls.php" },
+		{ "file": "help.css", "attachedto": "misc.php?help,helpresults" },
+		{ "file": "modcp.css", "attachedto": "modcp.php" },
+		{ "file": "reputation.css", "attachedto": "reputation.php" },
+		{ "file": "warnings.css", "attachedto": "warnings.php" },
+		{ "file": "portal.css", "attachedto": "portal.php" }
+	],
+	"disabled_stylesheets": [
+		"css3.css"
+	]
+}

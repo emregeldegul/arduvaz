@@ -1,0 +1,35 @@
+<html xml:lang="{$lang->settings['htmllang']}" lang="{$lang->settings['htmllang']}" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$mybb->settings['bbname']} - {$lang->users_online}</title>
+{$headerinclude}
+{$refresh}
+</head>
+<body>
+{$header}
+<main class="online-page">
+	<div class="fd-toolbar">
+		{$multipage}
+	</div>
+	<section class="panel online-list">
+		<header class="panel-head">
+			<svg><use href="{$theme['imgdir']}/icons.svg#i-users"/></svg>
+			<h1>{$lang->users_online}</h1>
+			<div class="panel-head-links">
+				<a href="online.php?action=today"><svg><use href="{$theme['imgdir']}/icons.svg#i-calendar"/></svg>{$lang->online_today}</a>
+				<a href="online.php"><svg><use href="{$theme['imgdir']}/icons.svg#i-refresh"/></svg>{$lang->refresh_page}</a>
+			</div>
+		</header>
+		<div class="online-cols">
+			<a href="online.php?sortby=username">{$lang->on_username}</a>
+			<a href="online.php?sortby=time">{$lang->time}</a>
+			<a href="online.php?sortby=location">{$lang->location}</a>
+		</div>
+		{$online_rows}
+	</section>
+	<div class="fd-toolbar">
+		{$multipage}
+	</div>
+</main>
+{$footer}
+</body>
+</html>

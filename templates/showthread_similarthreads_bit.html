@@ -1,0 +1,9 @@
+<article class="st-similar-item">
+	<h3>{$similar_thread['threadprefix']}<a href="{$similar_thread['threadlink']}">{$similar_thread['subject']}</a></h3>
+	<div class="st-similar-meta">
+		<span>{$similar_thread['profilelink']}</span>
+		<span>{$lang->replies}: <a href="{$mybb->settings['bburl']}/misc.php?action=whoposted&amp;tid={$similar_thread['tid']}" onclick="MyBB.whoPosted({$similar_thread['tid']}); return false;">{$similar_thread['replies']}</a></span>
+		<span>{$lang->views}: {$similar_thread['views']}</span>
+	</div>
+	<div class="st-similar-last"><a href="{$similar_thread['lastpostlink']}">{$lang->lastpost}</a>: {$lastposterlink} · {$lastpostdate}</div>
+</article>

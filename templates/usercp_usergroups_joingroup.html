@@ -1,0 +1,40 @@
+<html xml:lang="{$lang->settings['htmllang']}" lang="{$lang->settings['htmllang']}" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$mybb->settings['bbname']} - {$lang->request_join_usergroup}</title>
+{$headerinclude}
+</head>
+<body>
+{$header}
+<form action="usercp.php" method="post">
+<input type="hidden" name="my_post_key" value="{$mybb->post_code}" />
+<table width="100%" border="0" align="center">
+<tr>
+{$usercpnav}
+<td valign="top">
+	<section class="panel">
+		<header class="panel-head"><svg><use href="{$theme['imgdir']}/icons.svg#i-users"/></svg><h1>{$lang->request_join_usergroup}</h1></header>
+		<div class="form-rows">
+			<p class="form-note">{$lang->join_group_moderate_note}</p>
+			<div class="form-row">
+				<span class="form-label">{$lang->user_group}</span>
+				<div class="form-field form-static"><strong>{$usergroup['title']}</strong></div>
+			</div>
+			<div class="form-row">
+				<label class="form-label" for="reason">{$lang->join_reason}</label>
+				<div class="form-field"><input type="text" class="textbox" name="reason" id="reason" value="" maxlength="250" /></div>
+			</div>
+		</div>
+	</section>
+	<div class="ucp-submit">
+		<input type="hidden" name="action" value="usergroups" />
+		<input type="hidden" name="joingroup" value="{$joingroup}" />
+		<input type="hidden" name="do" value="joingroup" />
+		<input type="submit" class="btn btn-dark" value="{$lang->send_join_request}" />
+	</div>
+</td>
+</tr>
+</table>
+</form>
+{$footer}
+</body>
+</html>

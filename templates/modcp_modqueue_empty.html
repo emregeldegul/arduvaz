@@ -1,0 +1,22 @@
+<html xml:lang="{$lang->settings['htmllang']}" lang="{$lang->settings['htmllang']}" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$mybb->settings['bbname']} - {$lang->mod_queue}</title>
+{$headerinclude}
+</head>
+<body>
+{$header}
+<table width="100%" border="0" align="center">
+<tr>
+{$modcp_nav}
+<td valign="top">
+	<section class="panel mcp-empty-state">
+		<span class="mcp-queue-icon"><svg><use href="{$theme['imgdir']}/icons.svg#i-check"/></svg></span>
+		<h1>{$lang->mod_queue}</h1>
+		<p>{$lang->mod_queue_empty}</p>
+	</section>
+</td>
+</tr>
+</table>
+{$footer}
+</body>
+</html>

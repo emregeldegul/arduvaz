@@ -1,0 +1,23 @@
+<article class="panel pt-ann">
+	<header class="panel-head pt-ann-head">
+		{$icon}
+		<h2><a href="{$mybb->settings['bburl']}/{$announcement['threadlink']}">{$announcement['subject']}</a></h2>
+	</header>
+	<div class="pt-ann-meta">
+		<span>{$lang->posted_by} {$profilelink}</span>
+		<span>{$anndate}</span>
+		<span>{$lang->forum} <a href="{$mybb->settings['bburl']}/{$announcement['forumlink']}">{$announcement['forumname']}</a></span>
+		<span>{$numcomments}</span>
+	</div>
+	<div class="pt-ann-body">
+		{$avatar}
+		<div class="pt-ann-text scaleimages">
+			{$message}
+			{$post['attachments']}
+		</div>
+	</div>
+	<footer class="pt-ann-foot">
+		<a href="{$mybb->settings['bburl']}/printthread.php?tid={$announcement['tid']}" class="pt-ann-action"><svg><use href="{$theme['imgdir']}/icons.svg#i-print"/></svg>{$lang->print_this_item}</a>
+		{$senditem}
+	</footer>
+</article>

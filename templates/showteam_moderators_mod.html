@@ -1,0 +1,12 @@
+<article class="team-card">
+	<a href="{$user['profilelink']}" class="pa-avatar" aria-hidden="true" tabindex="-1">
+		<span class="avatar avatar-default avatar-lg"><svg><use href="{$theme['imgdir']}/icons.svg#i-avatar"/></svg></span>
+		<span class="pa-status is-{$status}" title="{$lang->$status}"></span>
+	</a>
+	<div class="team-info">
+		<h3 class="team-name"><a href="{$user['profilelink']}">{$user['username']}</a></h3>
+		<span class="team-meta">{$lang->lastvisit}: {$user['lastvisit']}</span>
+		<div class="team-forums"><span class="team-scope">{$modscope}</span>{$scopelist}</div>
+	</div>
+	<div class="team-actions">{$emailcode}{$pmcode}</div>
+</article>

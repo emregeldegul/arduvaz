@@ -1,0 +1,320 @@
+/* =========================================================
+   Arduvaz — forumdisplay.css
+   Konu listesi. Sadece forumdisplay.php sayfasında yüklenir.
+   ========================================================= */
+
+.fd { display: flex; flex-direction: column; gap: 16px; padding-bottom: 56px; }
+
+/* Konu kartı başlığı */
+.thread-card-head {
+  height: auto;
+  min-height: 64px;
+  padding: 14px 20px;
+  gap: 24px;
+}
+.thread-card-head h1 { margin: 0; font-size: 16px; font-weight: 700; letter-spacing: -.01em; }
+.thread-card-head p { margin: 2px 0 0; font-size: 12.5px; color: #cfd6dd; }
+.head-links { display: flex; align-items: center; gap: 10px; flex-shrink: 0; font-size: 13px; font-weight: 600; }
+.head-links span { color: rgba(255, 255, 255, .3); }
+.head-links a { display: inline-flex; align-items: center; gap: 6px; color: #fff; }
+.head-links a:hover { color: var(--slate-200); }
+.head-links svg { width: 15px; height: 15px; }
+
+/* Sütun düzeni */
+.thread-cols,
+.thread-row {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) 64px 90px 92px 200px 24px;
+  gap: 16px;
+  align-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.thread-cols {
+  min-height: 40px;
+  background: var(--head-tint);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--slate-600);
+}
+.sort-link { display: inline-flex; align-items: center; gap: 4px; color: var(--slate-800); }
+.sort-link svg { width: 14px; height: 14px; }
+.c-num, .c-rating { text-align: center; }
+.thread-row .c-num { font-size: 13.5px; font-weight: 600; color: var(--slate-700); }
+
+.thread-group {
+  padding: 8px 20px;
+  border-top: 1px solid var(--border);
+  background: var(--slate-100);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--slate-500);
+}
+
+.thread-row {
+  padding-top: 14px;
+  padding-bottom: 14px;
+  border-top: 1px solid var(--border);
+  transition: background .15s;
+}
+.thread-group + .thread-row { border-top: 0; }
+.thread-row:hover { background: var(--surface); }
+.thread-row.is-announcement { grid-template-columns: 40px minmax(0, 1fr); }
+
+.thread-main { min-width: 0; }
+.thread-main h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 2px;
+  font-size: 14.5px;
+  font-weight: 600;
+  letter-spacing: -.005em;
+}
+.thread-main h3 a { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+/* Başlık öncesi (simge, "Poll:", okunmamışa git, prefix): MyBB bunların arasına/sonuna
+   &nbsp; koyar; yazı boyutu 0 ile o boşluk silinir, aralık yalnız margin'den gelir.
+   Öğe yoksa sarmalayıcı -8px ile h3 gap'ini geri alır, başlık kaymaz. */
+.thread-main .t-lead { display: inline-flex; align-items: center; flex-shrink: 0; margin-right: -8px; font-size: 0; }
+.thread-main .t-lead > * { margin-right: 8px; }
+:where(.thread-main .t-lead > *) { font-size: 14.5px; }
+/* Başlığı yerinde düzenleme (basılı tut): kutu satırın kalanını kaplar */
+.thread-main h3 .subject_editable:has(> input) { flex: 1; min-width: 0; }
+.thread-main h3 .subject_editable > input { width: 100% !important; max-width: 640px; }
+.thread-main .subject_new a { font-weight: 700; }
+.thread-main .subject_old a { color: var(--slate-700); }
+.thread-main h3 a:hover { color: var(--slate-500) !important; }
+.pin { width: 15px; height: 15px; color: var(--slate-500); transform: rotate(35deg); }
+.thread-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; font-size: 12.5px; color: var(--text-3); }
+.thread-meta > a { font-weight: 600; color: var(--slate-600); }
+.mini-pages { display: inline-flex; gap: 3px; margin-left: 8px; }
+.mini-pages a, .mini-pages span {
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 5px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--slate-500);
+}
+.mini-pages a { border: 1px solid var(--border); background: var(--surface); }
+.mini-pages a:hover { border-color: var(--slate-400); color: var(--slate-900); }
+
+/* Puan yıldızları (MyBB rating.js; görünüm star_ratings.css) */
+.thread-row .c-rating .star_rating { margin: 0 auto; }
+
+/* Son mesaj */
+.thread-last { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.thread-last .last-info { gap: 1px; }
+.thread-last .tl-icon { display: none; } /* yalnız mobilde, avatar yerine */
+.last-date { font-size: 12.5px; color: var(--text-3); white-space: nowrap; }
+.thread-last .last-info a { font-size: 13px; font-weight: 600; color: var(--slate-700); }
+
+/* Moderasyon onay kutuları */
+.mod-check { width: 16px; height: 16px; margin: 0; accent-color: var(--cat-head); cursor: pointer; vertical-align: middle; }
+.thread-row.trow_selected { background: #eef1f5; }
+
+/* Mesaj simgesi (konuyu açanın seçtiği ikon) */
+.post-icon { width: 16px; height: 16px; flex-shrink: 0; color: #b4534b; }
+
+/* Moderatör durumları: onay bekleyen / taşınmış / silinmiş */
+.thread-row.trow_shaded { background: #fdf8ec; box-shadow: inset 3px 0 0 #b7791f; }
+.thread-row.trow_shaded:hover { background: #fbf3e0; }
+.thread-row.trow_deleted { background: #fcf3f2; box-shadow: inset 3px 0 0 #b4534b; }
+.thread-row.trow_deleted:hover { background: #f9eae8; }
+.thread-row.trow_deleted .thread-main h3 a { color: var(--slate-500) !important; text-decoration: line-through; text-decoration-color: var(--slate-300); }
+.thread-row.trow_deleted .thread-icon { color: #b4534b; }
+.moved-label { flex-shrink: 0; font-weight: 600; color: var(--slate-500); }
+.thread-row:has([data-folder="movefolder"]) .thread-main h3 a { color: var(--slate-600) !important; }
+.thread-row:has([data-folder="movefolder"]) .thread-meta > span { font-style: italic; }
+.thread-row:has([data-folder="movefolder"]) .c-num, .thread-last-empty { color: var(--slate-400) !important; font-weight: 500 !important; }
+.thread-last-empty { padding-left: 4px; }
+
+/* Forumdisplay: kurallar ve alt forumlar */
+.fd .notices { margin: 0; }
+.subforum-card .category-head { height: 46px; }
+.subforum-card .category-head h2 { font-size: 14px; }
+
+/* Sıralama */
+.thread-sort {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px 20px;
+  border-top: 1px solid var(--border);
+  background: var(--surface-2);
+  border-radius: 0 0 var(--radius) var(--radius);
+}
+
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+
+/* Moderatör araçları */
+.mod-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 14px 20px;
+  border: 0;
+  background: var(--head-tint);
+  border-radius: var(--radius);
+  font-size: 14px;
+  font-weight: 700;
+  text-align: left;
+  color: var(--slate-800);
+}
+.mod-toggle > svg:first-child { color: var(--slate-600); }
+.mod-toggle .chev { margin-left: 8px; width: 16px; height: 16px; color: var(--slate-500); transition: transform .2s; }
+.mod-toggle[aria-expanded="true"] { border-radius: var(--radius) var(--radius) 0 0; }
+.mod-toggle[aria-expanded="true"] .chev { transform: rotate(180deg); }
+.mod-count { margin-left: auto; font-size: 12px; font-weight: 600; color: var(--slate-500); }
+.mod-count.has-selection { color: var(--slate-900); }
+.mod-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 24px;
+  padding: 18px 20px 20px;
+}
+.mod-block h4 { margin: 0 0 10px; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--slate-500); }
+.mod-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.mod-row .select { flex: 1; min-width: 180px; }
+.mod-links { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.mod-links a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--slate-700);
+}
+.mod-links a:hover { border-color: var(--slate-300); color: var(--slate-900); }
+.mod-links svg { width: 15px; height: 15px; color: var(--slate-400); }
+.mod-links b {
+  margin-left: auto;
+  min-width: 20px;
+  padding: 0 6px;
+  border-radius: 10px;
+  background: var(--cat-head);
+  color: #fff;
+  font-size: 11px;
+  line-height: 18px;
+  text-align: center;
+}
+
+/* =========================================================
+   MYBB UYUMU
+   ========================================================= */
+/* MyBB'nin satır sınıfları (trow1/trow2) tablo stilini getirmesin; seçim ve onay durumları korunur */
+:where(.thread-row).trow1,
+:where(.thread-row).trow2 { padding: 14px 20px; background: transparent; border-bottom: 0; }
+
+/* Hücreler sabit sütunlara yerleşir: puan ya da moderasyon sütunu kapalıysa kayma olmaz */
+.thread-cols > :nth-child(1), .thread-row > .thread-icon { grid-column: 1; }
+.thread-cols > :nth-child(2), .thread-row > .thread-main { grid-column: 2; }
+.c-replies { grid-column: 3; }
+.c-views { grid-column: 4; }
+.c-rating { grid-column: 5; }
+.c-last, .thread-last { grid-column: 6; }
+.c-check { grid-column: 7; text-align: center; }
+
+.thread-cols a { color: inherit; }
+.thread-cols a:hover { color: var(--slate-900); }
+.sort-arrow { display: inline-flex; vertical-align: middle; margin-left: 2px; color: var(--slate-800); }
+.sort-arrow svg { width: 13px; height: 13px; transition: transform .15s; }
+.sort-arrow[data-next="desc"] svg { transform: rotate(180deg); }
+
+.thread-main .post-icon { width: 16px; height: 16px; object-fit: contain; }
+.moved-label:empty { display: none; }
+.goto-unread { display: inline-flex; color: var(--slate-500); }
+.goto-unread svg { width: 15px; height: 15px; }
+.goto-unread:hover { color: var(--slate-900); }
+.thread-attach { display: inline-flex; color: var(--slate-400); }
+.thread-attach svg { width: 14px; height: 14px; }
+.thread-unapproved { margin-left: 4px; font-size: 12px; color: var(--c-admin); }
+.thread-last .last-info a.last-date { font-weight: 400; color: var(--text-3); }
+.thread-last .last-info a.last-date:hover { color: var(--slate-900); }
+.thread-empty { padding: 28px 20px; text-align: center; color: var(--text-3); border-top: 1px solid var(--border); }
+.selectall { padding: 10px 20px; font-size: 13px; border-top: 1px solid var(--border); }
+.thread-card-head .fd-mods { margin: 4px 0 0; font-size: 12px; color: #cfd6dd; }
+.thread-card-head .fd-mods a { color: #fff; font-weight: 600; }
+.forum-rules .notice-text { margin: 0; }
+/* Kurallar: breadcrumb ile arasında fazladan boşluk olmasın (genel .notices üst boşluğu iptal) */
+.notices.forum-rules { padding-top: 0; margin-bottom: 0; }
+.go_page svg { width: 14px; height: 14px; }
+.drop_go_page { padding: 10px; }
+.drop_go_page form { display: flex; align-items: center; gap: 8px; margin: 0; font-size: 13px; }
+.drop_go_page .textbox { width: 70px; }
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width: 1100px) {
+  .thread-cols, .thread-row { grid-template-columns: 40px minmax(0, 1fr) 64px 90px 180px 24px; }
+  .c-rating { display: none; }
+}
+@media (max-width: 980px) {
+  .fd-bottom, .mod-body { grid-template-columns: 1fr; }
+}
+@media (max-width: 760px) {
+  .thread-cols { display: none; }
+  .thread-row {
+    grid-template-columns: 36px minmax(0, 1fr) 20px;
+    grid-template-areas: "icon main check" ".    last last";
+    gap: 10px 12px;
+    padding: 14px 14px;
+  }
+  .thread-row.is-announcement { grid-template-areas: "icon main"; }
+  .thread-row .c-num, .thread-row .c-rating { display: none; }
+  .thread-row > .thread-icon { grid-area: icon; width: 36px; height: 36px; align-self: start; }
+  .thread-main { grid-area: main; }
+  /* Başlık satırı mobilde düz metin akışı: simge, "Poll:", prefix, başlık ve ek simgesi
+     ayrı satırlara kırılmaz, cümle gibi alt satıra geçer */
+  .thread-main h3 { display: block; line-height: 1.45; }
+  .thread-main h3 a { white-space: normal; }
+  .thread-main .t-lead { display: inline; margin-right: 0; }
+  .thread-main .t-lead > * { display: inline-flex; vertical-align: -1px; margin-right: 6px; }
+  .thread-main .t-lead > .prefix { vertical-align: 1px; }
+  .thread-main .t-lead > span:empty { display: none; }
+  .thread-main h3 .thread-attach { display: inline-flex; vertical-align: -2px; margin-left: 5px; }
+  .thread-main h3 .subject_editable:has(> input) { display: block; }
+  .thread-meta { margin-top: 3px; }
+  .mini-pages { margin-left: 4px; }
+
+  /* Son mesaj mobilde tek satır: ok simgesi · tarih · yazar; avatar yok */
+  .thread-last { grid-area: last; gap: 6px; padding-top: 9px; border-top: 1px dashed var(--border); }
+  .thread-last .avatar { display: none; }
+  .thread-last .tl-icon { display: block; width: 13px; height: 13px; flex-shrink: 0; color: var(--slate-400); transform: scaleX(-1); }
+  .thread-last .last-info { flex-direction: row; flex-wrap: wrap; align-items: baseline; gap: 0 6px; font-size: 12px; }
+  .thread-last .last-info a { font-size: 12px; }
+  .thread-last .last-info a.last-date + a::before { content: "·"; margin-right: 6px; font-weight: 400; color: var(--text-3); }
+
+  /* Konu listesi başlığı: bağlantılar bölünmeden alt alta/yan yana sarılır */
+  .head-links { flex-wrap: wrap; gap: 6px 14px; font-size: 12.5px; }
+  .head-links span { display: none; }
+  .head-links a { white-space: nowrap; }
+  .c-check { grid-area: check; align-self: start; }
+  .thread-card-head { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .thread-legend { grid-template-columns: 1fr 1fr; }
+  .thread-sort .select { flex: 1 1 140px; }
+  .page-info { width: 100%; margin-bottom: 4px; }
+  .mod-links { grid-template-columns: 1fr; }
+}
+
+/* Satır içi konu moderasyonu: alt araç çubuğunda sayfalamanın yanında, "Yeni Konu" sağda kalır */
+.fd-toolbar > .jump { display: flex; align-items: center; gap: 10px; }
+.fd-toolbar > .jump label { margin: 0; white-space: nowrap; }
+.fd-toolbar > .jump .select { min-width: 200px; }
+@media (max-width: 760px) {
+  .fd-toolbar > .jump { flex-wrap: wrap; width: 100%; }
+  .fd-toolbar > .jump .jump-row { width: 100%; }
+  .fd-toolbar > .jump ~ :not(.pagination):not(script) { margin-left: auto; }
+}

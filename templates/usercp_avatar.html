@@ -1,0 +1,38 @@
+<html xml:lang="{$lang->settings['htmllang']}" lang="{$lang->settings['htmllang']}" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$mybb->settings['bbname']} - {$lang->change_avatar}</title>
+{$headerinclude}
+</head>
+<body>
+{$header}
+<form enctype="multipart/form-data" action="usercp.php" method="post">
+<input type="hidden" name="my_post_key" value="{$mybb->post_code}" />
+<table width="100%" border="0" align="center">
+<tr>
+{$usercpnav}
+<td valign="top">
+	{$avatar_error}
+	<section class="panel">
+		<header class="panel-head"><svg><use href="{$theme['imgdir']}/icons.svg#i-avatar"/></svg><h1>{$lang->change_avatar}</h1></header>
+		<div class="ucp-avatar-current">
+			{$currentavatar}
+			<div class="ucp-avatar-note">{$lang->avatar_note}{$avatarmsg}</div>
+		</div>
+		<div class="form-rows">
+			<div class="form-group-title">{$lang->custom_avatar}</div>
+			{$avatarupload}
+			{$avatar_remote}
+		</div>
+	</section>
+	<div class="ucp-submit">
+		<input type="hidden" name="action" value="do_avatar" />
+		{$removeavatar}
+		<input type="submit" class="btn btn-dark" name="submit" value="{$lang->change_avatar}" />
+	</div>
+</td>
+</tr>
+</table>
+</form>
+{$footer}
+</body>
+</html>

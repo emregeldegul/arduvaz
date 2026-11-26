@@ -1,0 +1,17 @@
+<html xml:lang="{$lang->settings['htmllang']}" lang="{$lang->settings['htmllang']}" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$title}</title>
+{$headerinclude}
+</head>
+<body>
+{$header}
+<main class="msg-page">
+	<section class="panel msg-card">
+		<span class="msg-icon"><svg><use href="{$theme['imgdir']}/icons.svg#i-flag"/></svg></span>
+		<h1>{$title}</h1>
+		<div class="msg-body">{$error}</div>
+	</section>
+</main>
+{$footer}
+</body>
+</html>

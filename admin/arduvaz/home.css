@@ -1,0 +1,140 @@
+/* =========================================================
+   Arduvaz — Admin CP home.css (Ana sayfa: dashboard, güncellemeler, tercihler)
+   ========================================================= */
+
+/* ---------- Çevrimiçi yöneticiler (sol menü) ---------- */
+
+#left_menu div.left_menu_box ul.online_admins li a {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding-left: 10px;
+	background: none;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+#left_menu div.left_menu_box ul.online_admins li a::before {
+	content: "";
+	flex-shrink: 0;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: var(--ok);
+	box-shadow: 0 0 0 3px var(--ok-bg);
+}
+
+#left_menu div.left_menu_box ul.online_admins li.mobile_user a {
+	padding-left: 10px;
+	background: none;
+}
+
+/* ---------- İstatistik tablosu (sekmelerin hemen altındaki kart) ---------- */
+
+.nav_tabs + .border_wrapper table.general td {
+	vertical-align: top;
+	line-height: 1.6;
+}
+
+/* Etiket sütunları (1. ve 3.) */
+.nav_tabs + .border_wrapper table.general td:nth-child(odd) {
+	color: var(--text-2);
+}
+
+.nav_tabs + .border_wrapper table.general td:nth-child(odd) strong {
+	font-weight: 600;
+}
+
+/* Değer sütunlarındaki sayılar */
+.nav_tabs + .border_wrapper table.general td:nth-child(even) strong {
+	color: var(--text);
+	font-weight: 700;
+	font-variant-numeric: tabular-nums;
+}
+
+/* İki sütun grubunu ayır */
+.nav_tabs + .border_wrapper table.general td:nth-child(3),
+.nav_tabs + .border_wrapper table.general th:nth-child(2) {
+	border-left: 1px solid var(--border);
+}
+
+/* ---------- Duyurular + yönetici notları (iki kart yan yana) ---------- */
+
+#inner > .float_left,
+#inner > .float_right {
+	margin-bottom: 18px;
+}
+
+#inner > .float_right textarea {
+	display: block;
+	width: 100% !important;
+	min-height: 200px;
+	resize: vertical;
+}
+
+/* Duyuru satırları: başlık bağlantısı + tarih + özet */
+#inner > .float_left table.general td {
+	font-size: 13.5px;
+	line-height: 1.6;
+	color: var(--text-2);
+}
+
+#inner > .float_left table.general td a {
+	color: var(--text);
+	font-weight: 600;
+}
+
+#inner > .float_left table.general td .smalltext,
+#inner > .float_left table.general td small {
+	color: var(--text-3);
+}
+
+/* ---------- Dar ekran ---------- */
+
+@media (max-width: 900px) {
+	/* Kartlar alt alta */
+	#inner > .float_left,
+	#inner > .float_right {
+		float: none;
+		width: 100% !important;
+	}
+}
+
+@media (max-width: 700px) {
+	/* İstatistik tablosu: her satır iki satırlık etiket/değer ızgarası */
+	.nav_tabs + .border_wrapper table.general thead {
+		display: none;
+	}
+
+	.nav_tabs + .border_wrapper table.general,
+	.nav_tabs + .border_wrapper table.general tbody {
+		display: block;
+	}
+
+	.nav_tabs + .border_wrapper table.general tr {
+		display: grid;
+		grid-template-columns: 40% 60%;
+		border-bottom: 1px solid var(--slate-100);
+	}
+
+	.nav_tabs + .border_wrapper table.general tr:last-child {
+		border-bottom: 0;
+	}
+
+	.nav_tabs + .border_wrapper table.general td {
+		width: auto !important;
+		border: 0 !important;
+		border-radius: 0 !important;
+	}
+
+	.nav_tabs + .border_wrapper table.general td:nth-child(3),
+	.nav_tabs + .border_wrapper table.general td:nth-child(4) {
+		border-top: 1px dashed var(--slate-100) !important;
+	}
+
+	/* Tek hücreli son satır (sunucu yazılımı: colspan) */
+	.nav_tabs + .border_wrapper table.general td[colspan] {
+		grid-column: span 1;
+	}
+}

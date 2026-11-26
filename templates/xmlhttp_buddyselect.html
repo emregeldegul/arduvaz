@@ -1,0 +1,20 @@
+<div class="panel bs-panel">
+	<header class="panel-head">
+		<svg><use href="{$theme['imgdir']}/icons.svg#i-users"/></svg>
+		<h2>{$lang->select_buddies}</h2>
+		<button type="button" class="bs-close" onclick="UserCP.closeBuddySelect(true); return false;" aria-label="{$lang->close}" title="{$lang->close}"><svg><use href="{$theme['imgdir']}/icons.svg#i-close"/></svg></button>
+	</header>
+	<p class="bs-desc">{$lang->select_buddies_desc}</p>
+	<div class="bs-list">
+		{$online}
+		{$offline}
+	</div>
+	<div class="bs-selected">
+		<strong>{$lang->selected_recipients}</strong>
+		<div id="buddyselect_buddies"></div>
+	</div>
+	<div class="bs-actions">
+		<input type="button" class="btn btn-light btn-sm" value="{$lang->cancel}" onclick="UserCP.closeBuddySelect(true);" />
+		<input type="button" class="btn btn-dark btn-sm" value="{$lang->ok}" onclick="UserCP.closeBuddySelect();" />
+	</div>
+</div>

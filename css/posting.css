@@ -1,0 +1,126 @@
+/* =========================================================
+   Arduvaz — posting.css
+   Yeni konu, yanıt ve mesaj düzenleme. newthread.php, newreply.php,
+   editpost.php sayfalarında yüklenir.
+   ========================================================= */
+.post-page { display: flex; flex-direction: column; gap: 16px; padding-bottom: 56px; }
+.post-form { display: flex; flex-direction: column; gap: 16px; margin: 0; }
+.post-form .panel-head h1 { margin: 0; font-size: 15px; font-weight: 700; letter-spacing: -.01em; }
+.panel-sub { margin-left: auto; font-size: 12.5px; color: var(--text-3); }
+
+/* Başlığın sağında yazan kullanıcı (changeuserbox) / misafir kullanıcı adı kutusu (loginbox) */
+.panel-head .head-user { display: flex; align-items: center; gap: 8px; margin-left: auto; font-size: 13px; color: var(--slate-600); }
+.panel-head .panel-sub + .head-user { margin-left: 0; padding-left: 14px; border-left: 1px solid var(--slate-300); }
+.head-user-label { font-weight: 600; color: var(--slate-500); }
+.head-user strong { font-weight: 700; color: var(--slate-900); }
+.head-user .form-link { margin-left: 2px; }
+.head-user-guest input.textbox { width: 200px; height: 32px; padding: 0 10px; }
+
+/* Seçenek sekmeleri (arduvaz.js .post-opts satırlarından kurar) */
+.post-opts-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 14px 20px;
+  border-top: 1px solid var(--slate-100);
+}
+.post-opts-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--slate-600);
+  cursor: pointer;
+}
+.post-opts-tab svg { width: 14px; height: 14px; color: var(--slate-400); }
+.post-opts-tab:hover { border-color: var(--slate-300); color: var(--slate-900); }
+.post-opts-tab[aria-selected="true"] { border-color: var(--slate-800); background: var(--slate-800); color: #fff; }
+.post-opts-tab[aria-selected="true"] svg { color: #fff; rotate: 180deg; }
+.post-opts.is-tabbed > .form-row { grid-template-columns: 1fr; margin: 0 20px 16px; padding: 14px 16px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--surface-2); }
+.post-opts.is-tabbed > .form-row[hidden] { display: none; }
+/* Sekmede başlık zaten yazıyor: etiket metnini gizle, varsa açıklamayı bırak */
+.post-opts.is-tabbed .form-label { padding: 0; font-size: 0; }
+.post-opts.is-tabbed .form-label:not(:has(.form-desc)) { display: none; }
+.post-opts.is-tabbed .form-label .form-desc { margin: 0; font-size: 12px; }
+.post-opts.is-tabbed .form-checks { padding-top: 0; }
+/* Konu başlığı + önek */
+.form-subject { display: flex; gap: 8px; }
+.form-subject .select { flex: 0 0 auto; height: 38px; }
+.form-subject .textbox { flex: 1; min-width: 0; }
+
+/* Gönder düğmeleri */
+.post-actions { display: flex; justify-content: flex-end; gap: 8px; }
+.post-actions .btn { height: 42px; padding: 0 20px; }
+
+/* Ekler */
+.attach-quota { margin-left: auto; font-size: 12px; color: var(--text-3); }
+.attach-quota a { font-weight: 600; color: var(--slate-700); }
+.attach-list { background: var(--surface); }
+.attach-new,
+.attach-item { display: flex; align-items: center; gap: 12px; padding: 12px 20px; border-top: 1px solid var(--slate-100); }
+.attach-list > :first-child { border-top: 0; }
+.attach-new-field { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0; font-size: 13px; }
+.attach-new-label { font-weight: 600; color: var(--slate-700); }
+.attach-new-actions,
+.attach-actions { display: flex; gap: 6px; flex-shrink: 0; }
+.attach-icon img { display: block; }
+.attach-name { flex: 1; min-width: 0; font-size: 13.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.attach-name small { color: var(--text-3); }
+.attach-item.is-unapproved { background: #fdf8ec; }
+.attach-drop-inner { padding: 12px 20px 16px; }
+.attach-progress { width: 0; height: 4px; margin-bottom: 10px; border-radius: 2px; background: var(--slate-700); transition: width .2s; }
+.attach-dropzone {
+  display: grid;
+  place-items: center;
+  gap: 6px;
+  padding: 32px 16px;
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+  font-size: 13.5px;
+  color: var(--text-3);
+  cursor: pointer;
+  transition: border-color .15s, background .15s;
+}
+.attach-dropzone svg { width: 22px; height: 22px; color: var(--slate-400); pointer-events: none; }
+.attach-dropzone > div { pointer-events: none; }
+.attach-dropzone:hover,
+.attach-dropzone.activated { border-color: var(--slate-400); background: var(--slate-50); }
+
+/* Önizleme */
+.preview-head { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; font-size: 12px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--slate-500); }
+.preview-head svg { width: 15px; height: 15px; }
+
+/* Konu özeti (yanıt sayfası) */
+.review-list { max-height: 520px; overflow-y: auto; background: var(--surface); }
+.review-post + .review-post { border-top: 1px solid var(--border); }
+.review-head { padding: 10px 20px; background: var(--surface-2); border-bottom: 1px solid var(--slate-100); font-size: 12.5px; color: var(--text-3); }
+.review-head strong { color: var(--slate-800); }
+.review-body { padding: 14px 20px; font-size: 14px; line-height: 1.7; }
+.review-more { margin: 0; padding: 10px 20px; border-top: 1px solid var(--border); background: var(--surface-2); font-size: 12.5px; text-align: center; color: var(--text-3); }
+
+/* Mesajı sil (düzenleme sayfası) */
+.delete-box { display: flex; align-items: center; gap: 16px; padding: 14px 20px; background: #fcf3f2; border-color: #f0d4d1; }
+.delete-check { flex-shrink: 0; color: #9b3f38; }
+.delete-text { flex: 1; margin: 0; font-size: 13px; color: var(--text-2); }
+.delete-text span { display: block; font-size: 12px; color: var(--text-3); }
+.delete-submit:hover { background: #fef2f2; border-color: #f3c9c5; color: #b4534b; }
+
+@media (max-width: 760px) {
+  .form-subject { flex-direction: column; }
+  .panel-head:has(.head-user) { flex-wrap: wrap; }
+  .panel-head .head-user { width: 100%; margin-left: 0; padding-left: 0; border-left: 0; }
+  .head-user-guest input.textbox { flex: 1; width: auto; }
+  .post-opts.is-tabbed > .form-row { margin: 0 14px 14px; }
+  .post-opts-tabs { padding: 12px 14px; }
+  .post-actions { flex-direction: column-reverse; }
+  .post-actions .btn { width: 100%; }
+  .attach-new, .attach-item { flex-wrap: wrap; padding: 12px 16px; }
+  .delete-box { flex-direction: column; align-items: flex-start; }
+}

@@ -1,0 +1,161 @@
+<html xml:lang="{$lang->settings['htmllang']}" lang="{$lang->settings['htmllang']}" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$mybb->settings['bbname']} - {$lang->edit_lists}</title>
+{$headerinclude}
+<script type="text/javascript" src="{$mybb->asset_url}/jscripts/usercp.js?ver=1827"></script>
+<script type="text/javascript">
+	lang.remove_buddy = '{$lang->confirm_remove_buddy}';
+	lang.remove_ignored = '{$lang->confirm_remove_ignored}';
+	lang.adding_buddy = '{$lang->adding_buddy}';
+	lang.adding_ignored = '{$lang->adding_ignored}';
+	lang.buddylist_error = '{$lang->buddylist_error}';
+</script>
+<link rel="stylesheet" href="{$mybb->asset_url}/jscripts/select2/select2.css?ver=1807">
+<script type="text/javascript" src="{$mybb->asset_url}/jscripts/select2/select2.min.js?ver=1806"></script>
+</head>
+<body>
+{$header}
+<table width="100%" border="0" align="center">
+<tr>
+{$usercpnav}
+<td valign="top">
+	<form action="usercp.php" method="post" id="buddy" onsubmit="return UserCP.addBuddy('buddy');" class="panel ucp-list-box">
+		<input type="hidden" name="action" value="do_editlists" />
+		<input type="hidden" name="manage" value="buddy" />
+		<input type="hidden" name="my_post_key" value="{$mybb->post_code}" />
+		<header class="panel-head"><svg><use href="{$theme['imgdir']}/icons.svg#i-users"/></svg><h2>{$lang->edit_buddy_list}</h2></header>
+		<div class="form-rows">
+			<div class="form-row">
+				<div class="form-label">{$lang->add_buddies}<span class="form-desc">{$lang->add_buddies_desc}</span></div>
+				<div class="form-field ucp-add-user">
+					<input type="text" name="add_username" id="buddy_add_username" class="textbox" aria-label="{$lang->username_or_usernames}" />
+					<input type="submit" value="{$lang->add_to_buddies}" id="buddy_submit" class="btn btn-dark btn-sm" />
+				</div>
+			</div>
+			<script type="text/javascript">
+			<!--
+			if(use_xmlhttprequest == "1")
+			{
+				MyBB.select2();
+				$("#buddy_add_username").select2({
+					placeholder: "{$lang->search_user}",
+					minimumInputLength: 2,
+					maximumSelectionSize: 5,
+					multiple: true,
+					ajax: {
+						url: "xmlhttp.php?action=get_users",
+						dataType: 'json',
+						data: function (term, page) {
+							return {
+								query: term
+							};
+						},
+						results: function (data, page) {
+							return {results: data};
+						}
+					},
+					initSelection: function(element, callback) {
+						var query = $(element).val();
+						if (query !== "") {
+							var newqueries = [];
+							exp_queries = query.split(",");
+							$.each(exp_queries, function(index, value ){
+								if(value.replace(/\s/g, '') != "")
+								{
+									var newquery = {
+										id: value.replace(/,\s?/g, ", "),
+										text: value.replace(/,\s?/g, ", ")
+									};
+									newqueries.push(newquery);
+								}
+							});
+							callback(newqueries);
+						}
+					},
+				});
+			}
+			// -->
+			</script>
+			<div class="ucp-list-current" id="buddy_container">
+				<div class="form-group-title">{$lang->current_buddies}</div>
+				<ul id="buddy_list" class="ucp-user-list">
+					{$buddy_list}
+				</ul>
+			</div>
+		</div>
+	</form>
+	<form action="usercp.php" method="post" id="ignored" onsubmit="return UserCP.addBuddy('ignored');" class="panel ucp-list-box">
+		<input type="hidden" name="action" value="do_editlists" />
+		<input type="hidden" name="manage" value="ignored" />
+		<input type="hidden" name="my_post_key" value="{$mybb->post_code}" />
+		<header class="panel-head"><svg><use href="{$theme['imgdir']}/icons.svg#i-eye-off"/></svg><h2>{$lang->edit_ignore_list}</h2></header>
+		<div class="form-rows">
+			<div class="form-row">
+				<div class="form-label">{$lang->add_ignored_users}<span class="form-desc">{$lang->add_ignored_users_desc}</span></div>
+				<div class="form-field ucp-add-user">
+					<input type="text" name="add_username" id="ignored_add_username" class="textbox" aria-label="{$lang->username_or_usernames}" />
+					<input type="submit" value="{$lang->ignore_users}" id="ignored_submit" class="btn btn-dark btn-sm" />
+				</div>
+			</div>
+			<script type="text/javascript">
+			<!--
+			if(use_xmlhttprequest == "1")
+			{
+				MyBB.select2();
+				$("#ignored_add_username").select2({
+					placeholder: "{$lang->search_user}",
+					minimumInputLength: 2,
+					maximumSelectionSize: 5,
+					multiple: true,
+					ajax: {
+						url: "xmlhttp.php?action=get_users",
+						dataType: 'json',
+						data: function (term, page) {
+							return {
+								query: term
+							};
+						},
+						results: function (data, page) {
+							return {results: data};
+						}
+					},
+					initSelection: function(element, callback) {
+						var query = $(element).val();
+						if (query !== "") {
+							var newqueries = [];
+							exp_queries = query.split(",");
+							$.each(exp_queries, function(index, value ){
+								if(value.replace(/\s/g, '') != "")
+								{
+									var newquery = {
+										id: value.replace(/,\s?/g, ", "),
+										text: value.replace(/,\s?/g, ", ")
+									};
+									newqueries.push(newquery);
+								}
+							});
+							callback(newqueries);
+						}
+					},
+				});
+			}
+			// -->
+			</script>
+			<div class="ucp-list-current" id="ignored_container">
+				<div class="form-group-title">{$lang->current_ignored_users}</div>
+				<ul id="ignore_list" class="ucp-user-list">
+					{$ignore_list}
+				</ul>
+			</div>
+		</div>
+	</form>
+	<div class="ucp-grid-2">
+		<div id="receivedrequests">{$received_requests}</div>
+		<div id="sentrequests">{$sent_requests}</div>
+	</div>
+</td>
+</tr>
+</table>
+{$footer}
+</body>
+</html>

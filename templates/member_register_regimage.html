@@ -1,0 +1,20 @@
+<section class="panel rg-section">
+	<script type="text/javascript">
+	<!--
+		lang.captcha_fetch_failure = "{$lang->captcha_fetch_failure}";
+	// -->
+	</script>
+	<script type="text/javascript" src="{$mybb->asset_url}/jscripts/captcha.js?ver=1821"></script>
+	<header class="panel-head"><svg><use href="{$theme['imgdir']}/icons.svg#i-shield"/></svg><h2>{$lang->image_verification}</h2></header>
+	<div class="rg-body">
+		<p class="rg-hint">{$lang->verification_note} {$lang->verification_subnote}</p>
+		<div class="rg-captcha">
+			<img src="captcha.php?action=regimage&amp;imagehash={$imagehash}" alt="{$lang->image_verification}" title="{$lang->image_verification}" id="captcha_img" class="rg-captcha-img" />
+			<label for="imagestring" class="sr-only">{$lang->image_verification}</label>
+			<input type="text" class="textbox" name="imagestring" value="" id="imagestring" autocomplete="off" />
+			<input type="hidden" name="imagehash" value="{$imagehash}" id="imagehash" />
+			<button type="button" class="icon-btn" tabindex="10000" onclick="return captcha.refresh();" aria-label="{$lang->refresh}" title="{$lang->refresh}"><svg><use href="{$theme['imgdir']}/icons.svg#i-refresh"/></svg></button>
+		</div>
+		<div class="rg-status" id="imagestring_status" style="display: none;">&nbsp;</div>
+	</div>
+</section>

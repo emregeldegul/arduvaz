@@ -1,0 +1,28 @@
+<html xml:lang="{$lang->settings['htmllang']}" lang="{$lang->settings['htmllang']}" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$mybb->settings['bbname']} - {$lang->manage_announcement}</title>
+{$headerinclude}
+</head>
+<body>
+{$header}
+<table width="100%" border="0" align="center">
+<tr>
+{$modcp_nav}
+<td valign="top">
+	{$announcements_global}
+	<table border="0" cellspacing="0" cellpadding="0" class="tborder ucp-table mcp-ann">
+		<tr>
+			<td class="thead" colspan="2"><strong>{$lang->forum_announcements}</strong></td>
+		</tr>
+		<tr>
+			<td class="tcat">{$lang->announcement}</td>
+			<td class="tcat mcp-ann-actions">{$lang->controls}</td>
+		</tr>
+		{$announcements_forum}
+	</table>
+</td>
+</tr>
+</table>
+{$footer}
+</body>
+</html>

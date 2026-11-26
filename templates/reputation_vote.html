@@ -1,0 +1,8 @@
+<article class="rep-vote {$status_class}" id="rid{$reputation_vote['rid']}">
+	<div class="rep-vote-head">
+		<div class="rep-vote-who">{$reputation_vote['username']} <span class="rep-vote-meta">{$reputation_vote['user_reputation']} &middot; {$last_updated}</span></div>
+		<div class="rep-vote-actions">{$report_link}{$delete_link}</div>
+	</div>
+	<p class="rep-vote-body"><strong class="{$vote_type_class}">{$vote_type} {$vote_reputation}:</strong> {$reputation_vote['comments']}</p>
+	<p class="rep-vote-post">{$postrep_given}</p>
+</article>

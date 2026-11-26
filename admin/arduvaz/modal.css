@@ -1,0 +1,105 @@
+/* =========================================================
+   Arduvaz — Admin CP modal.css
+   jquery.modal pencereleri (ör. forum izinleri, e-posta hatası ayrıntısı)
+   ========================================================= */
+
+.blocker {
+	position: fixed;
+	inset: 0;
+	z-index: 9999;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	padding: 20px;
+	box-sizing: border-box;
+	background: rgba(15, 23, 42, .55);
+	backdrop-filter: blur(2px);
+	text-align: center;
+}
+
+.blocker::before {
+	content: "";
+	display: inline-block;
+	height: 100%;
+	vertical-align: middle;
+	margin-right: -.05em;
+}
+
+.blocker.behind {
+	background: transparent;
+	backdrop-filter: none;
+}
+
+.modal {
+	position: relative;
+	z-index: 2;
+	display: inline-block;
+	width: 440px;
+	max-width: 100%;
+	padding: 0;
+	vertical-align: middle;
+	text-align: left;
+	background: var(--surface, #fff);
+	border: 1px solid var(--border, #e2e8f0);
+	border-radius: var(--radius, 12px);
+	box-shadow: 0 24px 48px -12px rgba(15, 23, 42, .35);
+	box-sizing: border-box;
+}
+
+/* Modal içindeki kart: çerçeve modalın kendisi */
+.modal > .border_wrapper,
+.modal form > .border_wrapper {
+	margin: 0;
+	border: 0;
+	box-shadow: none;
+}
+
+.modal .form_button_wrapper {
+	margin: 0;
+	border: 0;
+	border-top: 1px solid var(--border, #e2e8f0);
+	border-radius: 0 0 var(--radius, 12px) var(--radius, 12px);
+	box-shadow: none;
+}
+
+.modal a.close-modal {
+	position: absolute;
+	top: 8px;
+	right: 8px;
+	z-index: 3;
+	display: block;
+	width: 30px;
+	height: 30px;
+	border-radius: 8px;
+	text-indent: -9999px;
+	overflow: hidden;
+	background: none;
+	transition: background .15s;
+}
+
+.modal a.close-modal::after {
+	content: "";
+	position: absolute;
+	inset: 7px;
+	background: var(--slate-600, #475569);
+	-webkit-mask: var(--i-close) center / contain no-repeat;
+	mask: var(--i-close) center / contain no-repeat;
+}
+
+.modal a.close-modal:hover {
+	background: rgba(15, 23, 42, .08);
+}
+
+.modal-spinner {
+	display: none;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	width: 64px;
+	height: 64px;
+	margin-top: -32px;
+	margin-right: -32px;
+	background: var(--surface, #fff) url(images/spinner_big.gif) no-repeat center center;
+	border-radius: var(--radius, 12px);
+	box-shadow: var(--shadow-lg);
+}

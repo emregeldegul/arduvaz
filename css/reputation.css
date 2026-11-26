@@ -1,0 +1,79 @@
+/* =========================================================
+   Arduvaz — reputation.css
+   İtibar raporu (reputation.php). Sadece bu sayfada yüklenir.
+   ========================================================= */
+
+.rep-page { display: flex; flex-direction: column; gap: 20px; padding-bottom: 56px; }
+.rep-card { overflow: hidden; background: var(--surface); }
+.rep-card .panel-head .rate_user_button { margin-left: auto; }
+
+/* Özet: solda kullanıcı + toplamlar, sağda dönemlik tablo (geniş, sıkışmaz) */
+.rep-summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+  background: var(--surface);
+}
+.rep-user { display: flex; flex-direction: column; gap: 2px; padding: 22px 24px; }
+.rep-name { font-size: 18px; font-weight: 700; letter-spacing: -.01em; color: var(--slate-900); }
+.rep-title { font-size: 13px; color: var(--text-3); }
+.rep-split { display: grid; gap: 0; margin: 16px 0 0; border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; }
+.rep-split > div { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 9px 14px; }
+.rep-split > div + div { border-top: 1px solid var(--border); }
+.rep-split dt { font-size: 13px; color: var(--slate-600); }
+.rep-split dd { margin: 0; font-size: 14px; font-weight: 700; color: var(--slate-900); }
+.rep-split .rep-total { background: var(--surface-2); }
+.rep-split .rep-total dt { font-weight: 600; color: var(--slate-800); }
+.rep-split .rep-total dd { font-size: 18px; }
+.repbox._plus { color: #3f7a63; }
+.repbox._minus { color: #b4534b; }
+.repbox._neutral { color: var(--slate-600); }
+
+.rep-stats-wrap { padding: 22px 24px; border-left: 1px solid var(--border); }
+.rep-stats { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+.rep-stats th,
+.rep-stats td { padding: 9px 12px; white-space: nowrap; text-align: center; border-bottom: 1px solid var(--slate-100); }
+.rep-stats thead th { font-size: 11.5px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+.rep-stats tbody th { text-align: left; font-weight: 600; color: var(--slate-600); }
+.rep-stats tbody tr:last-child th,
+.rep-stats tbody tr:last-child td { border-bottom: 0; font-weight: 700; }
+.rep-stats tbody td { font-variant-numeric: tabular-nums; color: var(--slate-800); }
+.rep-stats .is-pos { color: #3f7a63; }
+.rep-stats .is-neu { color: var(--slate-500); }
+.rep-stats .is-neg { color: #b4534b; }
+.rep-stats tbody td.is-pos,
+.rep-stats tbody td.is-neu,
+.rep-stats tbody td.is-neg { color: var(--slate-800); }
+
+/* Yorumlar */
+.rep-comments { overflow: hidden; background: var(--surface); }
+.rep-filter { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+.rep-filter .select { height: 32px; }
+.rep-votes { background: var(--surface); }
+.rep-empty { margin: 0; padding: 28px 20px; text-align: center; font-size: 14px; color: var(--text-3); }
+.rep-vote { padding: 14px 20px 14px 17px; border-left: 3px solid var(--slate-300); }
+.rep-vote + .rep-vote { border-top: 1px solid var(--slate-100); }
+.rep-vote.trow_reputation_positive { border-left-color: #6b9f88; }
+.rep-vote.trow_reputation_negative { border-left-color: #c9837c; }
+.rep-vote-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.rep-vote-who { font-size: 13.5px; font-weight: 600; }
+.rep-vote-meta { font-size: 12.5px; font-weight: 400; color: var(--text-3); }
+.rep-vote-actions { display: flex; gap: 6px; }
+.rep-vote-actions:empty { display: none; }
+.rep-action { display: inline-flex; align-items: center; gap: 5px; padding: 4px 8px; border-radius: 6px; font-size: 12.5px; font-weight: 600; color: var(--slate-500); }
+.rep-action:hover { background: var(--slate-100); color: var(--slate-900); }
+.rep-action svg { width: 14px; height: 14px; }
+.rep-vote-body { margin: 6px 0 0; font-size: 14px; line-height: 1.6; color: var(--slate-700); }
+.rep-vote-body .reputation_positive { color: #3f7a63; }
+.rep-vote-body .reputation_negative { color: #b4534b; }
+.rep-vote-body .reputation_neutral { color: var(--slate-600); }
+.rep-vote-post { margin: 4px 0 0; font-size: 12.5px; color: var(--text-3); }
+.rep-vote-post:empty { display: none; }
+.rep-vote-post a { font-weight: 600; color: var(--slate-700); }
+
+@media (max-width: 860px) {
+  .rep-summary { grid-template-columns: 1fr; }
+  .rep-stats-wrap { border-left: 0; border-top: 1px solid var(--border); overflow-x: auto; }
+  .rep-comments .panel-head { flex-wrap: wrap; }
+  .rep-filter { width: 100%; margin-left: 0; }
+  .rep-filter .select { flex: 1; min-width: 0; }
+}

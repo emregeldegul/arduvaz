@@ -1,0 +1,127 @@
+/* =========================================================
+   Arduvaz — Admin CP style.css (Şablonlar ve Stil)
+   ========================================================= */
+
+/* ---------- Şablon önizleme katmanı ---------- */
+
+#templatebox {
+	position: absolute;
+	top: 40px;
+	left: 0;
+	z-index: 100;
+	width: 100%;
+	line-height: 0;
+	text-align: center;
+}
+
+#fader {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 90;
+	width: 100%;
+	height: 500px;
+	background: rgba(15, 23, 42, .55);
+}
+
+#outerContainer {
+	position: relative;
+	width: 70%;
+	height: 300px;
+	margin: 0 auto;
+	background: var(--surface);
+	border-radius: var(--radius);
+	box-shadow: var(--shadow-lg);
+}
+
+/* ---------- Şablon farkı ---------- */
+
+ins, del {
+	padding: 1px 2px;
+	border-radius: 3px;
+	color: var(--text);
+	line-height: 1.6;
+	text-decoration: none;
+}
+
+ins {
+	background: #d1fae5;
+}
+
+del {
+	background: #fee2e2;
+}
+
+/* ---------- CodeMirror (şablon / stil düzenleyici) ----------
+   CodeMirror CSS'i sayfa gövdesinde sonradan yüklendiği için seçiciler #content ile güçlendirilir. */
+
+#content .cm-s-mybb {
+	font: 12.5px/1.6 ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+
+#content .cm-s-mybb.CodeMirror {
+	background: var(--surface);
+	color: var(--text);
+	border-top: 1px solid var(--border);
+}
+
+#content .border_wrapper .CodeMirror:last-child {
+	border-radius: 0 0 calc(var(--radius) - 1px) calc(var(--radius) - 1px);
+}
+
+#content .cm-s-mybb .CodeMirror-gutters {
+	background: var(--surface-2);
+	border-right: 1px solid var(--border);
+}
+
+#content .cm-s-mybb .CodeMirror-linenumber {
+	color: var(--slate-400);
+}
+
+#content .cm-s-mybb div.CodeMirror-selected {
+	background: #dbe3ec !important;
+}
+
+#content .cm-s-mybb .CodeMirror-cursor {
+	border-left: 2px solid var(--slate-800) !important;
+}
+
+#content .cm-s-mybb .CodeMirror-activeline-background {
+	background: var(--slate-50);
+}
+
+/* Arama / değiştir iletişim çubuğu */
+#content .CodeMirror-dialog {
+	padding: 6px 12px;
+	background: var(--slate-800);
+	color: #fff;
+	font-family: var(--font);
+	font-size: 13px;
+}
+
+#content .CodeMirror-dialog-top {
+	border-bottom: 1px solid var(--slate-700);
+}
+
+#content .CodeMirror-dialog-bottom {
+	border-top: 1px solid var(--slate-700);
+}
+
+#content .CodeMirror-dialog button {
+	padding: 2px 10px;
+	background: var(--slate-700);
+	border: 0;
+	border-radius: 6px;
+	color: #fff;
+	font: inherit;
+}
+
+@media (max-width: 700px) {
+	#content .cm-s-mybb.CodeMirror {
+		height: 60vh;
+	}
+
+	#outerContainer {
+		width: 94%;
+	}
+}

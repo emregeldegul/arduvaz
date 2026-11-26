@@ -1,0 +1,25 @@
+<html xml:lang="{$lang->settings['htmllang']}" lang="{$lang->settings['htmllang']}" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$lang->viewing_pm} {$pm['subject']}</title>
+{$headerinclude}
+</head>
+<body>
+{$header}
+<table width="100%" border="0" align="center">
+<tr>
+{$usercpnav}
+<td valign="top">
+	<header class="ucp-title pm-read-title"><h1>{$pm['subject']}</h1></header>
+	{$action_time}
+	<div id="posts_container">
+		<div id="posts" class="posts">
+			{$message}
+		</div>
+	</div>
+	{$quickreply}
+</td>
+</tr>
+</table>
+{$footer}
+</body>
+</html>

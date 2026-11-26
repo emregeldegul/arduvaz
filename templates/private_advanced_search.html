@@ -1,0 +1,110 @@
+<html xml:lang="{$lang->settings['htmllang']}" lang="{$lang->settings['htmllang']}" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$mybb->settings['bbname']} - {$lang->advanced_private_message_search}</title>
+{$headerinclude}
+</head>
+<body>
+{$header}
+<form action="private.php" method="post" name="pmForm">
+<input type="hidden" name="my_post_key" value="{$mybb->post_code}" />
+<input type="hidden" name="action" value="do_search" />
+<table width="100%" border="0" align="center">
+<tr>
+{$usercpnav}
+<td valign="top">
+	<section class="panel">
+		<header class="panel-head"><svg><use href="{$theme['imgdir']}/icons.svg#i-search"/></svg><h1>{$lang->advanced_private_message_search}</h1></header>
+		<div class="form-rows">
+			<div class="form-group-title">{$lang->search_criteria}</div>
+			<div class="form-row">
+				<label class="form-label" for="keywords">{$lang->keywords}</label>
+				<div class="form-field">
+					<input type="text" class="textbox" name="keywords" id="keywords" maxlength="250" />
+					<div class="form-checks form-checks-inline">
+						<label class="check"><input type="checkbox" class="checkbox" name="subject" checked="checked" value="1" /> {$lang->search_in_subject}</label>
+						<label class="check"><input type="checkbox" class="checkbox" name="message" checked="checked" value="1" /> {$lang->search_in_message}</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-row">
+				<label class="form-label" for="sender">{$lang->sender}</label>
+				<div class="form-field"><input type="text" class="textbox" name="sender" id="sender" maxlength="250" /></div>
+			</div>
+			<div class="form-row">
+				<div class="form-label">{$lang->message_status}</div>
+				<div class="form-field form-checks form-checks-inline">
+					<label class="check"><input type="checkbox" class="checkbox" name="status[new]" checked="checked" value="1" /> {$lang->message_status_new}</label>
+					<label class="check"><input type="checkbox" class="checkbox" name="status[replied]" checked="checked" value="1" /> {$lang->message_status_replied_to}</label>
+					<label class="check"><input type="checkbox" class="checkbox" name="status[forwarded]" checked="checked" value="1" /> {$lang->message_status_forwarded}</label>
+					<label class="check"><input type="checkbox" class="checkbox" name="status[read]" checked="checked" value="1" /> {$lang->message_status_read}</label>
+				</div>
+			</div>
+			<div class="form-row">
+				<label class="form-label" for="folder">{$lang->folder}</label>
+				<div class="form-field">{$foldersearch}</div>
+			</div>
+			<div class="form-group-title">{$lang->search_options}</div>
+			<div class="form-row">
+				<label class="form-label" for="sort">{$lang->sort_by}</label>
+				<div class="form-field">
+					<select name="sort" id="sort" class="select">
+						<option value="subject">{$lang->sort_by_subject}</option>
+						<option value="sender">{$lang->sort_by_sender}</option>
+						<option value="dateline" selected="selected">{$lang->sort_by_date}</option>
+					</select>
+					<div class="form-checks form-checks-inline">
+						<label class="check"><input type="radio" class="radio" name="sortordr" value="asc" /> {$lang->ascending_order}</label>
+						<label class="check"><input type="radio" class="radio" name="sortordr" checked="checked" value="desc" /> {$lang->descending_order}</label>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="ucp-actions">
+			<input type="submit" class="btn btn-dark btn-sm" value="{$lang->search_private_messages}" />
+		</div>
+	</section>
+</td>
+</tr>
+</table>
+</form>
+{$footer}
+<link rel="stylesheet" href="{$mybb->asset_url}/jscripts/select2/select2.css?ver=1807" />
+<script type="text/javascript" src="{$mybb->asset_url}/jscripts/select2/select2.min.js?ver=1806"></script>
+<script type="text/javascript">
+<!--
+if(use_xmlhttprequest == "1")
+{
+	MyBB.select2();
+	$("#sender").select2({
+		placeholder: "{$lang->search_user}",
+		minimumInputLength: 2,
+		multiple: false,
+		allowClear: true,
+		ajax: { // instead of writing the function to execute the request we use Select2's convenient helper
+			url: "xmlhttp.php?action=get_users",
+			dataType: 'json',
+			data: function (term, page) {
+				return {
+					query: term, // search term
+				};
+			},
+			results: function (data, page) { // parse the results into the format expected by Select2.
+				// since we are using custom formatting functions we do not need to alter remote JSON data
+				return {results: data};
+			}
+		},
+		initSelection: function(element, callback) {
+			var value = $(element).val();
+			if (value !== "") {
+				callback({
+					id: value,
+					text: value
+				});
+			}
+		}
+	});
+}
+// -->
+</script>
+</body>
+</html>

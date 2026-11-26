@@ -1,0 +1,8 @@
+<section class="panel">
+	<header class="panel-head"><svg><use href="{$theme['imgdir']}/icons.svg#i-wrench"/></svg><h2>{$lang->admin_options}</h2></header>
+	<div class="staff-actions">
+		<a href="{$mybb->settings['bburl']}/{$admin_dir}/index.php?module=user-users&amp;action=edit&amp;uid={$uid}" class="btn btn-light btn-sm"><svg><use href="{$theme['imgdir']}/icons.svg#i-gear"/></svg>{$lang->admin_edit_in_acp}</a>
+		<a href="{$mybb->settings['bburl']}/{$admin_dir}/index.php?module=user-banning&amp;action=edit&amp;uid={$uid}" class="btn btn-light btn-sm"><svg><use href="{$theme['imgdir']}/icons.svg#i-ban"/></svg>{$lang->admin_edit_ban_in_acp}</a>
+		<a href="{$mybb->settings['bburl']}/{$admin_dir}/index.php?module=user-banning&amp;action=lift&amp;uid={$uid}" class="btn btn-light btn-sm"><svg><use href="{$theme['imgdir']}/icons.svg#i-check"/></svg>{$lang->admin_lift_ban_in_acp}</a>
+	</div>
+</section>

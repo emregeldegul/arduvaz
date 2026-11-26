@@ -1,0 +1,30 @@
+<html xml:lang="{$lang->settings['htmllang']}" lang="{$lang->settings['htmllang']}" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$mybb->settings['bbname']} - {$lang->online_today}</title>
+{$headerinclude}
+</head>
+<body>
+{$header}
+<main class="online-page">
+	<section class="panel online-list online-today">
+		<header class="panel-head">
+			<svg><use href="{$theme['imgdir']}/icons.svg#i-calendar"/></svg>
+			<h1>{$lang->online_today}</h1>
+			<div class="panel-head-links">
+				<a href="online.php"><svg><use href="{$theme['imgdir']}/icons.svg#i-users"/></svg>{$lang->users_online}</a>
+			</div>
+		</header>
+		<div class="online-cols">
+			<span>{$lang->on_username}</span>
+			<span>{$lang->time}</span>
+		</div>
+		{$todayrows}
+		<p class="online-summary">{$onlinetoday}</p>
+	</section>
+	<div class="fd-toolbar">
+		{$multipage}
+	</div>
+</main>
+{$footer}
+</body>
+</html>

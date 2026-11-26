@@ -1,0 +1,6 @@
+<a href="attachment.php?aid={$attachment['aid']}" target="_blank" class="att-file" title="{$attachdate}">
+	<span class="att-icon">{$attachment['icon']}</span>
+	<span class="att-name">{$attachment['filename']}</span>
+	<span class="att-meta">{$lang->postbit_attachment_size} {$attachment['filesize']} · {$lang->postbit_attachment_downloads} {$attachment['downloads']}</span>
+	<svg><use href="{$theme['imgdir']}/icons.svg#i-download"/></svg>
+</a>

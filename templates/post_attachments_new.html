@@ -1,0 +1,16 @@
+<div class="attach-new">
+	<div class="attach-new-field">
+		<span class="attach-new-label">{$lang->new_attachment}</span>
+		<input type="file" name="attachments[]" class="fileupload" multiple="multiple" />
+	</div>
+	<div class="attach-new-actions">{$attach_update_options} {$attach_add_options}</div>
+</div>
+<div class="attach-drop" style="display: none;">
+	<div class="attach-drop-inner">
+		<div id="upload_bar" class="attach-progress"></div>
+		<div id="dropzone" class="attach-dropzone">
+			<svg><use href="{$theme['imgdir']}/icons.svg#i-download"/></svg>
+			<div></div>
+		</div>
+	</div>
+</div>

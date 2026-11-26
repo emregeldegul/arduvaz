@@ -1,0 +1,194 @@
+<html xml:lang="{$lang->settings['htmllang']}" lang="{$lang->settings['htmllang']}" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$mybb->settings['bbname']} - {$lang->edit_profile}</title>
+{$headerinclude}
+<script type="text/javascript">
+<!--
+	var mod_posts = '{$modpost_check}';
+	var susp_posts = '{$suspost_check}';
+// -->
+</script>
+</head>
+<body>
+{$header}
+<form action="modcp.php" method="post" class="mcp-editprofile">
+<input type="hidden" name="my_post_key" value="{$mybb->post_code}" />
+<input type="hidden" name="action" value="do_editprofile" />
+<input type="hidden" name="uid" value="{$user['uid']}" />
+<table width="100%" border="0" align="center">
+<tr>
+{$modcp_nav}
+<td valign="top">
+	{$errors}
+	<div class="ucp-title"><h1>{$lang->edit_profile}</h1></div>
+	<div class="ucp-grid-2">
+		<div class="ucp-col">
+			<section class="panel">
+				<header class="panel-head"><svg><use href="{$theme['imgdir']}/icons.svg#i-user"/></svg><h2>{$lang->profile_required}</h2></header>
+				<div class="form-rows">
+					<div class="form-row">
+						<span class="form-label">{$lang->current_username}</span>
+						<div class="form-static"><strong>{$profile_link}</strong></div>
+					</div>
+					{$requiredfields}
+				</div>
+			</section>
+			<section class="panel">
+				<header class="panel-head"><svg><use href="{$theme['imgdir']}/icons.svg#i-calendar"/></svg><h2>{$lang->profile_optional}</h2></header>
+				<div class="form-rows">
+					<div class="form-row">
+						<span class="form-label">{$lang->birthday}</span>
+						<div class="form-field form-date">
+							<select name="birthday_day" class="select" aria-label="{$lang->birthday}">
+								<option value="">&nbsp;</option>
+								{$bdaydaysel}
+							</select>
+							<select name="birthday_month" class="select" aria-label="{$lang->birthday}">
+								<option value="">&nbsp;</option>
+							<option value="1" {$bdaymonthsel['1']}>{$lang->month_1}</option>
+							<option value="2" {$bdaymonthsel['2']}>{$lang->month_2}</option>
+							<option value="3" {$bdaymonthsel['3']}>{$lang->month_3}</option>
+							<option value="4" {$bdaymonthsel['4']}>{$lang->month_4}</option>
+							<option value="5" {$bdaymonthsel['5']}>{$lang->month_5}</option>
+							<option value="6" {$bdaymonthsel['6']}>{$lang->month_6}</option>
+							<option value="7" {$bdaymonthsel['7']}>{$lang->month_7}</option>
+							<option value="8" {$bdaymonthsel['8']}>{$lang->month_8}</option>
+							<option value="9" {$bdaymonthsel['9']}>{$lang->month_9}</option>
+							<option value="10" {$bdaymonthsel['10']}>{$lang->month_10}</option>
+							<option value="11" {$bdaymonthsel['11']}>{$lang->month_11}</option>
+							<option value="12" {$bdaymonthsel['12']}>{$lang->month_12}</option>
+							</select>
+							<input type="text" class="textbox form-year" maxlength="4" name="birthday_year" value="{$birthday_year}" aria-label="{$lang->birthday}" />
+						</div>
+					</div>
+					<div class="form-row">
+						<label class="form-label" for="website">{$lang->website_url}</label>
+						<div class="form-field"><input type="text" class="textbox" name="website" id="website" maxlength="75" value="{$user_website}" /></div>
+					</div>
+					<div class="form-row mcp-row-check">
+						<label class="check"><input type="checkbox" class="checkbox" name="remove_avatar" value="1" /> {$lang->remove_avatar}</label>
+					</div>
+				</div>
+			</section>
+			{$customfields}
+		</div>
+		<div class="ucp-col">
+			<section class="panel">
+				<header class="panel-head"><svg><use href="{$theme['imgdir']}/icons.svg#i-star"/></svg><h2>{$lang->custom_usertitle}</h2></header>
+				<p class="form-note">{$lang->custom_usertitle_note}</p>
+				<div class="form-rows">
+					<div class="form-row">
+						<span class="form-label">{$lang->default_usertitle}</span>
+						<div class="form-static">{$defaulttitle}</div>
+					</div>
+					<div class="form-row">
+						<span class="form-label">{$lang->current_custom_usertitle}</span>
+						<div class="form-static mcp-usertitle">{$user['usertitle']}</div>
+					</div>
+					<div class="form-row">
+						<label class="form-label" for="usertitle">{$lang->new_custom_usertitle}</label>
+						<div class="form-field">
+							<input type="text" class="textbox" name="usertitle" id="usertitle" maxlength="{$mybb->settings['customtitlemaxlength']}" value="{$newtitle}" />
+							<label class="check mcp-after-check"><input type="checkbox" name="reverttitle" id="reverttitle" class="checkbox" /> {$lang->revert_usertitle}</label>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="panel">
+				<header class="panel-head"><svg><use href="{$theme['imgdir']}/icons.svg#i-shield"/></svg><h2>{$lang->moderation}</h2></header>
+				<div class="mcp-susp-list">
+					<div class="mcp-susp">
+						<label class="check"><input type="checkbox" name="moderateposting" value="1" {$modpost_checked} class="checkbox" onclick="toggleSuspend('modposts');" id="modpost" /> {$lang->moderate_posts}</label>
+						<div class="mcp-susp-body" id="modposts_action">
+							{$moderateposts_info}
+							<div class="form-inline"><span>{$lang->modpost_length}</span> <input type="text" name="modpost_time" value="{$modpost_time}" class="textbox form-num" aria-label="{$lang->modpost_length}" /> {$modpost_options}</div>
+						</div>
+					</div>
+					<div class="mcp-susp">
+						<label class="check"><input type="checkbox" name="suspendposting" value="1" {$suspost_checked} class="checkbox" onclick="toggleSuspend('susposts');" id="suspost" /> {$lang->suspend_posts}</label>
+						<div class="mcp-susp-body" id="susposts_action">
+							{$suspendposting_info}
+							<div class="form-inline"><span>{$lang->suspost_length}</span> <input type="text" name="suspost_time" value="{$suspost_time}" class="textbox form-num" aria-label="{$lang->suspost_length}" /> {$suspost_options}</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			{$awaysection}
+		</div>
+	</div>
+	<section class="panel">
+		<header class="panel-head"><svg><use href="{$theme['imgdir']}/icons.svg#i-edit"/></svg><h2>{$lang->signature}</h2></header>
+		<div class="form-rows">
+			<div class="mcp-signature">
+				<textarea rows="15" cols="70" id="signature" name="signature" aria-label="{$lang->signature}">{$user['signature']}</textarea>
+				{$codebuttons}
+			</div>
+			{$suspend_signature}
+		</div>
+	</section>
+	<section class="panel ucp-notepad">
+		<header class="panel-head"><svg><use href="{$theme['imgdir']}/icons.svg#i-note"/></svg><h2>{$lang->mod_notes}</h2></header>
+		<div class="ucp-notepad-body">
+			<textarea name="usernotes" id="usernotes" rows="8" aria-label="{$lang->mod_notes}">{$user['usernotes']}</textarea>
+		</div>
+	</section>
+	<div class="ucp-submit">
+		<input type="submit" class="btn btn-dark" value="{$lang->update_profile}" />
+	</div>
+</td>
+</tr>
+</table>
+</form>
+{$footer}
+<script type="text/javascript">
+<!--
+	if(mod_posts == 0)
+	{
+		$("#modposts_action").hide();
+	}
+
+	if(susp_posts == 0)
+	{
+		$("#susposts_action").hide();
+	}
+
+	function toggleSuspend(action)
+	{
+		if(action == "modposts")
+		{
+			$("#susposts_action").hide();
+			$("#suspost").attr("checked", false);
+
+			if($("#modpost").prop("checked") == false)
+			{
+				$("#modpost").attr("checked", false);
+				$("#modposts_action").hide();
+			}
+			else
+			{
+				$("#modpost").attr("checked", true);
+				$("#modposts_action").show();
+			}
+		}
+
+		if(action == "susposts")
+		{
+			$("#modposts_action").hide();
+			$("#modpost").attr("checked", false);
+
+			if($("#suspost").prop("checked") == false)
+			{
+				$("#suspost").attr("checked", false);
+				$("#susposts_action").hide();
+			}
+			else
+			{
+				$("#suspost").attr("checked", true);
+				$("#susposts_action").show();
+			}
+		}
+	}
+// -->
+</script>
+</body>
+</html>

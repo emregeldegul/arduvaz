@@ -1,0 +1,94 @@
+<html xml:lang="{$lang->settings['htmllang']}" lang="{$lang->settings['htmllang']}" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$mybb->settings['bbname']} - {$lang->reputation_report}</title>
+{$headerinclude}
+<script type="text/javascript">
+<!--
+	var delete_reputation_confirm = "{$lang->delete_reputation_confirm}";
+// -->
+</script>
+<script type="text/javascript" src="{$mybb->asset_url}/jscripts/report.js?ver=1820"></script>
+</head>
+<body>
+{$header}
+<main class="rep-page">
+	<section class="panel rep-card">
+		<header class="panel-head"><svg><use href="{$theme['imgdir']}/icons.svg#i-heart"/></svg><h1>{$lang->reputation_report}</h1>{$add_reputation}</header>
+		<div class="rep-summary">
+			<div class="rep-user">
+				<strong class="rep-name">{$username}</strong>
+				<span class="rep-title">{$usertitle}</span>
+				<dl class="rep-split">
+					<div class="rep-total"><dt>{$lang->total_reputation}</dt><dd><span class="repbox {$total_class}">{$rep_total}</span></dd></div>
+					<div><dt>{$lang->reputation_members}</dt><dd>{$rep_members}</dd></div>
+					<div><dt>{$lang->reputation_posts}</dt><dd>{$rep_posts}</dd></div>
+				</dl>
+			</div>
+			<div class="rep-stats-wrap">
+				<table class="rep-stats">
+					<thead>
+						<tr>
+							<td></td>
+							<th scope="col" class="is-pos">{$lang->positive_count}</th>
+							<th scope="col" class="is-neu">{$lang->neutral_count}</th>
+							<th scope="col" class="is-neg">{$lang->negative_count}</th>
+						</tr>
+					</thead>
+					<tbody>
+					<tr>
+						<th scope="row">{$lang->last_week}</th>
+						<td class="is-pos">{$f_positive_week}</td>
+						<td class="is-neu">{$f_neutral_week}</td>
+						<td class="is-neg">{$f_negative_week}</td>
+					</tr>
+					<tr>
+						<th scope="row">{$lang->last_month}</th>
+						<td class="is-pos">{$f_positive_month}</td>
+						<td class="is-neu">{$f_neutral_month}</td>
+						<td class="is-neg">{$f_negative_month}</td>
+					</tr>
+					<tr>
+						<th scope="row">{$lang->last_6months}</th>
+						<td class="is-pos">{$f_positive_6months}</td>
+						<td class="is-neu">{$f_neutral_6months}</td>
+						<td class="is-neg">{$f_negative_6months}</td>
+					</tr>
+					<tr>
+						<th scope="row">{$lang->all_time}</th>
+						<td class="is-pos">{$f_positive_count}</td>
+						<td class="is-neu">{$f_neutral_count}</td>
+						<td class="is-neg">{$f_negative_count}</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section>
+
+	<section class="panel rep-comments">
+		<header class="panel-head">
+			<svg><use href="{$theme['imgdir']}/icons.svg#i-chat"/></svg><h2>{$lang->comments}</h2>
+			<form action="reputation.php" method="get" class="rep-filter">
+				<input type="hidden" name="uid" value="{$user['uid']}" />
+				<select name="show" class="select" aria-label="{$lang->show_all}">
+					<option value="all" {$show_selected['all']}>{$lang->show_all}</option>
+					<option value="positive" {$show_selected['positive']}>{$lang->show_positive}</option>
+					<option value="neutral" {$show_selected['neutral']}>{$lang->show_neutral}</option>
+					<option value="negative" {$show_selected['negative']}>{$lang->show_negative}</option>
+				</select>
+				<select name="sort" class="select" aria-label="{$lang->sort_updated}">
+					<option value="dateline" {$sort_selected['last_updated']}>{$lang->sort_updated}</option>
+					<option value="username" {$sort_selected['username']}>{$lang->sort_username}</option>
+				</select>
+				{$gobutton}
+			</form>
+		</header>
+		<div class="rep-votes">
+			{$reputation_votes}
+		</div>
+	</section>
+	{$multipage}
+</main>
+{$footer}
+</body>
+</html>

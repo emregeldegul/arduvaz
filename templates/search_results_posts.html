@@ -1,0 +1,44 @@
+<html xml:lang="{$lang->settings['htmllang']}" lang="{$lang->settings['htmllang']}" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$mybb->settings['bbname']} - {$lang->search_results}</title>
+{$headerinclude}
+</head>
+<body>
+{$header}
+<main class="fd search-results search-posts">
+	<div class="fd-toolbar">
+		{$multipage}
+	</div>
+
+	<section class="category thread-card">
+		<header class="category-head thread-card-head">
+			<div>
+				<h1>{$lang->search_results}</h1>
+			</div>
+			<div class="head-links">
+				<a href="search.php"><svg><use href="{$theme['imgdir']}/icons.svg#i-search"/></svg>{$lang->search}</a>
+			</div>
+		</header>
+
+		<div class="thread-cols">
+			<span></span>
+			<span><a href="{$sorturl}&amp;sortby=subject&amp;order=asc" class="sort-link">{$lang->post}</a>{$orderarrow['subject']} / <a href="{$sorturl}&amp;sortby=starter&amp;order=asc" class="sort-link">{$lang->author}</a>{$orderarrow['starter']}</span>
+			<span class="c-num c-replies"><a href="{$sorturl}&amp;sortby=replies&amp;order=desc" class="sort-link">{$lang->replies}</a>{$orderarrow['replies']}</span>
+			<span class="c-num c-views"><a href="{$sorturl}&amp;sortby=views&amp;order=desc" class="sort-link">{$lang->views}</a>{$orderarrow['views']}</span>
+			<span class="c-forum"><a href="{$sorturl}&amp;sortby=forum&amp;order=asc" class="sort-link">{$lang->forum}</a>{$orderarrow['forum']}</span>
+			<span class="c-last"><a href="{$sorturl}&amp;sortby=dateline&amp;order=desc" class="sort-link">{$lang->posted}</a>{$orderarrow['dateline']}</span>
+			{$inlinemodcol}
+		</div>
+		{$selectall}
+		{$results}
+	</section>
+
+	<div class="fd-toolbar">
+		{$multipage}
+	</div>
+
+	{$inlinemod}
+</main>
+{$footer}
+</body>
+</html>

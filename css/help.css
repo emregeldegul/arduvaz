@@ -1,0 +1,127 @@
+/* =========================================================
+   Arduvaz — help.css
+   Yardım belgeleri (misc.php?action=help). Sadece yardım
+   sayfalarında yüklenir.
+   ========================================================= */
+
+.help-page { display: flex; flex-direction: column; gap: 16px; padding-bottom: 56px; }
+
+/* Başlık + arama */
+.help-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.help-head h1 { margin: 0; font-size: 20px; font-weight: 700; letter-spacing: -.01em; }
+/* Arama: tek kutu — [ikon + anahtar kelime | Ad · Belge etiketleri | Ara] */
+.help-search { width: min(760px, 100%); }
+.help-search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+.help-search-box:focus-within { border-color: var(--slate-400); box-shadow: 0 0 0 3px rgba(100, 116, 139, .15); }
+.help-search-box > svg { position: absolute; left: 14px; top: 14px; width: 16px; height: 16px; /* ilk satırın ortası (4px iç boşluk + 36px / 2 - 8px) */ color: var(--slate-400); pointer-events: none; }
+.help-search-box .textbox { flex: 1; min-width: 160px; height: 36px; padding-left: 34px; border: 0; background: none; box-shadow: none !important; }
+.help-search-box .button { flex: none; height: 36px; }
+.help-search-opts { display: flex; flex: none; gap: 4px; padding: 0 6px; border-left: 1px solid var(--slate-200); }
+.help-chip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 28px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: var(--slate-100);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--slate-500);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.help-chip input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
+.help-chip svg { display: none; width: 13px; height: 13px; }
+.help-chip:has(input:checked) { background: var(--slate-800); color: #fff; }
+.help-chip:has(input:checked) svg { display: block; }
+.help-chip:has(input:focus-visible) { outline: 2px solid var(--slate-400); outline-offset: 2px; }
+@media (max-width: 640px) {
+  .help-search-box { flex-wrap: wrap; }
+  .help-search-box .textbox { flex-basis: 100%; }
+  .help-search-opts { flex: 1; padding-left: 4px; border-left: 0; }
+  .help-search-box .button { flex: 1 1 100%; }
+}
+
+/* Bölümler: iki sütun */
+.help-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; align-items: start; }
+/* .thead sınıfı MyBB daraltması için var; global koyu başlık rengini ezer */
+.help-section-head.thead { padding: 14px 14px 14px 20px; background: var(--head-tint); color: var(--text); font-weight: inherit; }
+.help-section-title { flex: 1; min-width: 0; }
+.help-section-title span { display: block; margin-top: 2px; font-size: 12.5px; color: var(--text-3); }
+
+/* Daraltma: görünmez <img class="expander"> tıklamayı alır, ikon CSS ile çizilir */
+.help-section-head .collapse-btn {
+  position: relative;
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  color: var(--slate-600);
+}
+.help-section-head .collapse-btn:hover { background: var(--slate-200); }
+.help-section-head .collapse-btn img { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
+.help-section-head .collapse-btn::before,
+.help-section-head .collapse-btn::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 2px;
+  margin: -1px 0 0 -5px;
+  border-radius: 1px;
+  background: currentColor;
+  pointer-events: none;
+}
+.help-section-head .collapse-btn::after { transform: rotate(90deg); opacity: 0; }
+.help-section-head.thead_collapsed .collapse-btn::after { opacity: 1; }
+.help-section-head.thead_collapsed { border-radius: var(--radius); }
+
+/* Belge satırları */
+.help-list { background: var(--surface); }
+.help-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 2px 12px;
+  align-items: center;
+  padding: 12px 20px;
+  border-top: 1px solid var(--border);
+  color: var(--text);
+}
+.help-item:first-child { border-top: 0; }
+.help-item strong { font-size: 14px; font-weight: 600; }
+.help-item span { grid-column: 1; font-size: 12.5px; color: var(--text-3); }
+.help-item span:empty { display: none; }
+.help-results .help-item span { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+.help-results .help-item br { display: none; }
+.help-item svg { grid-column: 2; grid-row: 1 / span 2; width: 16px; height: 16px; color: var(--slate-400); transition: transform .15s; }
+.help-item:hover { background: var(--slate-50); color: var(--text); }
+.help-item:hover svg { transform: translateX(2px); color: var(--slate-600); }
+.help-empty { margin: 0; padding: 20px; color: var(--text-3); }
+
+/* Geri bağlantısı */
+.help-page .panel-head-links svg { transform: rotate(180deg); }
+
+/* Belge metni */
+.help-doc-body { padding: 20px 24px 24px; background: var(--surface); font-size: 14.5px; line-height: 1.7; color: var(--text-2); }
+.help-doc-body p { margin: 0 0 14px; }
+.help-doc-body ul, .help-doc-body ol { padding-left: 22px; }
+.help-doc-body table { width: 100%; margin: 12px 0; border-collapse: collapse; font-size: 13.5px; }
+.help-doc-body td, .help-doc-body th { padding: 8px 10px; border: 1px solid var(--border); vertical-align: top; text-align: left; }
+.help-doc-body code { padding: 1px 5px; border-radius: 4px; background: var(--slate-100); font-size: 12.5px; }
+
+@media (max-width: 860px) {
+  .help-grid { grid-template-columns: 1fr; }
+}

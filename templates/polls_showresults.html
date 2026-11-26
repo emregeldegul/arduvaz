@@ -1,0 +1,24 @@
+<html xml:lang="{$lang->settings['htmllang']}" lang="{$lang->settings['htmllang']}" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$mybb->settings['bbname']} - {$lang->poll_results}</title>
+{$headerinclude}
+</head>
+<body>
+{$header}
+<main class="poll-page">
+	<section class="panel st-poll">
+		<header class="panel-head">
+			<svg><use href="{$theme['imgdir']}/icons.svg#i-chart"/></svg>
+			<h1>{$poll['question']}</h1>
+		</header>
+		<div class="poll-results">
+			{$polloptions}
+		</div>
+		<footer class="poll-foot">
+			<span class="poll-total"><strong>{$lang->poll_total}</strong> {$poll['numvotes']} {$lang->poll_votes}</span>
+		</footer>
+	</section>
+</main>
+{$footer}
+</body>
+</html>

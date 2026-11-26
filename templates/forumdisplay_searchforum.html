@@ -1,0 +1,10 @@
+<form action="search.php" class="jump" role="search">
+	<label for="forum_search_keywords">{$lang->search_forum}</label>
+	<div class="jump-row">
+		<input type="search" class="textbox select" name="keywords" id="forum_search_keywords" />
+		<input type="hidden" name="action" value="do_search" />
+		<input type="hidden" name="forums[]" value="{$fid}" />
+		<input type="hidden" name="postthread" value="1" />
+		<button type="submit" class="btn btn-light btn-sm" aria-label="{$lang->search_button}"><svg><use href="{$theme['imgdir']}/icons.svg#i-search"/></svg></button>
+	</div>
+</form>

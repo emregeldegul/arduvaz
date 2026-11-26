@@ -1,0 +1,45 @@
+<html xml:lang="{$lang->settings['htmllang']}" lang="{$lang->settings['htmllang']}" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$mybb->settings['bbname']} - {$lang->empty_folders}</title>
+{$headerinclude}
+</head>
+<body>
+{$header}
+<form action="private.php" method="post">
+<input type="hidden" name="my_post_key" value="{$mybb->post_code}" />
+<input type="hidden" name="action" value="do_empty" />
+<table width="100%" border="0" align="center">
+<tr>
+{$usercpnav}
+<td valign="top">
+	<table border="0" cellspacing="0" cellpadding="0" class="tborder ucp-table">
+		<tr>
+			<td class="thead" colspan="3"><strong>{$lang->empty_folders}</strong></td>
+		</tr>
+		<tr>
+			<td class="trow1 ucp-note" colspan="3">{$lang->empty_note}</td>
+		</tr>
+		<tr>
+			<td class="tcat">{$lang->export_folder}</td>
+			<td class="tcat ucp-num">{$lang->num_messages}</td>
+			<td class="tcat ucp-check">{$lang->empty_q}</td>
+		</tr>
+		{$folderlist}
+		<tr>
+			<td class="tfoot" colspan="3">
+				<div class="ucp-tfoot">
+					<label class="check"><input type="checkbox" class="checkbox" name="keepunread" value="1" checked="checked" /> {$lang->keep_unread}</label>
+					<div class="ucp-tfoot-actions">
+						<input type="submit" class="btn btn-light btn-sm pm-delete" name="submit" value="{$lang->delete}" />
+					</div>
+				</div>
+			</td>
+		</tr>
+	</table>
+</td>
+</tr>
+</table>
+</form>
+{$footer}
+</body>
+</html>

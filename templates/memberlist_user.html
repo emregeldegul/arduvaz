@@ -1,0 +1,19 @@
+<article class="ml-card">
+	<a href="member.php?action=profile&amp;uid={$user['uid']}" class="avatar avatar-default ml-av"><svg><use href="{$theme['imgdir']}/icons.svg#i-avatar"/></svg>{$user['avatar']}</a>
+	<h3 class="ml-name">{$user['profilelink']}</h3>
+	<p class="ml-title">{$user['usertitle']} <span class="pa-stars">{$user['userstars']}</span></p>
+	{$usergroup['groupimage']}
+	<dl class="ml-stats">
+		<div><dt>{$lang->forumbit_posts}</dt><dd data-number>{$user['postnum']}</dd></div>
+		<div><dt>{$lang->forumbit_threads}</dt><dd data-number>{$user['threadnum']}</dd></div>
+		{$referral_bit}
+	</dl>
+	<dl class="ml-meta">
+		<div><dt>{$lang->joined}</dt><dd>{$user['regdate']}</dd></div>
+		<div><dt>{$lang->lastvisit}</dt><dd>{$user['lastvisit']}</dd></div>
+	</dl>
+	<div class="ml-actions">
+		<a href="member.php?action=profile&amp;uid={$user['uid']}" class="btn btn-light btn-sm"><svg><use href="{$theme['imgdir']}/icons.svg#i-user"/></svg>{$lang->postbit_button_profile}</a>
+		<a href="private.php?action=send&amp;uid={$user['uid']}" class="icon-btn" title="{$lang->postbit_button_pm}" aria-label="{$lang->postbit_button_pm}"><svg><use href="{$theme['imgdir']}/icons.svg#i-mail"/></svg></a>
+	</div>
+</article>

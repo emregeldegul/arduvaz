@@ -1,0 +1,37 @@
+<html xml:lang="{$lang->settings['htmllang']}" lang="{$lang->settings['htmllang']}" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$mybb->settings['bbname']} - {$lang->threads_awaiting_moderation}</title>
+{$headerinclude}
+</head>
+<body>
+{$header}
+<form action="modcp.php" method="post" class="mcp-queue-form">
+<input type="hidden" name="my_post_key" value="{$mybb->post_code}" />
+<input type="hidden" name="action" value="do_modqueue" />
+<table width="100%" border="0" align="center">
+<tr>
+{$modcp_nav}
+<td valign="top">
+	<div class="mcp-page-head">
+		<h1>{$lang->threads_awaiting_moderation}</h1>
+		<nav class="mcp-tabs">
+			<strong class="is-active">{$lang->threads}</strong>
+			{$post_link}
+			{$attachment_link}
+		</nav>
+	</div>
+	<div class="panel mcp-q-list">
+		{$threads}
+	</div>
+	{$multipage}
+	<div class="mcp-q-footer">
+		{$mass_controls}
+		<input type="submit" class="btn btn-dark" name="reportsubmit" value="{$lang->perform_actions}" />
+	</div>
+</td>
+</tr>
+</table>
+</form>
+{$footer}
+</body>
+</html>

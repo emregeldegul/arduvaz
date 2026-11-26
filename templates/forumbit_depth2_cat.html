@@ -1,0 +1,10 @@
+<article class="forum-row">
+	<div class="forum-status forum_{$lightbulb['folder']} ajax_mark_read" title="{$lightbulb['altonoff']}" id="mark_read_{$forum['fid']}"><svg><use href="{$theme['imgdir']}/icons.svg#forum_{$lightbulb['folder']}"/></svg></div>
+	<div class="forum-main">
+		<h3><a href="{$forum_url}">{$forum['name']}</a>{$forum_viewers_text}</h3>
+		<p>{$forum['description']}</p>
+		{$subforums}
+	</div>
+	{$lastpost}
+	<div class="forum-more"></div>
+</article>

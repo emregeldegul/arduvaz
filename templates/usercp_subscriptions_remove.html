@@ -1,0 +1,17 @@
+<tr>
+	<td class="tfoot" colspan="7">
+		<div class="ucp-tfoot">
+			<a href="usercp.php?action=removesubscriptions&amp;my_post_key={$mybb->post_code}" class="ucp-danger-link">{$lang->remove_all_subscriptions}</a>
+			<div class="ucp-tfoot-actions">
+				<label for="subscriptions_do">{$lang->with_selected}</label>
+				<select name="do" id="subscriptions_do" class="select">
+					<option value="delete">{$lang->delete_subscriptions}</option>
+					<option value="no_notification">{$lang->update_no_notification}</option>
+					<option value="email_notification">{$lang->update_email_notification}</option>
+					<option value="pm_notification">{$lang->update_pm_notification}</option>
+				</select>
+				{$gobutton}
+			</div>
+		</div>
+	</td>
+</tr>

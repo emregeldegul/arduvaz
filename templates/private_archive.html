@@ -1,0 +1,64 @@
+<html xml:lang="{$lang->settings['htmllang']}" lang="{$lang->settings['htmllang']}" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$mybb->settings['bbname']} - {$lang->archive_messages}</title>
+{$headerinclude}
+</head>
+<body>
+{$header}
+<form action="private.php" method="post">
+<input type="hidden" name="my_post_key" value="{$mybb->post_code}" />
+<input type="hidden" name="action" value="do_export" />
+<table width="100%" border="0" align="center">
+<tr>
+{$usercpnav}
+<td valign="top">
+	<section class="panel">
+		<header class="panel-head"><svg><use href="{$theme['imgdir']}/icons.svg#i-download"/></svg><h1>{$lang->archive_messages}</h1></header>
+		<div class="form-rows">
+			<p class="form-note">{$lang->archive_note}</p>
+			<div class="form-row">
+				<label class="form-label" for="exportfolders">{$lang->folders}</label>
+				<div class="form-field">{$folderlist}</div>
+			</div>
+			<div class="form-row">
+				<div class="form-label">{$lang->date_limit}</div>
+				<div class="form-field form-inline">
+					<select name="dayway" class="select"><option value="older">{$lang->date_limit_older}</option><option value="newer">{$lang->date_limit_newer}</option><option value="disregard">{$lang->date_limit_disregard}</option></select>
+					<input type="number" class="textbox form-num" name="daycut" value="30" min="0" max="9999" />
+					<span>{$lang->date_limit_days}</span>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-label">{$lang->export_unread}</div>
+				<div class="form-field form-checks form-checks-inline">
+					<label class="check"><input type="radio" class="radio" name="exportunread" value="1" /> {$lang->yes}</label>
+					<label class="check"><input type="radio" class="radio" name="exportunread" value="0" checked="checked" /> {$lang->no}</label>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-label">{$lang->delete_archived}<span class="form-desc">{$lang->delete_archived_note}</span></div>
+				<div class="form-field form-checks form-checks-inline">
+					<label class="check"><input type="radio" class="radio" name="deletepms" value="1" /> {$lang->yes}</label>
+					<label class="check"><input type="radio" class="radio" name="deletepms" value="0" checked="checked" /> {$lang->no}</label>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-label">{$lang->export_format}<span class="form-desc">{$lang->export_format_note}</span></div>
+				<div class="form-field form-checks">
+					<label class="check"><input type="radio" class="radio" name="exporttype" value="html" checked="checked" /> {$lang->export_html}</label>
+					<label class="check"><input type="radio" class="radio" name="exporttype" value="txt" /> {$lang->export_txt}</label>
+					<label class="check"><input type="radio" class="radio" name="exporttype" value="csv" /> {$lang->export_csv}</label>
+				</div>
+			</div>
+		</div>
+		<div class="ucp-actions">
+			<input type="submit" class="btn btn-dark btn-sm" name="submit" value="{$lang->archive_messages}" />
+		</div>
+	</section>
+</td>
+</tr>
+</table>
+</form>
+{$footer}
+</body>
+</html>

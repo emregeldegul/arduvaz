@@ -1,0 +1,41 @@
+<section class="panel">
+	<header class="panel-head"><svg><use href="{$theme['imgdir']}/icons.svg#i-clock"/></svg><h2>{$lang->away_information}</h2></header>
+	<div class="form-rows">
+		<div class="form-row">
+			<span class="form-label">{$lang->away_status}</span>
+			<div class="form-field form-checks form-checks-inline">
+				<label class="check"><input type="radio" class="radio" name="away" value="1" {$awaycheck['1']} /> {$lang->im_away}</label>
+				<label class="check"><input type="radio" class="radio" name="away" value="0" {$awaycheck['0']} /> {$lang->im_here}</label>
+			</div>
+		</div>
+		<div class="form-row">
+			<label class="form-label" for="awayreason">{$lang->away_reason}</label>
+			<div class="form-field"><input type="text" class="textbox" name="awayreason" id="awayreason" value="{$user['awayreason']}" maxlength="200" /></div>
+		</div>
+		<div class="form-row">
+			<span class="form-label">{$lang->return_date}</span>
+			<div class="form-field form-date">
+				<select name="awayday" class="select" aria-label="{$lang->return_date}">
+					<option value="">&nbsp;</option>
+					{$returndatesel}
+				</select>
+				<select name="awaymonth" class="select" aria-label="{$lang->return_date}">
+					<option value="">&nbsp;</option>
+					<option value="1" {$returndatemonthsel['1']}>{$lang->month_1}</option>
+					<option value="2" {$returndatemonthsel['2']}>{$lang->month_2}</option>
+					<option value="3" {$returndatemonthsel['3']}>{$lang->month_3}</option>
+					<option value="4" {$returndatemonthsel['4']}>{$lang->month_4}</option>
+					<option value="5" {$returndatemonthsel['5']}>{$lang->month_5}</option>
+					<option value="6" {$returndatemonthsel['6']}>{$lang->month_6}</option>
+					<option value="7" {$returndatemonthsel['7']}>{$lang->month_7}</option>
+					<option value="8" {$returndatemonthsel['8']}>{$lang->month_8}</option>
+					<option value="9" {$returndatemonthsel['9']}>{$lang->month_9}</option>
+					<option value="10" {$returndatemonthsel['10']}>{$lang->month_10}</option>
+					<option value="11" {$returndatemonthsel['11']}>{$lang->month_11}</option>
+					<option value="12" {$returndatemonthsel['12']}>{$lang->month_12}</option>
+				</select>
+				<input type="text" class="textbox form-year" maxlength="4" name="awayyear" value="{$returndate['2']}" aria-label="{$lang->return_date}" />
+			</div>
+		</div>
+	</div>
+</section>

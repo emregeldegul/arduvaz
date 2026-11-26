@@ -1,0 +1,12 @@
+<tr>
+	<td class="{$altbg}"><a href="attachment.php?aid={$attachment['aid']}" target="_blank" class="mcp-q-subject">{$attachment['filename']}</a> <span class="mcp-filesize">{$attachment['filesize']}</span><span class="ucp-meta modqueue_meta">{$lang->post}: <a href="{$link}">{$attachment['postsubject']}</a></span></td>
+	<td class="{$altbg}">{$profile_link}</td>
+	<td class="{$altbg} ucp-last">{$attachdate}</td>
+	<td class="{$altbg} mcp-choices-cell">
+			<div class="mcp-choices modqueue_controls" role="radiogroup">
+				<label class="mcp-choice label_radio_ignore"><input type="radio" class="radio radio_ignore" name="attachments[{$attachment['aid']}]" value="ignore" checked="checked" /> {$lang->ignore}</label>
+				<label class="mcp-choice label_radio_delete"><input type="radio" class="radio radio_delete" name="attachments[{$attachment['aid']}]" value="delete" /> {$lang->delete}</label>
+				<label class="mcp-choice label_radio_approve"><input type="radio" class="radio radio_approve" name="attachments[{$attachment['aid']}]" value="approve" /> {$lang->approve}</label>
+			</div>
+	</td>
+</tr>

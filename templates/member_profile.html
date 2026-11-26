@@ -1,0 +1,103 @@
+<html xml:lang="{$lang->settings['htmllang']}" lang="{$lang->settings['htmllang']}" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$mybb->settings['bbname']} - {$lang->profile}</title>
+{$headerinclude}
+<script type="text/javascript" src="{$mybb->asset_url}/jscripts/report.js?ver=1820"></script>
+</head>
+<body>
+{$header}
+<main class="pf">
+	<section class="panel pf-card">
+		<div class="pf-cover" aria-hidden="true"></div>
+		<div class="pf-head">
+			<span class="pa-avatar pf-avatar-wrap">
+				<span class="avatar avatar-default pf-avatar"><svg><use href="{$theme['imgdir']}/icons.svg#i-avatar"/></svg>{$avatar}</span>
+				{$online_status}
+			</span>
+			<div class="pf-who">
+				<h1>{$formattedname}</h1>
+				<p class="pf-title">{$usertitle} <span class="pa-stars">{$userstars}</span>{$groupimage}</p>
+			</div>
+			<div class="pf-actions">
+				{$sendpm}
+				<div class="dropdown">
+					<!-- TODO:lang -->
+					<button type="button" class="icon-btn" data-dropdown aria-expanded="false" aria-haspopup="true" aria-label="More options"><svg><use href="{$theme['imgdir']}/icons.svg#i-dots"/></svg></button>
+					<div class="dropdown-menu dropdown-right" role="menu">
+						{$sendemail}
+						<a href="search.php?action=finduser&amp;uid={$memprofile['uid']}" role="menuitem"><svg><use href="{$theme['imgdir']}/icons.svg#i-search"/></svg>{$lang->find_posts}</a>
+						<a href="search.php?action=finduserthreads&amp;uid={$memprofile['uid']}" role="menuitem"><svg><use href="{$theme['imgdir']}/icons.svg#i-chat"/></svg>{$lang->find_threads}</a>
+						<hr />
+						{$buddy_options}
+						{$ignore_options}
+						{$report_options}
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<dl class="pf-stats">
+			<div><dt>{$lang->total_posts}</dt><dd><a href="search.php?action=finduser&amp;uid={$memprofile['uid']}">{$memprofile['postnum']}</a></dd></div>
+			<div><dt>{$lang->total_threads}</dt><dd><a href="search.php?action=finduserthreads&amp;uid={$memprofile['uid']}">{$memprofile['threadnum']}</a></dd></div>
+			<div><dt>{$lang->reputation}</dt><dd><a href="reputation.php?uid={$memprofile['uid']}" data-rep="{$memprofile['reputation']}">{$memprofile['reputation']}</a></dd></div>
+			<div><dt>{$lang->joined}</dt><dd>{$memregdate}</dd></div>
+			<div><dt>{$lang->lastvisit}</dt><dd>{$memlastvisitdate}</dd></div>
+		</dl>
+
+		<!-- TODO:lang (sekme adları) -->
+		<nav class="pf-nav" role="tablist" data-tabs>
+			<button type="button" role="tab" id="tab-profile" aria-controls="panel-profile" aria-selected="true"><svg><use href="{$theme['imgdir']}/icons.svg#i-user"/></svg>Profile</button>
+			<button type="button" role="tab" id="tab-forum" aria-controls="panel-forum" aria-selected="false"><svg><use href="{$theme['imgdir']}/icons.svg#i-chart"/></svg>Forum Info</button>
+			<button type="button" role="tab" id="tab-staff" aria-controls="panel-staff" aria-selected="false" class="tab-staff"><svg><use href="{$theme['imgdir']}/icons.svg#i-lock"/></svg>Staff</button>
+		</nav>
+	</section>
+
+	{$awaybit}{$bannedbit}
+
+	<div class="pf-panel" role="tabpanel" id="panel-profile" aria-labelledby="tab-profile">
+		<!-- Hakkında (özel alanlar) + ek bilgiler yan yana -->
+		<div class="pf-grid-2 pf-info-row">
+			{$profilefields}
+			<section class="panel">
+				<header class="panel-head"><svg><use href="{$theme['imgdir']}/icons.svg#i-calendar"/></svg><h2>{$lang->users_additional_info}</h2></header>
+				<dl class="info-list">
+					<div><dt>{$lang->date_of_birth}</dt><dd>{$membday} <small>{$membdayage}</small></dd></div>
+					<div><dt>{$lang->local_time}</dt><dd>{$localtime}</dd></div>
+					{$website}
+				</dl>
+			</section>
+		</div>
+		{$signature}
+	</div>
+
+	<div class="pf-panel" role="tabpanel" id="panel-forum" aria-labelledby="tab-forum">
+		<div class="pf-grid-2">
+			<section class="panel">
+				<header class="panel-head"><svg><use href="{$theme['imgdir']}/icons.svg#i-chat"/></svg><h2>{$lang->users_forum_info}</h2></header>
+				<dl class="info-list">
+					<div><dt>{$lang->joined}</dt><dd>{$memregdate}</dd></div>
+					<div><dt>{$lang->lastvisit}</dt><dd>{$memlastvisitdate}</dd></div>
+					<div><dt>{$lang->timeonline}</dt><dd>{$timeonline}</dd></div>
+					<div><dt>{$lang->total_posts}</dt><dd>{$memprofile['postnum']}{$findposts}<small>{$lang->ppd_percent_total}</small></dd></div>
+					<div><dt>{$lang->total_threads}</dt><dd>{$memprofile['threadnum']}{$findthreads}<small>{$lang->tpd_percent_total}</small></dd></div>
+				</dl>
+			</section>
+			<section class="panel">
+				<!-- TODO:lang -->
+				<header class="panel-head"><svg><use href="{$theme['imgdir']}/icons.svg#i-heart"/></svg><h2>Community</h2></header>
+				<dl class="info-list">
+					{$reputation}
+					{$referrals}
+					{$warning_level}
+				</dl>
+			</section>
+		</div>
+	</div>
+
+	<div class="pf-panel" role="tabpanel" id="panel-staff" aria-labelledby="tab-staff">
+		<div class="pf-grid-2">{$modoptions}{$adminoptions}</div>
+	</div>
+</main>
+{$footer}
+</body>
+</html>

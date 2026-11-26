@@ -1,0 +1,21 @@
+<section class="panel rg-section">
+	<script type="text/javascript">
+	<!--
+		lang.question_fetch_failure = "{$lang->question_fetch_failure}";
+	// -->
+	</script>
+	<script type="text/javascript" src="{$mybb->asset_url}/jscripts/question.js?ver=1821"></script>
+	<header class="panel-head"><svg><use href="{$theme['imgdir']}/icons.svg#i-lock"/></svg><h2>{$lang->security_question}</h2></header>
+	<div class="rg-body">
+		<p class="rg-hint">{$lang->question_note}</p>
+		<div class="rg-field">
+			<label for="answer" id="question">{$question['question']}</label>
+			<div class="rg-inline">
+				<input type="text" class="textbox rg-short" name="answer" value="" id="answer" autocomplete="off" />
+				<input type="hidden" name="question_id" value="{$sid}" id="question_id" />
+				{$refresh}
+			</div>
+		</div>
+		<div class="rg-status" id="answer_status" style="display: none;">&nbsp;</div>
+	</div>
+</section>

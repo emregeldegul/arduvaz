@@ -1,0 +1,18 @@
+<html xml:lang="{$lang->settings['htmllang']}" lang="{$lang->settings['htmllang']}" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$title}</title>
+<meta http-equiv="refresh" content="2;URL={$url}" />
+{$headerinclude}
+</head>
+<body class="redirect-page">
+<main class="msg-page">
+	<section class="panel msg-card">
+		<span class="msg-icon is-ok"><svg><use href="{$theme['imgdir']}/icons.svg#i-check"/></svg></span>
+		<h1>{$title}</h1>
+		<div class="msg-body"><p>{$message}</p></div>
+		<div class="msg-progress" aria-hidden="true"><span></span></div>
+		<a href="{$url}" class="msg-link">{$lang->click_no_wait}</a>
+	</section>
+</main>
+</body>
+</html>

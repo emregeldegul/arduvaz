@@ -1,0 +1,10 @@
+<section class="panel st-notes">
+	<header class="panel-head thead{$collapsedthead['threadnotes']}">
+		<svg><use href="{$theme['imgdir']}/icons.svg#i-note"/></svg>
+		<h2>{$lang->view_thread_notes}</h2>
+		<div class="expcolimage collapse-btn"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" id="threadnotes_img" class="expander" alt="{$expaltext}" title="{$expaltext}" /></div>
+	</header>
+	<div class="st-notes-body" style="{$collapsed['threadnotes_e']}" id="threadnotes_e">
+		{$thread['notes']}
+	</div>
+</section>

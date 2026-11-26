@@ -1,0 +1,42 @@
+<html xml:lang="{$lang->settings['htmllang']}" lang="{$lang->settings['htmllang']}" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$mybb->settings['bbname']} - {$lang->modcp}</title>
+{$headerinclude}
+</head>
+<body>
+{$header}
+<table width="100%" border="0" align="center">
+<tr>
+{$modcp_nav}
+<td valign="top">
+	{$awaitingmoderation}
+	{$latestfivemodactions}
+	<table border="0" cellspacing="0" cellpadding="0" class="tborder ucp-table mcp-bans">
+		<tr>
+			<td class="thead" colspan="4"><strong>{$lang->bans_ending_soon}</strong><a href="modcp.php?action=banning" class="ucp-head-link">{$lang->mcp_nav_banning}</a></td>
+		</tr>
+		<tr>
+			<td class="tcat">{$lang->username}</td>
+			<td class="tcat">{$lang->reason}</td>
+			<td class="tcat">{$lang->ban_length}</td>
+			<td class="tcat">{$lang->ban_bannedby}</td>
+		</tr>
+		{$bannedusers}
+	</table>
+	<form action="modcp.php" method="post" class="panel ucp-notepad">
+		<input type="hidden" name="my_post_key" value="{$mybb->post_code}" />
+		<input type="hidden" name="action" value="do_modnotes" />
+		<header class="panel-head"><svg><use href="{$theme['imgdir']}/icons.svg#i-note"/></svg><h2>{$lang->moderator_notes}</h2><span class="panel-head-links mcp-note-hint">{$lang->notes_public_all}</span></header>
+		<div class="ucp-notepad-body">
+			<textarea name="modnotes" rows="8" aria-label="{$lang->moderator_notes}">{$modnotes}</textarea>
+		</div>
+		<div class="ucp-actions">
+			<input type="submit" class="btn btn-dark btn-sm" name="notessubmit" value="{$lang->save_notes}" />
+		</div>
+	</form>
+</td>
+</tr>
+</table>
+{$footer}
+</body>
+</html>

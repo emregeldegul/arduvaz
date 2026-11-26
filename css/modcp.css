@@ -1,0 +1,250 @@
+/* =========================================================
+   Arduvaz — modcp.css
+   Moderatör paneli. Yan menü ve iki sütunlu yerleşim usercp.css'ten gelir
+   (usercp.css modcp.php'ye de bağlıdır); burada sadece Mod CP'ye özel kısımlar var.
+   ========================================================= */
+
+/* Ana sayfa: onay bekleyenler */
+.mcp-queue-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1px;
+  background: var(--border);
+}
+.mcp-queue-card { display: flex; flex-direction: column; gap: 12px; padding: 16px 18px; background: var(--surface); min-width: 0; }
+.mcp-queue-count { display: flex; align-items: center; gap: 12px; color: var(--slate-600); font-size: 13px; font-weight: 500; }
+.mcp-queue-count strong { display: block; font-size: 22px; font-weight: 700; line-height: 1.1; color: var(--slate-900); }
+.mcp-queue-count:hover strong { text-decoration: underline; }
+.mcp-queue-icon {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: var(--slate-100);
+  color: var(--slate-600);
+}
+.mcp-queue-icon svg { width: 18px; height: 18px; }
+.mcp-queue-latest { padding-top: 10px; border-top: 1px solid var(--slate-100); font-size: 13px; overflow-wrap: anywhere; }
+.mcp-queue-latest > a { font-weight: 600; }
+
+/* Ana sayfa tabloları */
+.mcp-logs :is(.trow1, .trow2), .mcp-bans :is(.trow1, .trow2) { font-size: 13.5px; }
+
+/* Moderatör işlem kayıtları */
+.mcp-log-info { font-size: 12.5px; }
+.mcp-log-ref { display: block; }
+.mcp-log-ref strong { font-weight: 600; color: var(--text-3); }
+.mcp-ip { font-family: var(--font-mono, ui-monospace, monospace); font-size: 12px; color: var(--text-3); white-space: nowrap; }
+
+/* Yasaklar: kalan süre renkleri (MyBB sınıfları) */
+.mcp-ban-left { font-weight: 600; }
+.imminent_banned { color: #b42318; }
+.high_banned { color: #c2410c; }
+.moderate_banned { color: #a16207; }
+.low_banned { color: var(--slate-600); }
+.mcp-row-actions a { font-weight: 500; }
+
+/* Moderatör notları */
+.mcp-note-hint { font-size: 12px; font-weight: 400; color: var(--text-3); }
+
+/* Sayfa başlığı ve sekmeler (onay kuyruğu) */
+.mcp-page-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.mcp-page-head h1 { margin: 0; font-size: 18px; font-weight: 700; letter-spacing: -.01em; }
+.mcp-tabs { display: flex; gap: 2px; padding: 3px; border: 1px solid var(--border); border-radius: 9px; background: var(--surface); }
+.mcp-tabs > a,
+.mcp-tabs > strong { padding: 6px 14px; border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--slate-600); }
+.mcp-tabs > a:hover { background: var(--slate-100); color: var(--slate-900); }
+.mcp-tabs > .is-active { background: var(--slate-800); color: #fff; font-weight: 600; }
+
+/* Onay kuyruğu: konular ve mesajlar */
+.mcp-q-list { overflow: hidden; }
+.mcp-q-item { padding: 0; border-bottom: 1px solid var(--border); background: var(--surface); }
+.mcp-q-item:last-child { border-bottom: 0; }
+.mcp-q-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; padding: 14px 20px; border-bottom: 1px solid var(--slate-100); }
+.mcp-q-title { min-width: 0; }
+.mcp-q-subject { font-size: 14.5px; font-weight: 600; color: var(--slate-900); }
+.mcp-q-ref + .mcp-q-ref::before { content: "·"; margin: 0 6px; }
+.mcp-q-body { max-height: 320px; overflow: auto; padding: 14px 20px 18px; font-size: 14px; line-height: 1.65; overflow-wrap: anywhere; }
+.mcp-q-empty { background: var(--surface); }
+.mcp-filesize { font-size: 12px; color: var(--text-3); }
+
+/* Yoksay / Sil / Onayla seçimi */
+.mcp-choices { display: inline-flex; flex-shrink: 0; gap: 2px; padding: 3px; border: 1px solid var(--border); border-radius: 9px; background: var(--surface-2); }
+.mcp-choice { position: relative; padding: 5px 12px; border-radius: 6px; font-size: 12.5px; font-weight: 500; color: var(--slate-600); cursor: pointer; white-space: nowrap; }
+.mcp-choice input { position: absolute; opacity: 0; pointer-events: none; }
+.mcp-choice:hover { background: var(--slate-100); }
+.mcp-choice:has(input:focus-visible) { outline: 2px solid var(--slate-400); outline-offset: 1px; }
+.mcp-choice:has(input:checked) { background: var(--surface); color: var(--slate-900); box-shadow: 0 1px 2px rgba(15, 23, 42, .12); }
+.label_radio_delete:has(input:checked) { background: #fdecea; color: #b42318; }
+.label_radio_approve:has(input:checked) { background: #e7f6ec; color: #166534; }
+.mcp-choices-cell { width: 1%; white-space: nowrap; }
+.mcp-q-item:has(.radio_delete:checked) { box-shadow: inset 3px 0 0 #e5484d; }
+.mcp-q-item:has(.radio_approve:checked) { box-shadow: inset 3px 0 0 #30a46c; }
+
+/* Alt çubuk: toplu seçim + işlemi uygula */
+/* Kuyruk eylem çubuğu: toplu işaretleme (satırlardaki seçici görünümünde) + "Perform Actions" tek kartta */
+.mcp-q-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 16px;
+  flex-wrap: wrap;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+.mcp-q-footer > input:only-child,
+.mcp-q-footer > input:first-of-type { margin-left: auto; }
+.modqueue_mass { display: inline-flex; flex-wrap: wrap; gap: 2px; margin: 0; padding: 3px; border: 1px solid var(--border); border-radius: 9px; background: var(--surface-2); list-style: none; font-size: 13px; font-weight: 600; }
+.modqueue_mass a { display: inline-flex; align-items: center; height: 30px; padding: 0 12px; border-radius: 7px; color: var(--slate-600); }
+.modqueue_mass a:hover { background: var(--surface); color: var(--slate-900); box-shadow: 0 1px 2px rgba(15, 23, 42, .08); }
+.modqueue_mass .mass_delete:hover { color: #b4534b; }
+.modqueue_mass .mass_approve:hover { color: #3f7a63; }
+
+/* Boş kuyruk */
+.mcp-empty-state { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 48px 20px; background: var(--surface); text-align: center; }
+.mcp-empty-state h1 { margin: 6px 0 0; font-size: 16px; font-weight: 700; }
+.mcp-empty-state p { margin: 0; color: var(--text-3); font-size: 14px; }
+
+/* Rapor merkezi */
+.mcp-report-info { font-size: 13.5px; }
+.mcp-report-info .smalltext { display: block; margin-top: 2px; font-size: 12px; color: var(--text-3); }
+.mcp-count {
+  display: inline-grid;
+  place-items: center;
+  min-width: 26px;
+  height: 22px;
+  padding: 0 7px;
+  border-radius: 11px;
+  background: var(--slate-100);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--slate-700);
+}
+.mcp-reports .inline_row.trow_selected td { background: var(--slate-100); }
+
+/* Kayıt sayfaları: filtre paneli (iki sütunlu form satırları) */
+.mcp-filter-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.mcp-filter-grid .form-row { grid-template-columns: minmax(0, 1fr); gap: 6px; padding: 14px 20px; border-top: 1px solid var(--slate-100); }
+.mcp-filter-grid .form-label { padding-top: 0; }
+.mcp-filter-grid .form-row:nth-child(-n+2) { border-top: 0; }
+.mcp-filter-grid .form-row:nth-child(odd) { border-right: 1px solid var(--slate-100); }
+.mcp-filter-grid .form-field > select:only-child { width: 100%; }
+.mcp-pages:empty { display: none; }
+.mcp-revoked strong { font-weight: 600; color: #b42318; }
+.mcp-view-link { font-size: 12.5px; font-weight: 600; }
+
+@media (max-width: 1100px) {
+  .mcp-filter-grid { grid-template-columns: 1fr; }
+  .mcp-filter-grid .form-row:nth-child(2) { border-top: 1px solid var(--slate-100); }
+  .mcp-filter-grid .form-row:nth-child(odd) { border-right: 0; }
+}
+
+/* Duyurular: liste */
+.mcp-ann .tcat.mcp-ann-actions { text-align: right; }
+.mcp-ann-actions { width: 1%; white-space: nowrap; text-align: right; }
+.mcp-ann-forum td { background: var(--surface-2); }
+.mcp-ann-fname,
+.mcp-ann-title { display: flex; align-items: center; gap: 10px; padding-left: calc(var(--pad, 0px) / 2); }
+.mcp-ann-fname { font-size: 13.5px; font-weight: 700; color: var(--slate-800); }
+.mcp-ann-fname svg { width: 15px; height: 15px; color: var(--slate-400); }
+.mcp-ann-forum.is-nomod .mcp-ann-fname { font-weight: 600; color: var(--slate-500); }
+.mcp-ann-row .mcp-ann-title { margin-left: 25px; font-size: 13.5px; }
+.mcp-ann-row.is-global .mcp-ann-title { margin-left: 0; }
+.mcp-ann-title a { font-weight: 500; color: var(--slate-900); }
+.mcp-ann-status { flex-shrink: 0; width: 8px; height: 8px; border-radius: 50%; }
+.mcp-ann-status.is-active { background: #30a46c; box-shadow: 0 0 0 3px #e7f6ec; }
+.mcp-ann-status.is-expired { background: var(--slate-300); box-shadow: 0 0 0 3px var(--slate-100); }
+.mcp-act {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 30px;
+  padding: 0 10px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  background: var(--surface);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--slate-700);
+}
+.mcp-act + .mcp-act { margin-left: 4px; }
+.mcp-act svg { width: 14px; height: 14px; color: var(--slate-500); }
+.mcp-act:hover { border-color: var(--slate-300); background: var(--slate-50); color: var(--slate-900); }
+.mcp-act-danger:hover { border-color: #f3c2bd; background: #fdecea; color: #b42318; }
+.mcp-act-danger:hover svg { color: #b42318; }
+
+/* Duyurular: ekleme / düzenleme formu */
+.mcp-datetime { gap: 8px; }
+.mcp-datetime select { width: auto; }
+.mcp-datetime input[name$="_year"] { width: 80px; }
+.mcp-datetime input[name$="_time"] { width: 96px; }
+.mcp-datetime > span { color: var(--text-3); font-size: 13px; }
+.mcp-enddate { display: grid; gap: 10px; }
+.mcp-enddate input[type="radio"],
+.mcp-yesno input[type="radio"] { margin: 0; accent-color: var(--slate-800); }
+.mcp-yesno { display: flex; gap: 20px; padding-top: 8px; }
+.mcp-yesno .check,
+.mcp-enddate .check { display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; }
+
+/* Silme onayı */
+.mcp-confirm-body { padding: 20px; background: var(--surface); font-size: 14px; }
+.mcp-confirm-body p { margin: 6px 0 0; color: var(--text-2); }
+.btn-danger { background: #b42318; color: #fff; }
+.btn-danger:hover { background: #912018; color: #fff; }
+
+/* Kullanıcı bul */
+.mcp-user-link { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; color: var(--slate-900); }
+.mcp-user-link svg { width: 14px; height: 14px; color: var(--slate-400); }
+.mcp-user-link:hover svg { color: var(--slate-700); }
+.mcp-users :is(.trow1, .trow2) { font-size: 13.5px; }
+
+/* Profil düzenleyici */
+.mcp-editprofile .form-rows .form-row { grid-template-columns: 150px minmax(0, 1fr); }
+.mcp-row-check { display: block; }
+.mcp-row-check .check { display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; }
+.mcp-after-check { display: flex; align-items: center; gap: 8px; margin-top: 8px; font-size: 13px; color: var(--text-2); }
+/* Özel ünvan yoksa MyBB "mevcut ünvan" etiketini boşaltır: satır gizlenir. */
+.mcp-editprofile .form-row:has(> .form-label:empty) { display: none; }
+.mcp-editprofile .form-date { flex-wrap: nowrap; }
+.mcp-editprofile .form-date .select { flex: 1 1 auto; width: auto; min-width: 0; }
+.mcp-editprofile .form-date .form-year { flex: 0 0 76px; width: 76px !important; }
+.mcp-susp-list { background: var(--surface); }
+.mcp-susp { padding: 14px 20px; border-top: 1px solid var(--slate-100); background: var(--surface); }
+.mcp-susp:first-child { border-top: 0; }
+.mcp-susp > .check { display: flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 600; color: var(--slate-800); }
+.mcp-susp-body { display: grid; gap: 8px; margin: 10px 0 0 24px; }
+.mcp-susp-body .form-inline .select { width: auto; }
+.mcp-susp-info { margin: 0; padding: 8px 12px; border-radius: var(--radius-sm); background: #fcf3e3; font-size: 12.5px; color: #7a4b0c; }
+.mcp-signature { padding: 16px 20px; background: var(--surface); }
+.mcp-signature textarea { width: 100%; min-height: 180px; }
+
+@media (max-width: 1100px) {
+  .mcp-editprofile .form-rows .form-row { grid-template-columns: 1fr; }
+}
+
+/* Yasak ekleme / düzenleme */
+.mcp-banuser .form-field textarea { width: 100%; min-height: 96px; resize: vertical; }
+.mcp-banuser .form-field > .select { min-width: 260px; }
+.mcp-banuser .panel-head-links svg { width: 14px; height: 14px; }
+
+/* IP arama */
+.mcp-ipresults :is(.trow1, .trow2) { font-size: 13.5px; }
+.mcp-ipresults .mcp-ip { width: 1%; }
+.mcp-iptag {
+  display: inline-block;
+  margin-right: 6px;
+  padding: 1px 8px;
+  border-radius: 5px;
+  background: var(--slate-100);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--slate-600);
+}
+.mcp-inline-meta { display: inline; margin: 0 0 0 4px; }
+.mcp-ip-links a { color: #fff; }
+.mcp-ipinfo .info-list { padding: 8px 0 16px; }
+.mcp-ipinfo .info-list dd { overflow-wrap: anywhere; }

@@ -1,0 +1,42 @@
+<div id="quickreply_spinner" class="showthread_spinner" style="display: none"><img src="{$theme['imgdir']}/spinner.gif" alt="" /></div>
+{$moderation_notice}
+<section class="panel quick-reply" id="quickReply">
+	<header class="panel-head">
+		<svg><use href="{$theme['imgdir']}/icons.svg#i-reply"/></svg>
+		<h2>{$lang->quick_reply}</h2>
+	</header>
+	<form method="post" action="newreply.php?tid={$tid}&amp;processed=1" name="quick_reply_form" id="quick_reply_form" class="qr-body">
+		<input type="hidden" name="my_post_key" value="{$mybb->post_code}" />
+		<input type="hidden" name="subject" value="RE: {$reply_subject}" />
+		<input type="hidden" name="action" value="do_newreply" />
+		<input type="hidden" name="posthash" value="{$posthash}" id="posthash" />
+		<input type="hidden" name="quoted_ids" value="" id="quoted_ids" />
+		<input type="hidden" name="lastpid" id="lastpid" value="{$last_pid}" />
+		<input type="hidden" name="from_page" value="{$page}" />
+		<input type="hidden" name="tid" value="{$tid}" />
+		<input type="hidden" name="method" value="quickreply" />
+
+		<div class="qr-author">
+			<span class="avatar avatar-default qr-avatar" aria-hidden="true"><svg><use href="{$theme['imgdir']}/icons.svg#i-avatar"/></svg></span>
+			<span class="qr-name">{$mybb->user['username']}</span>
+		</div>
+		<div class="qr-main">
+			<textarea name="message" id="message" rows="5" cols="80" tabindex="1" aria-label="{$lang->message}"></textarea>
+			<div class="editor_control_bar qr-multiquote" id="quickreply_multiquote" style="display: none;">
+				{$lang->quickreply_multiquote_selected} <a href="./newreply.php?tid={$tid}&amp;load_all_quotes=1" onclick="return Thread.loadMultiQuoted();">{$lang->quickreply_multiquote_now}</a> {$lang->or} <a href="javascript:void(0)" onclick="Thread.clearMultiQuoted(); return false;">{$lang->quickreply_multiquote_deselect}</a>.
+			</div>
+			{$captcha}
+			<div class="qr-foot">
+				<div class="qr-opts">
+					{$option_signature}
+					<label class="qr-opt"><input type="checkbox" class="checkbox mod-check" name="postoptions[disablesmilies]" value="1" /> {$lang->disable_smilies}</label>
+				</div>
+				<div class="qr-opts qr-mod">{$closeoption}</div>
+				<div class="qr-btns">
+					<input type="submit" class="btn btn-light btn-sm" name="previewpost" value="{$lang->preview_post}" tabindex="3" />
+					<input type="submit" class="btn btn-dark btn-sm" value="{$lang->post_reply}" tabindex="2" accesskey="s" id="quick_reply_submit" />
+				</div>
+			</div>
+		</div>
+	</form>
+</section>

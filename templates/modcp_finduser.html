@@ -1,0 +1,98 @@
+<html xml:lang="{$lang->settings['htmllang']}" lang="{$lang->settings['htmllang']}" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$mybb->settings['bbname']} - {$lang->find_users}</title>
+{$headerinclude}
+</head>
+<body>
+{$header}
+<table width="100%" border="0" align="center">
+<tr>
+{$modcp_nav}
+<td valign="top">
+	<form action="modcp.php?action=finduser" method="post" class="panel mcp-filter">
+		<header class="panel-head"><svg><use href="{$theme['imgdir']}/icons.svg#i-search"/></svg><h2>{$lang->find_users}</h2></header>
+		<div class="form-rows mcp-filter-grid">
+			<div class="form-row">
+				<label class="form-label" for="username">{$lang->username_contains}</label>
+				<div class="form-field"><input type="text" name="username" id="username" value="{$username}" class="textbox" /></div>
+			</div>
+			<div class="form-row">
+				<label class="form-label" for="mcp_sortby">{$lang->sort_by}</label>
+				<div class="form-field form-inline">
+					<select name="sortby" id="mcp_sortby">
+						<option value="username"{$sortbysel['username']}>{$lang->username}</option>
+						<option value="regdate"{$sortbysel['regdate']}>{$lang->regdate}</option>
+						<option value="lastvisit"{$sortbysel['lastvisit']}>{$lang->lastvisit}</option>
+						<option value="postnum"{$sortbysel['postnum']}>{$lang->postnum}</option>
+					</select>
+					{$lang->in}
+					<select name="order" aria-label="{$lang->order}">
+						<option value="asc"{$ordersel['asc']}>{$lang->asc}</option>
+						<option value="desc"{$ordersel['desc']}>{$lang->desc}</option>
+					</select>
+					{$lang->order}
+				</div>
+			</div>
+		</div>
+		<div class="ucp-actions">
+			<input type="submit" class="btn btn-dark btn-sm" value="{$lang->find_users}" />
+		</div>
+	</form>
+	<table border="0" cellspacing="0" cellpadding="0" class="tborder ucp-table mcp-users">
+		<tr>
+			<td class="thead" colspan="5"><strong>{$lang->users}</strong></td>
+		</tr>
+		<tr>
+			<td class="tcat">{$lang->username}</td>
+			<td class="tcat">{$lang->usergroup}</td>
+			<td class="tcat">{$lang->regdate}</td>
+			<td class="tcat">{$lang->lastvisit}</td>
+			<td class="tcat ucp-num">{$lang->postnum}</td>
+		</tr>
+		{$users}
+	</table>
+	{$multipage}
+</td>
+</tr>
+</table>
+{$footer}
+<link rel="stylesheet" href="{$mybb->asset_url}/jscripts/select2/select2.css?ver=1807" />
+<script type="text/javascript" src="{$mybb->asset_url}/jscripts/select2/select2.min.js?ver=1806"></script>
+<script type="text/javascript">
+<!--
+if(use_xmlhttprequest == "1")
+{
+	MyBB.select2();
+	$("#username").select2({
+		placeholder: "{$lang->find_users}",
+		minimumInputLength: 2,
+		multiple: false,
+		allowClear: true,
+		ajax: { // instead of writing the function to execute the request we use Select2's convenient helper
+			url: "xmlhttp.php?action=get_users",
+			dataType: 'json',
+			data: function (term, page) {
+				return {
+					query: term, // search term
+				};
+			},
+			results: function (data, page) { // parse the results into the format expected by Select2.
+				// since we are using custom formatting functions we do not need to alter remote JSON data
+				return {results: data};
+			}
+		},
+		initSelection: function(element, callback) {
+			var value = $(element).val();
+			if (value !== "") {
+				callback({
+					id: value,
+					text: value
+				});
+			}
+		}
+	});
+}
+// -->
+</script>
+</body>
+</html>

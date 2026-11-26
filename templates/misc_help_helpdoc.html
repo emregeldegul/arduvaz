@@ -1,0 +1,20 @@
+<html xml:lang="{$lang->settings['htmllang']}" lang="{$lang->settings['htmllang']}" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$mybb->settings['bbname']} - {$helpdoc['name']}</title>
+{$headerinclude}
+</head>
+<body>
+{$header}
+<main class="help-page">
+	<article class="panel help-doc">
+		<header class="panel-head">
+			<svg><use href="{$theme['imgdir']}/icons.svg#i-book"/></svg>
+			<h1>{$helpdoc['name']}</h1>
+			<div class="panel-head-links"><a href="misc.php?action=help"><svg><use href="{$theme['imgdir']}/icons.svg#i-arrow"/></svg>{$lang->help_docs}</a></div>
+		</header>
+		<div class="help-doc-body scaleimages">{$helpdoc['document']}</div>
+	</article>
+</main>
+{$footer}
+</body>
+</html>

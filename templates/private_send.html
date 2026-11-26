@@ -1,0 +1,103 @@
+<html xml:lang="{$lang->settings['htmllang']}" lang="{$lang->settings['htmllang']}" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$lang->compose_pm}</title>
+{$headerinclude}
+<script type="text/javascript" src="{$mybb->asset_url}/jscripts/usercp.js?ver=1827"></script>
+</head>
+<body>
+{$header}
+<form action="private.php" method="post" name="input">
+<input type="hidden" name="my_post_key" value="{$mybb->post_code}" />
+<table width="100%" border="0" align="center">
+<tr>
+{$usercpnav}
+<td valign="top">
+	{$preview}
+	{$send_errors}
+	<section class="panel">
+		<header class="panel-head"><svg><use href="{$theme['imgdir']}/icons.svg#i-edit"/></svg><h1>{$lang->compose_pm}</h1></header>
+		<div class="form-rows">
+			<div class="form-row">
+				<div class="form-label">
+					<label for="to">{$lang->compose_to}</label>
+					<span class="form-desc">{$lang->separate_names}</span>
+				</div>
+				<div class="form-field">
+					<textarea name="to" id="to" rows="2" cols="38" tabindex="1">{$to}</textarea>{$max_recipients}
+					<!-- Alıcı araçları: arkadaşlardan seç + BCC alanını aç (JS ile yazılır, JS yoksa görünmez) -->
+					<div class="pm-to-tools">
+						{$buddy_select_to}
+						<script type="text/javascript">
+						<!--
+							document.write('<button type="button" class="btn btn-light btn-sm pm-bcc-toggle" onclick="showBcc(); return false;" title="{$lang->compose_bcc_show_title}"><svg><use href="{$theme['imgdir']}/icons.svg#i-plus"/><\/svg>{$lang->compose_bcc_show}<\/button>');
+						// -->
+						</script>
+					</div>
+				</div>
+			</div>
+			<div class="form-row" id="bcc_area">
+				<label class="form-label" for="bcc">{$lang->compose_bcc}</label>
+				<div class="form-field">
+					<textarea name="bcc" id="bcc" rows="2" cols="38" tabindex="1">{$bcc}</textarea>
+					<div class="pm-to-tools">{$buddy_select_bcc}</div>
+				</div>
+			</div>
+			<div class="form-row">
+				<label class="form-label" for="subject">{$lang->compose_subject}</label>
+				<div class="form-field"><input type="text" class="textbox" name="subject" id="subject" maxlength="85" value="{$subject}" tabindex="3" /></div>
+			</div>
+			{$posticons}
+			<div class="form-row form-row-message">
+				<label class="form-label" for="message">{$lang->compose_message}</label>
+				<div class="form-field">
+					<textarea name="message" id="message" rows="20" cols="70" tabindex="4">{$message}</textarea>
+					{$codebuttons}
+				</div>
+				<div class="form-smilies">{$smilieinserter}</div>
+			</div>
+			<div class="form-row">
+				<span class="form-label">{$lang->compose_options}</span>
+				<div class="form-field form-checks">
+					<label class="check"><input type="checkbox" class="checkbox" name="options[signature]" value="1" tabindex="5" {$optionschecked['signature']} /> {$lang->options_sig}</label>
+					<label class="check"><input type="checkbox" class="checkbox" name="options[disablesmilies]" value="1" tabindex="6" {$optionschecked['disablesmilies']} /> {$lang->options_disable_smilies}</label>
+					<label class="check"><input type="checkbox" class="checkbox" name="options[savecopy]" value="1" tabindex="7" {$optionschecked['savecopy']} /> {$lang->options_save_copy}</label>
+					{$private_send_tracking}
+				</div>
+			</div>
+		</div>
+	</section>
+	<div class="ucp-submit">
+		<input type="hidden" name="action" value="do_send" />
+		<input type="hidden" name="pmid" value="{$pmid}" />
+		<input type="hidden" name="do" value="{$do}" />
+		<input type="submit" class="btn btn-light" name="preview" value="{$lang->preview}" tabindex="11" />
+		<input type="submit" class="btn btn-light" name="saveasdraft" value="{$lang->save_draft}" tabindex="10" />
+		<input type="submit" class="btn btn-dark" name="submit" value="{$lang->send_message}" tabindex="9" accesskey="s" />
+	</div>
+</td>
+</tr>
+</table>
+</form>
+<script type="text/javascript">
+<!--
+if($("#bcc_area").length > 0 && $("#bcc").val() == "")
+{
+	$("#bcc_area").css("display", "none");
+}
+function showBcc()
+{
+	if($("#bcc_area").css("display") == 'none')
+	{
+		$("#bcc_area").css("display", "");
+	}
+	else
+	{
+		$("#bcc_area").css("display", "none");
+	}
+}
+// -->
+</script>
+{$autocompletejs}
+{$footer}
+</body>
+</html>

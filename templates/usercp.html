@@ -1,0 +1,38 @@
+<html xml:lang="{$lang->settings['htmllang']}" lang="{$lang->settings['htmllang']}" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$lang->user_cp}</title>
+{$headerinclude}
+</head>
+<body>
+{$header}
+<table width="100%" border="0" align="center">
+<tr>
+{$usercpnav}
+<td valign="top">
+	<section class="panel ucp-summary">
+		<header class="panel-head"><svg><use href="{$theme['imgdir']}/icons.svg#i-user"/></svg><h1>{$lang->account_summary}</h1></header>
+		<div class="ucp-summary-body">
+			{$avatar}
+			<div class="ucp-who">
+				<span class="ucp-name">{$username}</span>
+				<dl class="info-list">
+					<div><dt>{$lang->postnum}</dt><dd><a href="search.php?action=finduser&amp;uid={$mybb->user['uid']}">{$mybb->user['posts']}</a><small>{$lang->posts_day}</small></dd></div>
+					{$reputation}
+					<div><dt>{$lang->email}</dt><dd>{$mybb->user['email']}</dd></div>
+					<div><dt>{$lang->registration_date}</dt><dd>{$regdate}</dd></div>
+					<div><dt>{$lang->primary_usergroup}</dt><dd>{$usergroup}</dd></div>
+					{$referral_info}
+				</dl>
+			</div>
+		</div>
+	</section>
+	{$latest_subscribed}
+	{$latest_threads}
+	{$latest_warnings}
+	{$user_notepad}
+</td>
+</tr>
+</table>
+{$footer}
+</body>
+</html>

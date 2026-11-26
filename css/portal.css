@@ -1,0 +1,35 @@
+/* =========================================================
+   Arduvaz — portal.css
+   MyBB'nin varsayılan portalı (portal.php): yalnızca duyuru kartları.
+   Yan bloklar ve genel düzen MyBB'nin varsayılan şablonlarında kalır.
+   ========================================================= */
+
+.pt-ann { overflow: hidden; margin-bottom: 20px; background: var(--surface); }
+/* MyBB ikon yoksa {$icon} yerine &nbsp; basar: boşluk başlığı itmesin (font-size 0, aralık ikonda) */
+.pt-ann-head { gap: 0; font-size: 0; }
+.pt-ann-head .post-icon { flex: none; width: 16px; height: 16px; margin-right: 8px; }
+.pt-ann-head h2 { min-width: 0; }
+.pt-ann-head h2 a { color: var(--slate-900); }
+.pt-ann-head h2 a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+.pt-ann-meta { display: flex; flex-wrap: wrap; gap: 4px 0; padding: 10px 20px; border-bottom: 1px solid var(--slate-100); background: var(--surface); font-size: 12.5px; color: var(--text-3); }
+.pt-ann-meta > span:empty { display: none; }
+.pt-ann-meta > span + span::before { content: "·"; margin: 0 8px; color: var(--slate-300); }
+.pt-ann-meta a { font-weight: 600; color: var(--slate-700); }
+
+/* Avatar solda sabit boyutta, metin yanında üstten hizalı */
+.pt-ann-body { display: flex; align-items: flex-start; gap: 18px; padding: 18px 20px; background: var(--surface); }
+.pt-ann-avatar { flex: none; width: 56px; height: 56px; overflow: hidden; border-radius: 12px; background: var(--slate-100); }
+.pt-ann-avatar img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.pt-ann-text { flex: 1; min-width: 0; font-size: 14.5px; line-height: 1.7; color: var(--slate-800); overflow-wrap: anywhere; }
+.pt-ann-text > :first-child { margin-top: 0; }
+
+.pt-ann-foot { display: flex; justify-content: flex-end; gap: 6px; padding: 10px 14px; border-top: 1px solid var(--slate-100); background: var(--surface-2); }
+.pt-ann-action { display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px; border-radius: 7px; font-size: 12.5px; font-weight: 600; color: var(--slate-600); }
+.pt-ann-action:hover { background: var(--slate-100); color: var(--slate-900); }
+.pt-ann-action svg { width: 15px; height: 15px; }
+
+@media (max-width: 640px) {
+  .pt-ann-avatar { width: 44px; height: 44px; }
+  .pt-ann-body { gap: 12px; padding: 14px; }
+}

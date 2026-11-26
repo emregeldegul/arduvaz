@@ -1,0 +1,129 @@
+/* =========================================================
+   Arduvaz — Admin CP forum.css (Forumlar ve Mesajlar)
+   ========================================================= */
+
+/* ---------- Moderasyon kuyruğu ---------- */
+
+.modqueue_message {
+	max-height: 250px;
+	overflow: auto;
+	font-size: 13.5px;
+	line-height: 1.6;
+}
+
+.modqueue_controls {
+	float: right;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 4px;
+	width: auto;
+	margin: 0 0 8px 12px;
+	padding: 4px;
+	background: var(--surface-2);
+	border: 1px solid var(--border);
+	border-radius: var(--radius-sm);
+	font-weight: 600;
+	text-align: center;
+}
+
+.modqueue_controls label {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	margin: 0;
+	padding: 5px 10px;
+	border-radius: 6px;
+	cursor: pointer;
+	transition: background .15s, color .15s;
+}
+
+.modqueue_controls label:hover {
+	background: var(--surface);
+}
+
+.label_radio_ignore, .label_radio_delete, .label_radio_approve {
+	font-weight: 600;
+}
+
+.modqueue_controls .label_radio_approve:has(input:checked) {
+	background: var(--ok-bg);
+	color: var(--ok);
+}
+
+.modqueue_controls .label_radio_delete:has(input:checked) {
+	background: var(--err-bg);
+	color: var(--err);
+}
+
+.modqueue_controls .label_radio_ignore:has(input:checked) {
+	background: var(--surface);
+	box-shadow: var(--shadow);
+}
+
+.modqueue_meta {
+	margin-bottom: 8px;
+	color: var(--text-3);
+	font-size: 13px;
+}
+
+/* Toplu işlem bağlantıları */
+.modqueue_mass {
+	width: auto;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.modqueue_mass li {
+	margin: 0 0 2px;
+	padding: 0;
+}
+
+.modqueue_mass li a {
+	display: block;
+	padding: 6px 10px;
+	border: 1px solid transparent;
+	border-radius: 6px;
+	color: var(--slate-700);
+	font-weight: 500;
+}
+
+.modqueue_mass li a:hover {
+	background: var(--slate-100);
+	border-color: var(--border);
+	text-decoration: none;
+}
+
+/* ---------- Forum ayarları (onay kutusu satırları) ---------- */
+
+.forum_settings_bit {
+	margin-bottom: 8px;
+}
+
+.forum_settings_bit input {
+	margin-right: 8px;
+	vertical-align: middle;
+}
+
+.forum_settings_bit select,
+.forum_settings_bit input.text_input,
+.forum_settings_bit textarea {
+	margin-top: 8px;
+}
+
+.forum_settings_bit label {
+	font-weight: 500;
+}
+
+.forum_settings_bit small {
+	display: block;
+	padding-left: 25px;
+}
+
+@media (max-width: 700px) {
+	.modqueue_controls {
+		float: none;
+		margin: 0 0 10px;
+	}
+}

@@ -1,0 +1,9 @@
+<form action="search.php" method="post" class="jump" role="search">
+	<input type="hidden" name="action" value="thread" />
+	<input type="hidden" name="tid" value="{$thread['tid']}" />
+	<label for="thread_search_keywords">{$lang->search_thread}</label>
+	<div class="jump-row">
+		<input type="search" name="keywords" id="thread_search_keywords" class="textbox select" placeholder="{$lang->enter_keywords}" />
+		<button type="submit" class="btn btn-light btn-sm" aria-label="{$lang->search_thread}"><svg><use href="{$theme['imgdir']}/icons.svg#i-search"/></svg></button>
+	</div>
+</form>

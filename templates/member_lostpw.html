@@ -1,0 +1,30 @@
+<html xml:lang="{$lang->settings['htmllang']}" lang="{$lang->settings['htmllang']}" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$mybb->settings['bbname']} - {$lang->lost_pw}</title>
+{$headerinclude}
+</head>
+<body>
+{$header}
+<main class="msg-page">
+	{$errors}
+	<section class="panel auth-card">
+		<div class="modal-head">
+			<span class="brand-logo"><svg><use href="{$theme['imgdir']}/icons.svg#i-lock"/></svg></span>
+			<h1>{$lang->lost_pw_form}</h1>
+			<!-- TODO:lang -->
+			<p>Enter the email address on your account and we'll send you a link to reset your login details.</p>
+		</div>
+		<form action="member.php" method="post" class="modal-form">
+			<label class="field">
+				<span>{$lang->email_address}</span>
+				<input type="email" class="textbox" name="email" value="{$email}" autocomplete="email" />
+			</label>
+			{$captcha}
+			<input type="hidden" name="action" value="do_lostpw" />
+			<button type="submit" class="btn btn-dark btn-block" name="submit" value="{$lang->request_user_pass}">{$lang->request_user_pass}</button>
+		</form>
+	</section>
+</main>
+{$footer}
+</body>
+</html>

@@ -1,0 +1,69 @@
+/* =========================================================
+   Arduvaz — poll.css
+   Anket kutusu (konu sayfası) ve anket sonuçları sayfası.
+   ========================================================= */
+
+.poll-page { padding-bottom: 56px; }
+.st-poll .panel-head h1,
+.st-poll .panel-head h2 { flex: 1; min-width: 0; }
+.poll-label { margin-right: 4px; font-weight: 600; color: var(--slate-500); }
+.st-poll .panel-head-links { gap: 12px; font-size: 12.5px; }
+
+/* Oy verme */
+.poll-options { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 8px; padding: 16px 20px; background: var(--surface); }
+.poll-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  cursor: pointer;
+  transition: border-color .15s, background .15s;
+}
+.poll-option:hover { border-color: var(--slate-300); background: var(--slate-50); }
+.poll-option:has(input:checked) { border-color: var(--slate-700); background: var(--slate-50); }
+.poll-option input { flex-shrink: 0; width: 16px; height: 16px; margin: 0; accent-color: var(--slate-800); }
+
+/* Sonuçlar */
+.poll-results { display: flex; flex-direction: column; gap: 14px; padding: 18px 20px; background: var(--surface); }
+.poll-result-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 6px; font-size: 14px; }
+.poll-result-count { flex-shrink: 0; font-size: 13px; color: var(--text-3); }
+.poll-result-count strong { color: var(--text); }
+.poll-mine { display: inline-grid; place-items: center; width: 16px; height: 16px; margin-left: 6px; border-radius: 50%; background: var(--slate-800); font-size: 0; vertical-align: -2px; }
+.poll-mine::before { content: "\2713"; font-size: 10px; font-weight: 700; color: #fff; }
+.poll-mine:empty { display: none; }
+.poll-track { height: 8px; overflow: hidden; border-radius: 999px; background: var(--slate-100); }
+.pollbar { height: 100%; border-radius: inherit; background: var(--slate-700); }
+.poll-voters { margin-top: 6px; font-size: 12.5px; color: var(--text-3); }
+.poll-voters:empty { display: none; }
+
+/* Alt bilgi */
+.poll-foot { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; padding: 12px 20px; border-top: 1px solid var(--border); background: var(--surface); font-size: 13px; }
+.poll-total { color: var(--text-2); }
+.poll-notes { display: flex; align-items: center; gap: 4px 14px; flex-wrap: wrap; margin-left: auto; font-size: 12.5px; color: var(--text-3); }
+.poll-undo { font-weight: 600; color: var(--slate-700); }
+.poll-undo:hover { color: var(--slate-900); }
+
+/* Anket oluşturma / düzenleme formları (posting.css ile birlikte) */
+.poll-form-options { display: grid; gap: 8px; }
+.poll-form-option { display: flex; align-items: center; gap: 10px; }
+.poll-form-option .textbox { flex: 1; min-width: 0; height: 38px; }
+.poll-form-num { display: grid; place-items: center; flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%; background: var(--slate-100); font-size: 12px; font-weight: 700; color: var(--slate-600); }
+.poll-form-votes { display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0; font-size: 12.5px; color: var(--text-3); }
+/* Varsayılan temadaki JS yerine: çoklu seçim işaretli değilse azami seçim alanı gizli */
+.poll-maxoptions { padding-left: 24px; font-size: 13px; color: var(--text-2); }
+.form-checks:not(:has(input[name="postoptions[multiple]"]:checked)) .poll-maxoptions { display: none; }
+
+.poll-delete-body { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 20px; background: var(--surface); font-size: 13.5px; }
+.poll-delete-body .check { align-items: flex-start; }
+.poll-delete-body .check input { margin-top: 3px; }
+
+/* Mobil: soru tam genişlikte, bağlantılar altına iner (sıkışma olmaz) */
+@media (max-width: 760px) {
+  .st-poll .panel-head { flex-wrap: wrap; row-gap: 6px; }
+  .st-poll .panel-head h1,
+  .st-poll .panel-head h2 { flex-basis: calc(100% - 40px); }
+  .st-poll .panel-head-links { width: 100%; padding-left: 30px; }
+}

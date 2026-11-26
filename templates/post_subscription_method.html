@@ -1,0 +1,9 @@
+<div class="form-row">
+	<div class="form-label">{$lang->thread_subscription_method}<span class="form-desc">{$lang->thread_subscription_method_desc}</span></div>
+	<div class="form-field form-checks">
+		<label class="check"><input type="radio" name="postoptions[subscriptionmethod]" {$subscribe}value="" /> {$lang->no_subscribe}</label>
+		<label class="check"><input type="radio" name="postoptions[subscriptionmethod]" {$nonesubscribe}value="none" /> {$lang->no_subscribe_notification}</label>
+		<label class="check"><input type="radio" name="postoptions[subscriptionmethod]" {$emailsubscribe}value="email" /> {$lang->instant_email_subscribe}</label>
+		<label class="check"><input type="radio" name="postoptions[subscriptionmethod]" {$pmsubscribe}value="pm" /> {$lang->instant_pm_subscribe}</label>
+	</div>
+</div>

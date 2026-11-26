@@ -1,0 +1,30 @@
+<html xml:lang="{$lang->settings['htmllang']}" lang="{$lang->settings['htmllang']}" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$mybb->settings['bbname']} - {$lang->resend_activation}</title>
+{$headerinclude}
+</head>
+<body>
+{$header}
+<main class="msg-page">
+	{$errors}
+	<section class="panel auth-card">
+		<div class="modal-head">
+			<span class="brand-logo"><svg><use href="{$theme['imgdir']}/icons.svg#i-mail"/></svg></span>
+			<h1>{$lang->resend_activation}</h1>
+			<!-- TODO:lang -->
+			<p>Didn't get the activation email? Enter your email address and we'll send it again.</p>
+		</div>
+		<form action="member.php" method="post" class="modal-form">
+			<label class="field">
+				<span>{$lang->email_address}</span>
+				<input type="email" class="textbox" name="email" value="{$email}" autocomplete="email" />
+			</label>
+			{$captcha}
+			<input type="hidden" name="action" value="do_resendactivation" />
+			<button type="submit" class="btn btn-dark btn-block" name="submit" value="{$lang->request_activation}">{$lang->request_activation}</button>
+		</form>
+	</section>
+</main>
+{$footer}
+</body>
+</html>

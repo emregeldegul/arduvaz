@@ -1,0 +1,193 @@
+/* =========================================================
+   Arduvaz — register.css
+   Kayıt (sözleşme + form). Sadece member.php?action=register sayfasında yüklenir.
+   ========================================================= */
+
+.rg { padding-bottom: 56px; }
+.rg-form { display: flex; flex-direction: column; gap: 20px; }
+.rg-cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; align-items: start; }
+.rg-col { display: flex; flex-direction: column; gap: 20px; min-width: 0; }
+.req { color: #b4534b; font-weight: 700; }
+.rg-optional { margin-left: auto; font-size: 12px; font-weight: 600; color: var(--slate-500); }
+.rg-body { display: grid; gap: 16px; padding: 18px 20px 20px; background: var(--surface); }
+.rg-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.rg-field { display: grid; gap: 6px; min-width: 0; align-content: start; }
+.rg-field > label { font-size: 13px; font-weight: 600; color: var(--slate-700); }
+.rg-field input[type="text"],
+.rg-field input[type="email"],
+.rg-field input[type="password"] {
+  width: 100%;
+  height: 42px;
+  padding: 0 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  font: inherit;
+  font-size: 14px;
+  color: var(--text);
+  transition: border-color .15s, box-shadow .15s;
+}
+.rg-field input:focus { outline: 0; border-color: var(--slate-400); box-shadow: 0 0 0 3px rgba(100, 116, 139, .15); }
+.rg-field .select { height: 42px; }
+.rg-hint { display: flex; align-items: center; gap: 6px; margin: 0; font-size: 12px; color: var(--text-3); }
+.rg-hint svg { width: 14px; height: 14px; }
+.rg-hint.is-ok { color: #3f7a63; }
+.rg-hint.is-error { color: #b4534b; }
+.rg-pass { position: relative; }
+.rg-pass input { padding-right: 44px !important; }
+.rg-eye {
+  position: absolute;
+  top: 50%;
+  right: 6px;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  transform: translateY(-50%);
+  border: 0;
+  border-radius: 7px;
+  background: none;
+  color: var(--slate-400);
+}
+.rg-eye:hover { background: var(--slate-100); color: var(--slate-800); }
+.rg-eye svg { width: 17px; height: 17px; }
+.rg-meter { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; }
+.rg-meter span { height: 4px; border-radius: 2px; background: var(--slate-200); transition: background .2s; }
+.rg-meter[data-level="1"] span:nth-child(-n+1) { background: #b4534b; }
+.rg-meter[data-level="2"] span:nth-child(-n+2) { background: #b7791f; }
+.rg-meter[data-level="3"] span:nth-child(-n+3) { background: #6b8f5e; }
+.rg-meter[data-level="4"] span { background: #3f7a63; }
+.rg-desc { margin: -2px 0 2px; font-size: 12.5px; color: var(--text-3); }
+.rg-field textarea {
+  width: 100%;
+  min-height: 110px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  font: inherit;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text);
+  resize: vertical;
+}
+.rg-checks { display: grid; gap: 11px; margin: 0; padding: 0; border: 0; min-width: 0; }
+.rg-checks .check { align-items: flex-start; font-size: 13.5px; line-height: 1.45; }
+.rg-checks .check input { margin-top: 2px; }
+.rg-search { position: relative; }
+.rg-search svg { position: absolute; left: 12px; top: 50%; width: 16px; height: 16px; transform: translateY(-50%); color: var(--slate-400); pointer-events: none; }
+.rg-field .rg-search input { padding-left: 36px; }
+.rg-field input.rg-short { max-width: 220px; }
+
+/* =========================================================
+   TEK KART DÜZENİ
+   Bütün bölümler tek panelin içinde; alt şablonların .panel.rg-section
+   kutuları burada düz bölüme dönüşür (şablonlara dokunmadan).
+   ========================================================= */
+.rg-card { overflow: hidden; background: var(--surface); }
+.rg-card .rg-cols { gap: 0; }
+.rg-card .rg-col { gap: 0; }
+.rg-card .rg-col + .rg-col { border-left: 1px solid var(--border); }
+.rg-card .rg-section {
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: none;
+}
+.rg-card .rg-section + .rg-section { border-top: 1px solid var(--border); }
+.rg-card .rg-section > .panel-head {
+  margin: 0;
+  padding: 20px 24px 0;
+  border-radius: 0;
+  background: none;
+}
+.rg-card .rg-section > .panel-head h2 { font-size: 14px; }
+.rg-card .rg-section > .panel-head svg { width: 16px; height: 16px; color: var(--slate-500); }
+.rg-card .rg-body { padding: 14px 24px 22px; background: none; }
+
+/* Doğrulama bandı: görsel doğrulama / captcha sağlayıcı + güvenlik sorusu yan yana */
+.rg-verify {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  border-top: 1px solid var(--border);
+  background: var(--slate-50);
+}
+.rg-verify:not(:has(*)) { display: none; }
+.rg-card .rg-verify .rg-section + .rg-section { border-top: 0; border-left: 1px solid var(--border); }
+.rg-verify .rg-hint { display: block; line-height: 1.5; }
+
+/* Doğrulama görseli (MyBB captcha.php): görsel | cevap kutusu | yenile */
+.rg-captcha { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.rg-captcha-img { flex: none; height: 46px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--surface); }
+.rg-captcha input[type="text"] { flex: 1 1 80px; min-width: 0; height: 46px !important; }
+.rg-captcha .icon-btn { flex: none; width: 46px; height: 46px; }
+.rg-captcha label.error { flex-basis: 100%; }
+.rg-verify .rg-inline input.rg-short { flex: 1 1 140px; max-width: none; }
+.rg-verify .rg-inline .icon-btn { flex: none; width: 42px; height: 42px; }
+
+/* Alt çubuk: solda giriş bağlantısı, sağda gönder */
+.rg-submit {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 24px;
+  border-top: 1px solid var(--border);
+  background: var(--surface-2);
+}
+.rg-submit p { margin: 0; font-size: 13px; color: var(--text-3); }
+.rg-submit p a { font-weight: 700; color: var(--slate-900); }
+.rg-submit .btn { height: 44px; min-width: 220px; padding: 0 28px; font-size: 14.5px; }
+
+@media (max-width: 980px) {
+  .rg-cols { grid-template-columns: 1fr; }
+  .rg-card .rg-col + .rg-col { border-left: 0; border-top: 1px solid var(--border); }
+  .rg-card .rg-verify .rg-section + .rg-section { border-left: 0; border-top: 1px solid var(--border); }
+}
+@media (max-width: 640px) {
+  .rg-submit { flex-direction: column-reverse; align-items: stretch; text-align: center; }
+  .rg-submit .btn { width: 100%; }
+}
+@media (max-width: 640px) {
+  .rg-row { grid-template-columns: 1fr; }
+}
+
+/* =========================================================
+   MYBB UYUMU
+   ========================================================= */
+/* Saat dilimi ve özel profil alanlarının MyBB'den gelen seçim kutuları */
+.rg-field select:not(.select) {
+  width: 100%;
+  height: 42px;
+  padding: 0 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  font: inherit;
+  font-size: 13.5px;
+  color: var(--text);
+}
+.rg-field select[multiple] { height: auto; padding: 6px; }
+.rg-label { font-size: 13px; font-weight: 600; color: var(--slate-700); }
+.rg-desc:empty { display: none; }
+.rg-field input.valid { border-color: #9cc3b1; }
+.rg-field input.error { border-color: #d9a29c; }
+.rg-field label.error { margin: 0; font-weight: 600; }
+.rg-status { font-size: 12px; color: var(--text-3); }
+.rg-inline { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.rg-col-side .rg-field label[for="timezoneoffset"] { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.rg-form > div.error { margin: 0; }
+.rg-field .select2-container { width: 100%; }
+.rg-field .select2-container .select2-choice { height: 42px; line-height: 40px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--surface); box-shadow: none; font-size: 14px; }
+.rg-field .select2-container .select2-choice .select2-arrow { display: none; }
+
+/* Sözleşme adımı */
+.rg-terms { display: block; font-size: 14px; line-height: 1.7; color: var(--slate-700); }
+.rg-terms p { margin: 0 0 12px; }
+.rg-submit-row { display: flex; justify-content: flex-end; padding: 14px 20px; border-top: 1px solid var(--border); background: var(--surface-2); }
+
+/* COPPA */
+.rg-coppa { border-bottom: 1px solid var(--border); background: var(--slate-50); }
+.rg-coppa h3 { margin: 0 0 10px; font-size: 14px; font-weight: 700; color: var(--text); }
+.rg-agreement .form-rows { border-top: 1px solid var(--border); }

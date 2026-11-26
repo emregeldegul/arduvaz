@@ -1,0 +1,13 @@
+<form action="misc.php" method="post" class="help-search" role="search">
+	<input type="hidden" name="action" value="do_helpsearch" />
+	<div class="help-search-box">
+		<svg><use href="{$theme['imgdir']}/icons.svg#i-search"/></svg>
+		<input type="text" class="textbox" name="keywords" placeholder="{$lang->enter_keywords}" aria-label="{$lang->search}" />
+		<!-- Arama kapsamı: kutunun içinde aç/kapa etiketleri (checkbox'lar formda) -->
+		<div class="help-search-opts">
+			<label class="help-chip"><input type="checkbox" name="name" value="1" checked="checked" /><svg aria-hidden="true"><use href="{$theme['imgdir']}/icons.svg#i-check"/></svg>{$lang->search_by_name}</label>
+			<label class="help-chip"><input type="checkbox" name="document" value="1" checked="checked" /><svg aria-hidden="true"><use href="{$theme['imgdir']}/icons.svg#i-check"/></svg>{$lang->search_by_document}</label>
+		</div>
+		<input type="submit" class="button" name="submit" value="{$lang->search_help_documents}" />
+	</div>
+</form>

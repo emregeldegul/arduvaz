@@ -1,0 +1,17 @@
+{$warn_errors}
+<form action="warnings.php" method="post" name="input" class="panel warn-card warn-revoke">
+	<input type="hidden" name="my_post_key" value="{$mybb->post_code}" />
+	<input type="hidden" name="action" value="do_revoke" />
+	<input type="hidden" name="wid" value="{$warning['wid']}" />
+	<header class="panel-head"><svg><use href="{$theme['imgdir']}/icons.svg#i-ban"/></svg><h2>{$lang->revoke_warning}</h2></header>
+	<p class="warn-desc">{$lang->revoke_warning_desc}</p>
+	<div class="form-rows">
+		<div class="form-row">
+			<label class="form-label" for="revoke_reason">{$lang->reason}</label>
+			<div class="form-field"><textarea name="reason" id="revoke_reason" rows="4" cols="60"></textarea></div>
+		</div>
+	</div>
+	<footer class="warn-actions">
+		<input type="submit" class="btn btn-dark" value="{$lang->revoke_warning}" />
+	</footer>
+</form>

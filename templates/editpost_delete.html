@@ -1,0 +1,8 @@
+<form action="editpost.php" method="post" name="editpost" class="panel delete-box">
+	<input type="hidden" name="my_post_key" value="{$mybb->post_code}" />
+	<label class="check delete-check"><input type="checkbox" class="checkbox" name="delete" value="1" tabindex="9" /> <strong>{$lang->delete_q}</strong></label>
+	<p class="delete-text">{$lang->delete_1} <span>{$lang->delete_2}</span></p>
+	<input type="submit" class="btn btn-light btn-sm delete-submit" name="submit" value="{$lang->delete_now}" tabindex="10" />
+	<input type="hidden" name="action" value="deletepost" />
+	<input type="hidden" name="pid" value="{$pid}" />
+</form>

@@ -1,0 +1,5 @@
+<li class="ucp-user" id="{$type}_{$user['uid']}">
+	<span class="ucp-user-status is-{$status}" title="{$lang->$status}"></span>
+	{$profile_link}
+	<a href="usercp.php?action=do_editlists&amp;my_post_key={$mybb->post_code}&amp;manage={$type}&amp;delete={$user['uid']}" onclick="return UserCP.removeBuddy('{$type}', {$user['uid']});" class="ucp-user-remove" title="{$lang->remove_from_list}" aria-label="{$lang->remove_from_list}"><svg><use href="{$theme['imgdir']}/icons.svg#i-close"/></svg></a>
+</li>

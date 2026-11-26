@@ -1,0 +1,57 @@
+<div class="fd-toolbar">
+	{$multipage}
+	{$newthread}
+</div>
+
+<section class="category thread-card">
+	<header class="category-head thread-card-head">
+		<div>
+			<div class="tip-anchor">
+				<h1>{$foruminfo['name']}</h1>
+				<span class="cat-tip" role="tooltip">{$foruminfo['description']}</span>
+			</div>
+			{$moderatedby}
+		</div>
+		<div class="head-links">
+			<a href="misc.php?action=markread&amp;fid={$fid}{$post_code_string}"><svg><use href="{$theme['imgdir']}/icons.svg#i-check"/></svg>{$lang->markforum_read}</a>{$addremovesubscription}{$clearstoredpass}
+		</div>
+	</header>
+
+	<div class="thread-cols">
+		<span></span>
+		<span><a href="{$sorturl}&amp;sortby=subject&amp;order=asc" class="sort-link">{$lang->thread}</a>{$orderarrow['subject']} / <a href="{$sorturl}&amp;sortby=starter&amp;order=asc" class="sort-link">{$lang->author}</a>{$orderarrow['starter']}</span>
+		<span class="c-num c-replies"><a href="{$sorturl}&amp;sortby=replies&amp;order=desc" class="sort-link">{$lang->replies}</a>{$orderarrow['replies']}</span>
+		<span class="c-num c-views"><a href="{$sorturl}&amp;sortby=views&amp;order=desc" class="sort-link">{$lang->views}</a>{$orderarrow['views']}</span>
+		{$ratingcol}
+		<span class="c-last"><a href="{$sorturl}&amp;sortby=lastpost&amp;order=desc" class="sort-link">{$lang->lastpost}</a>{$orderarrow['lastpost']}</span>
+		{$inlinemodcol}
+	</div>
+	{$selectall}
+	{$announcementlist}
+	{$threads}
+	{$forumsort}
+</section>
+
+<div class="fd-toolbar">
+	{$multipage}
+	{$inlinemod}
+	{$newthread}
+</div>
+
+<div class="fd-bottom">
+	<div class="fd-info">
+		<div class="legend thread-legend thread_legend">
+			<span><i class="thread-icon" data-folder="newfolder"><svg><use href="{$theme['imgdir']}/icons.svg#thread_newfolder"/></svg></i>{$lang->new_thread}</span>
+			<span><i class="thread-icon" data-folder="folder"><svg><use href="{$theme['imgdir']}/icons.svg#thread_folder"/></svg></i>{$lang->no_new_thread}</span>
+			<span><i class="thread-icon" data-folder="newhotfolder"><svg><use href="{$theme['imgdir']}/icons.svg#thread_newhotfolder"/></svg></i>{$lang->new_hot_thread}</span>
+			<span><i class="thread-icon" data-folder="hotfolder"><svg><use href="{$theme['imgdir']}/icons.svg#thread_hotfolder"/></svg></i>{$lang->hot_thread}</span>
+			<span><i class="thread-icon" data-folder="closefolder"><svg><use href="{$theme['imgdir']}/icons.svg#thread_closefolder"/></svg></i>{$lang->closed_thread}</span>
+			<span><i class="thread-icon" data-folder="dot_folder"><svg><use href="{$theme['imgdir']}/icons.svg#thread_dot_folder"/></svg></i>{$lang->posts_by_you}</span>
+		</div>
+		{$usersbrowsing}
+	</div>
+	<div class="panel fd-side">
+		{$forumjump}
+		{$searchforum}
+	</div>
+</div>

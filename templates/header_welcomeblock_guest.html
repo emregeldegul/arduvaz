@@ -1,0 +1,32 @@
+<div class="quick-actions">
+	<a href="{$mybb->settings['bburl']}/search.php?action=getnew" class="icon-btn" aria-label="{$lang->welcome_newposts}" data-tip="{$lang->welcome_newposts}"><svg><use href="{$theme['imgdir']}/icons.svg#i-sparkle"/></svg></a>
+	<a href="{$mybb->settings['bburl']}/search.php?action=getdaily" class="icon-btn" aria-label="{$lang->welcome_todaysposts}" data-tip="{$lang->welcome_todaysposts}"><svg><use href="{$theme['imgdir']}/icons.svg#i-clock"/></svg></a>
+</div>
+<div class="auth-actions">
+	<a href="{$mybb->settings['bburl']}/member.php?action=login" class="btn btn-light btn-sm login" onclick="$('#quick_login').modal({ fadeDuration: 250, keepelement: true, zIndex: (typeof modal_zindex !== 'undefined' ? modal_zindex : 9999) }); return false;">{$lang->welcome_login}</a>
+	<a href="{$mybb->settings['bburl']}/member.php?action=register" class="btn btn-dark btn-sm register">{$lang->welcome_register}</a>
+</div>
+
+<div class="modal" id="quick_login" style="display: none;">
+	<div class="modal-head">
+		<div class="modal-brand">
+			<span class="brand-logo brand-logo-sm"><svg><use href="{$theme['imgdir']}/icons.svg#i-logo"/></svg></span>
+			<span class="brand-name">{$mybb->settings['bbname']}</span>
+		</div>
+		<h2>{$lang->welcome_login}</h2>
+		<!-- TODO:lang -->
+		<p>Welcome back! Sign in to your account to continue.</p>
+	</div>
+	<form method="post" action="{$mybb->settings['bburl']}/member.php" class="modal-form">
+		<input name="action" type="hidden" value="do_login" />
+		<input name="url" type="hidden" value="" />
+		<input name="quick_login" type="hidden" value="1" />
+		<input name="my_post_key" type="hidden" value="{$mybb->post_code}" />
+		{$loginform}
+	</form>
+	<!-- TODO:lang -->
+	<p class="modal-foot">Don't have an account? <a href="{$mybb->settings['bburl']}/member.php?action=register">{$lang->welcome_register}</a></p>
+</div>
+<script type="text/javascript">
+	$("#quick_login input[name='url']").val($(location).attr('href'));
+</script>

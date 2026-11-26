@@ -1,0 +1,44 @@
+<html xml:lang="{$lang->settings['htmllang']}" lang="{$lang->settings['htmllang']}" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$mybb->settings['bbname']} - {$lang->attachments_manager}</title>
+{$headerinclude}
+</head>
+<body>
+{$header}
+<table width="100%" border="0" align="center">
+<tr>
+{$usercpnav}
+<td valign="top">
+	<form action="usercp.php" method="post" name="attachmentsmanager">
+		<input type="hidden" name="my_post_key" value="{$mybb->post_code}" />
+		<table border="0" cellspacing="0" cellpadding="0" class="tborder ucp-table">
+			<tr>
+				<td class="thead" colspan="5"><strong>{$lang->attachments_manager}</strong> <span class="ucp-head-note">{$usagenote}</span></td>
+			</tr>
+			<tr>
+				<td class="tcat" colspan="2">{$lang->attachments_attachment}</td>
+				<td class="tcat">{$lang->attachments_post}</td>
+				<td class="tcat">{$lang->date_uploaded}</td>
+				<td class="tcat ucp-check"><input type="checkbox" name="allbox" class="checkbox checkall mod-check" /></td>
+			</tr>
+			{$attachments}
+		</table>
+		{$delete_button}
+	</form>
+	{$multipage}
+	<section class="panel">
+		<header class="panel-head"><svg><use href="{$theme['imgdir']}/icons.svg#i-chart"/></svg><h2>{$lang->attachments_stats}</h2></header>
+		<dl class="info-list">
+			<div><dt>{$lang->attachstats_attachs}</dt><dd>{$totalattachments}</dd></div>
+			<div><dt>{$lang->attachstats_spaceused}</dt><dd>{$friendlyusage}</dd></div>
+			<div><dt>{$lang->attachstats_quota}</dt><dd>{$attachquota}</dd></div>
+			<div><dt>{$lang->attachstats_totaldl}</dt><dd>{$totaldownloads}</dd></div>
+			<div><dt>{$lang->attachstats_bandwidth}</dt><dd>{$bandwidth}</dd></div>
+		</dl>
+	</section>
+</td>
+</tr>
+</table>
+{$footer}
+</body>
+</html>

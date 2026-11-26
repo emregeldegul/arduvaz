@@ -1,0 +1,18 @@
+<div class="form-row captcha-row" id="captcha_trow">
+	<div class="form-label">{$lang->image_verification}<span class="form-desc">{$lang->verification_note}</span></div>
+	<div class="form-field captcha-box">
+		<script type="text/javascript">
+		<!--
+			lang.captcha_fetch_failure = "{$lang->captcha_fetch_failure}";
+		// -->
+		</script>
+		<script type="text/javascript" src="{$mybb->asset_url}/jscripts/captcha.js?ver=1821"></script>
+		<div class="captcha-line">
+			<img src="{$mybb->settings['bburl']}/captcha.php?imagehash={$imagehash}" alt="{$lang->image_verification}" title="{$lang->image_verification}" id="captcha_img" class="captcha-img" />
+			<input type="text" class="textbox" name="imagestring" value="" id="imagestring" autocomplete="off" aria-label="{$lang->image_verification}" />
+			<input type="hidden" name="imagehash" value="{$imagehash}" id="imagehash" />
+			<button type="button" class="icon-btn" name="refresh" onclick="return captcha.refresh();" aria-label="{$lang->refresh}" title="{$lang->refresh}"><svg><use href="{$theme['imgdir']}/icons.svg#i-refresh"/></svg></button>
+		</div>
+		<span class="form-desc">{$lang->verification_subnote}</span>
+	</div>
+</div>

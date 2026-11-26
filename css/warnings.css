@@ -1,0 +1,35 @@
+/* =========================================================
+   Arduvaz — warnings.css
+   Uyarı ayrıntısı ve iptal formu (warnings.php). Sadece bu sayfada yüklenir.
+   ========================================================= */
+
+.warn-page { display: flex; flex-direction: column; gap: 20px; padding-bottom: 56px; }
+.warn-card { overflow: hidden; background: var(--surface); }
+.warn-status {
+  margin-left: auto;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--surface);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--slate-700);
+}
+
+/* Bilgiler iki sütun (geniş ekran) */
+.warn-card .info-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 0; }
+.warn-card .info-list > div { border-bottom: 1px solid var(--slate-100); }
+.warn-card .info-list > div:nth-child(odd) { border-right: 1px solid var(--slate-100); }
+
+.warn-notes { padding: 14px 20px 18px; background: var(--surface); }
+.warn-notes h2 { margin: 0 0 6px; font-size: 12px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--slate-500); }
+.warn-notes-body { font-size: 14px; line-height: 1.65; color: var(--slate-800); overflow-wrap: anywhere; }
+
+/* İptal formu: açıklama, tam genişlik neden kutusu, buton kart içinde altta */
+.warn-desc { margin: 0; padding: 12px 20px; border-bottom: 1px solid var(--slate-100); background: var(--surface); font-size: 13px; color: var(--text-2); }
+.warn-revoke .form-field textarea { width: 100%; min-height: 110px; resize: vertical; }
+.warn-actions { display: flex; justify-content: flex-end; padding: 12px 20px; border-top: 1px solid var(--border); background: var(--surface-2); }
+
+@media (max-width: 760px) {
+  .warn-card .info-list { grid-template-columns: 1fr; }
+  .warn-card .info-list > div:nth-child(odd) { border-right: 0; }
+}

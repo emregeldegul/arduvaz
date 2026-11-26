@@ -1,0 +1,32 @@
+<html xml:lang="{$lang->settings['htmllang']}" lang="{$lang->settings['htmllang']}" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$mybb->settings['bbname']} - {$lang->delete_announcement}</title>
+{$headerinclude}
+</head>
+<body>
+{$header}
+<form action="modcp.php" method="post">
+<input type="hidden" name="action" value="do_delete_announcement" />
+<input type="hidden" name="my_post_key" value="{$mybb->post_code}" />
+<input type="hidden" name="aid" value="{$aid}" />
+<table width="100%" border="0" align="center">
+<tr>
+{$modcp_nav}
+<td valign="top">
+	<section class="panel mcp-confirm">
+		<header class="panel-head"><svg><use href="{$theme['imgdir']}/icons.svg#i-trash"/></svg><h1>{$lang->delete_announcement}</h1></header>
+		<div class="mcp-confirm-body">
+			<strong>{$announcement['subject']}</strong>
+			<p>{$lang->confirm_delete_announcement}</p>
+		</div>
+		<div class="ucp-actions">
+			<input type="submit" class="btn btn-danger btn-sm" name="submit" value="{$lang->delete_announcement}" />
+		</div>
+	</section>
+</td>
+</tr>
+</table>
+</form>
+{$footer}
+</body>
+</html>

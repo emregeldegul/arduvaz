@@ -1,0 +1,86 @@
+<html xml:lang="{$lang->settings['htmllang']}" lang="{$lang->settings['htmllang']}" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$mybb->settings['bbname']} - {$lang->add_announcement}</title>
+{$headerinclude}
+</head>
+<body>
+{$header}
+<form action="modcp.php" method="post" enctype="multipart/form-data" class="post-form mcp-ann-form">
+<input type="hidden" name="action" value="do_new_announcement" />
+<input type="hidden" name="my_post_key" value="{$mybb->post_code}" />
+<input type="hidden" name="fid" value="{$announcement_fid}" />
+<table width="100%" border="0" align="center">
+<tr>
+{$modcp_nav}
+<td valign="top">
+	{$errors}
+	{$preview}
+	<section class="panel">
+		<header class="panel-head"><svg><use href="{$theme['imgdir']}/icons.svg#i-megaphone"/></svg><h1>{$lang->add_announcement}</h1></header>
+		<div class="form-rows">
+			<div class="form-row">
+				<label class="form-label" for="ann_title">{$lang->title}</label>
+				<div class="form-field"><input type="text" class="textbox" name="title" id="ann_title" size="40" value="{$title}" /></div>
+			</div>
+			<div class="form-row">
+				<span class="form-label">{$lang->start_date}</span>
+				<div class="form-field form-inline mcp-datetime">
+					<select name="starttime_day" aria-label="{$lang->start_date}">
+						{$startdateday}
+					</select>
+					<select name="starttime_month" aria-label="{$lang->start_date}">
+						{$startdatemonth}
+					</select>
+					<input type="text" name="starttime_year" value="{$startdateyear}" size="4" maxlength="4" class="textbox form-num" aria-label="{$lang->start_date}" />
+					<span>{$lang->time}</span>
+					<input type="text" name="starttime_time" value="{$starttime_time}" size="10" class="textbox form-num" aria-label="{$lang->time}" />
+				</div>
+			</div>
+			<div class="form-row">
+				<span class="form-label">{$lang->end_date}</span>
+				<div class="form-field mcp-enddate">
+					<label class="form-inline mcp-datetime">
+						<input type="radio" name="endtime_type" value="1"{$end_type_sel['finite']} />
+						<select name="endtime_day" aria-label="{$lang->end_date}">
+							{$enddateday}
+						</select>
+						<select name="endtime_month" aria-label="{$lang->end_date}">
+							{$enddatemonth}
+						</select>
+						<input type="text" name="endtime_year" value="{$enddateyear}" size="4" maxlength="4" class="textbox form-num" aria-label="{$lang->end_date}" />
+						<span>{$lang->time}</span>
+						<input type="text" name="endtime_time" value="{$endtime_time}" size="10" class="textbox form-num" aria-label="{$lang->time}" />
+					</label>
+					<label class="check"><input type="radio" name="endtime_type" value="2"{$end_type_sel['infinite']} /> {$lang->never}</label>
+				</div>
+			</div>
+			<div class="form-row form-row-message">
+				<label class="form-label" for="message">{$lang->announcement}</label>
+				<div class="form-field">
+					<textarea id="message" name="message" rows="20" cols="70">{$message}</textarea>
+					{$codebuttons}
+				</div>
+				<div class="form-smilies">{$smilieinserter}</div>
+			</div>
+			{$allow_html}
+			<div class="form-row">
+				<span class="form-label">{$lang->allow_mycode}</span>
+				<div class="form-field mcp-yesno"><label class="check"><input type="radio" name="allowmycode" value="1"{$mycode_sel['yes']} /> {$lang->yes}</label><label class="check"><input type="radio" name="allowmycode" value="0"{$mycode_sel['no']} /> {$lang->no}</label></div>
+			</div>
+			<div class="form-row">
+				<span class="form-label">{$lang->allow_smilies}</span>
+				<div class="form-field mcp-yesno"><label class="check"><input type="radio" name="allowsmilies" value="1"{$smilies_sel['yes']} /> {$lang->yes}</label><label class="check"><input type="radio" name="allowsmilies" value="0"{$smilies_sel['no']} /> {$lang->no}</label></div>
+			</div>
+		</div>
+	</section>
+	<div class="post-actions">
+		<input type="submit" class="btn btn-dark" value="{$lang->add_announcement}" />
+		<input type="submit" class="btn btn-light" name="preview" value="{$lang->preview}" />
+	</div>
+</td>
+</tr>
+</table>
+</form>
+{$footer}
+</body>
+</html>

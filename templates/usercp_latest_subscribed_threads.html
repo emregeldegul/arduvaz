@@ -1,0 +1,8 @@
+<tr>
+	<td class="{$bgcolor} ucp-icon" width="1"><span class="thread-icon" data-folder="{$folder}" title="{$folder_label}"><svg><use href="{$theme['imgdir']}/icons.svg#thread_{$folder}"/></svg></span></td>
+	<td class="{$bgcolor} ucp-icon" width="1">{$icon}</td>
+	<td class="{$bgcolor}">{$gotounread}{$thread['displayprefix']}<a href="{$thread['threadlink']}" class="{$new_class}">{$thread['subject']}</a><span class="ucp-meta">{$thread['author']}</span></td>
+	<td class="{$bgcolor} ucp-num"><a href="{$mybb->settings['bburl']}/misc.php?action=whoposted&amp;tid={$thread['tid']}" onclick="MyBB.whoPosted({$thread['tid']}); return false;">{$thread['replies']}</a></td>
+	<td class="{$bgcolor} ucp-num">{$thread['views']}</td>
+	<td class="{$bgcolor} ucp-last">{$lastpostdate}<span class="ucp-meta"><a href="{$thread['lastpostlink']}">{$lang->lastpost}</a>: {$lastposterlink}</span></td>
+</tr>

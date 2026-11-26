@@ -1,0 +1,15 @@
+<div class="ucp-group">
+	<div class="ucp-group-head tcat_collapse{$collapsedimg['usercpprofile']}">
+		<span>{$lang->ucp_nav_profile}</span>
+		<div class="expcolimage collapse-btn"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" id="usercpprofile_img" class="expander" alt="{$expaltext}" title="{$expaltext}" /></div>
+	</div>
+	<div class="ucp-links" style="{$collapsed['usercpprofile_e']}" id="usercpprofile_e">
+		<a href="usercp.php?action=profile" class="usercp_nav_item usercp_nav_profile"><svg><use href="{$theme['imgdir']}/icons.svg#i-user"/></svg>{$lang->ucp_nav_edit_profile}</a>
+		{$changenameop}
+		<a href="usercp.php?action=password" class="usercp_nav_item usercp_nav_password"><svg><use href="{$theme['imgdir']}/icons.svg#i-lock"/></svg>{$lang->ucp_nav_change_pass}</a>
+		<a href="usercp.php?action=email" class="usercp_nav_item usercp_nav_email"><svg><use href="{$theme['imgdir']}/icons.svg#i-mail"/></svg>{$lang->ucp_nav_change_email}</a>
+		<a href="usercp.php?action=avatar" class="usercp_nav_item usercp_nav_avatar"><svg><use href="{$theme['imgdir']}/icons.svg#i-avatar"/></svg>{$lang->ucp_nav_change_avatar}</a>
+		{$changesigop}
+		<a href="usercp.php?action=options" class="usercp_nav_item usercp_nav_options"><svg><use href="{$theme['imgdir']}/icons.svg#i-gear"/></svg>{$lang->ucp_nav_edit_options}</a>
+	</div>
+</div>

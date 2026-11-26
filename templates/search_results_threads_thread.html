@@ -1,0 +1,17 @@
+<article class="thread-row inline_row {$bgcolor}">
+	<div class="thread-icon" data-folder="{$folder}" title="{$folder_label}"><svg><use href="{$theme['imgdir']}/icons.svg#thread_{$folder}"/></svg></div>
+	<div class="thread-main">
+		<h3>
+			{$icon}<span class="moved-label">{$prefix}</span>{$gotounread}{$thread['threadprefix']}<span class="{$inline_edit_class} {$new_class}" id="tid_{$inline_edit_tid}"><a href="{$thread_link}{$highlight}">{$thread['subject']}</a></span>{$attachment_count}
+		</h3>
+		<span class="thread-meta">{$thread['profilelink']}{$thread['multipage']}</span>
+	</div>
+	<div class="c-num c-replies"><a href="{$mybb->settings['bburl']}/misc.php?action=whoposted&amp;tid={$thread['tid']}" onclick="MyBB.whoPosted({$thread['tid']}); return false;">{$thread['replies']}</a></div>
+	<div class="c-num c-views">{$thread['views']}</div>
+	<div class="c-forum">{$thread['forumlink']}</div>
+	<div class="thread-last">
+		<span class="avatar avatar-default avatar-sm" aria-hidden="true"><svg><use href="{$theme['imgdir']}/icons.svg#i-avatar"/></svg></span>
+		<div class="last-info"><a href="{$thread['lastpostlink']}" class="last-date">{$lastpostdate}</a>{$lastposterlink}</div>
+	</div>
+	{$inline_mod_checkbox}
+</article>

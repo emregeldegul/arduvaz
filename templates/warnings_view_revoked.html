@@ -1,0 +1,11 @@
+<section class="panel warn-card warn-revoked">
+	<header class="panel-head"><svg><use href="{$theme['imgdir']}/icons.svg#i-check"/></svg><h2>{$lang->warning_is_revoked}</h2></header>
+	<dl class="info-list">
+		<div><dt>{$lang->revoked_by}</dt><dd>{$revoked_by}</dd></div>
+		<div><dt>{$lang->date_revoked}</dt><dd>{$date_revoked}</dd></div>
+	</dl>
+	<div class="warn-notes">
+		<h2>{$lang->details_reason}</h2>
+		<div class="warn-notes-body">{$revoke_reason}</div>
+	</div>
+</section>

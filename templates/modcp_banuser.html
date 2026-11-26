@@ -1,0 +1,77 @@
+<html xml:lang="{$lang->settings['htmllang']}" lang="{$lang->settings['htmllang']}" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$mybb->settings['bbname']} - {$lang->ban_user}</title>
+{$headerinclude}
+</head>
+<body>
+{$header}
+<table width="100%" border="0" align="center">
+<tr>
+{$modcp_nav}
+<td valign="top">
+	{$errors}
+	<form action="modcp.php" method="post" class="panel mcp-banuser">
+		<input type="hidden" name="action" value="do_banuser" />
+		<input type="hidden" name="my_post_key" value="{$mybb->post_code}" />
+		<input type="hidden" name="uid" value="{$uid}" />
+		<header class="panel-head"><svg><use href="{$theme['imgdir']}/icons.svg#i-ban"/></svg><h1>{$lang->ban_user}</h1>{$lift_link}</header>
+		<div class="form-rows">
+			{$banuser_username}
+			<div class="form-row">
+				<label class="form-label" for="banreason">{$lang->ban_reason}</label>
+				<div class="form-field"><textarea name="banreason" id="banreason" cols="60" rows="4" maxlength="255">{$banreason}</textarea></div>
+			</div>
+			{$bangroups}
+			<div class="form-row">
+				<label class="form-label" for="liftafter">{$lang->ban_liftafter}</label>
+				<div class="form-field"><select name="liftafter" id="liftafter" class="select">{$liftlist}</select></div>
+			</div>
+		</div>
+		<div class="ucp-actions">
+			<input type="submit" class="btn btn-danger btn-sm" name="updateban" value="{$lang->ban}" />
+		</div>
+	</form>
+</td>
+</tr>
+</table>
+{$footer}
+<link rel="stylesheet" href="{$mybb->asset_url}/jscripts/select2/select2.css?ver=1807">
+<script type="text/javascript" src="{$mybb->asset_url}/jscripts/select2/select2.min.js?ver=1806"></script>
+<script type="text/javascript">
+<!--
+if(use_xmlhttprequest == "1")
+{
+	MyBB.select2();
+	$("#username").select2({
+		placeholder: "{$lang->search_user}",
+		minimumInputLength: 2,
+		multiple: false,
+		allowClear: true,
+		ajax: { // instead of writing the function to execute the request we use Select2's convenient helper
+			url: "xmlhttp.php?action=get_users",
+			dataType: 'json',
+			data: function (term, page) {
+				return {
+					query: term, // search term
+				};
+			},
+			results: function (data, page) { // parse the results into the format expected by Select2.
+				// since we are using custom formatting functions we do not need to alter remote JSON data
+				return {results: data};
+			}
+		},
+		initSelection: function(element, callback) {
+			var value = $(element).val();
+			if (value !== "") {
+				callback({
+					id: value,
+					text: value
+				});
+			}
+		},
+	});
+}
+// -->
+</script>
+</body>
+</html>

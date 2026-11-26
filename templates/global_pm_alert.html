@@ -1,0 +1,5 @@
+<div class="notice notice-info pm_alert" id="pm_notice">
+	<span class="notice-icon"><svg><use href="{$theme['imgdir']}/icons.svg#i-mail"/></svg></span>
+	<p class="notice-text">{$privatemessage_text}</p>
+	<a href="{$mybb->settings['bburl']}/private.php?action=dismiss_notice&amp;my_post_key={$mybb->post_code}" class="notice-close" title="{$lang->dismiss_notice}" aria-label="{$lang->dismiss_notice}" onclick="return MyBB.dismissPMNotice('{$mybb->settings['bburl']}/')"><svg><use href="{$theme['imgdir']}/icons.svg#i-close"/></svg></a>
+</div>

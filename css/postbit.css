@@ -1,0 +1,282 @@
+/* =========================================================
+   Arduvaz — postbit.css
+   Mesaj kutusu. Konu, özel mesaj, önizleme ve duyuru sayfalarında yüklenir.
+   ========================================================= */
+
+/* ---- Mesajlar (postbit) ---- */
+/* Her mesajdan önce boş <a id="pidX"> çapası gelir: flex gap çapaları da öğe sayıp aralığı ikiye katlıyordu.
+   Aralık yalnızca mesaj kutuları arasına verilir. */
+.posts { display: flex; flex-direction: column; }
+.posts > div ~ div { margin-top: 12px; }
+.post {
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  scroll-margin-top: 84px;
+}
+a:target + .post { border-color: var(--slate-400); }
+
+.post-author {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 24px;
+  border-right: 1px solid var(--border);
+  background: var(--body-tint);
+  border-radius: var(--radius) 0 0 var(--radius);
+  text-align: center;
+}
+.avatar-xl { --size: 84px; border-radius: 16px; font-size: 30px; background: var(--slate-200); }
+/* Konu görüntüleme: forum avatarları 150×150 */
+.post-author .avatar-xl { --size: 150px; border-radius: 14px; }
+.pa-who { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.pa-name { font-size: 14.5px; font-weight: 700; color: var(--slate-900); }
+.pa-title { font-size: 12px; font-weight: 500; color: var(--text-3); }
+.pa-stats {
+  width: 100%;
+  margin: 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 12px;
+}
+.pa-stats div { display: flex; justify-content: space-between; gap: 8px; }
+.pa-stats dt { color: var(--text-3); }
+.pa-stats dd { margin: 0; font-weight: 600; color: var(--slate-700); }
+
+.post-content { display: flex; flex-direction: column; min-width: 0; }
+.post-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 20px;
+  border-bottom: 1px solid var(--slate-100);
+  font-size: 12.5px;
+  color: var(--text-3);
+}
+.post-date { display: inline-flex; align-items: center; gap: 6px; }
+.post-date svg { width: 14px; height: 14px; color: var(--slate-400); }
+.post-num { margin-left: auto; font-weight: 700; color: var(--slate-400); }
+.post-num:hover { color: var(--slate-800); }
+
+.post-body {
+  flex: 1;
+  padding: 18px 20px 8px;
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--slate-800);
+  overflow-wrap: anywhere;
+}
+.post-body > * { margin: 0 0 14px; }
+.post-body ol, .post-body ul { padding-left: 22px; }
+.post-body li { margin-bottom: 4px; }
+.post-body :not(pre) > code {
+  padding: 1px 6px;
+  border-radius: 5px;
+  background: var(--slate-100);
+  border: 1px solid var(--border);
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: .86em;
+  color: var(--slate-800);
+}
+
+/* Son düzenleme bilgisi */
+.post-edited {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 0 20px;
+  padding: 10px 0;
+  border-top: 1px dashed var(--border);
+  font-size: 12px;
+  color: var(--text-3);
+}
+.post-edited svg { width: 13px; height: 13px; margin-right: 3px; color: var(--slate-400); }
+.post-edited time { font-weight: 600; color: var(--slate-600); }
+.post-edited a { font-weight: 600; }
+.post-edited span { font-style: italic; }
+/* İmza: mesajdan düz çizgiyle ayrılır; çizginin başındaki kısa koyu vurgu "yeni bölüm" işareti */
+.post-sig {
+  position: relative;
+  margin: 6px 20px 0;
+  padding: 14px 0 12px;
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--text-3);
+}
+.post-sig::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 36px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--slate-400);
+}
+.post-sig a { color: var(--slate-600); font-weight: 600; }
+
+.post-foot {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 12px;
+  border-top: 1px solid var(--slate-100);
+}
+.pf-left, .pf-right { display: flex; flex-wrap: wrap; gap: 4px; }
+.pf-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 30px;
+  padding: 0 10px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  background: none;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--slate-600);
+  transition: background .15s, border-color .15s, color .15s;
+}
+.pf-btn svg { width: 14px; height: 14px; color: var(--slate-400); }
+.pf-btn:hover { background: var(--slate-100); color: var(--slate-900); }
+.pf-muted { color: var(--slate-400); }
+.pf-strong { border-color: var(--border); color: var(--slate-800); }
+.mq-btn.postbit_multiquote_on { background: var(--cat-head); color: #fff; }
+.mq-btn.postbit_multiquote_on svg { color: #fff; }
+
+/* =========================================================
+   MYBB UYUMU
+   ========================================================= */
+/* Avatar: varsayılan avatar yerine SVG siluet gösterilir */
+.post-author .avatar { position: relative; overflow: hidden; }
+.post-author .avatar img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.post-author .avatar img[src*="default_avatar"] { display: none; }
+.pa-stars:empty { display: none; }
+.pa-who img { max-width: 100%; margin-top: 4px; }
+
+.post-head .post-icon { width: 16px; height: 16px; }
+.post-head .mod-check { margin-left: 8px; }
+.post-edited:empty,
+.post-meta:empty { display: none; }
+/* IP / durum satırı: imzadan ve mesajdan kesikli çizgiyle ayrılır; gövde ve imza ile aynı 20px hizası */
+.post-meta { margin: 0 20px 12px; padding-top: 10px; border-top: 1px dashed var(--border); font-size: 12px; color: var(--text-3); }
+.ip-logged { display: inline-flex; align-items: center; gap: 6px; }
+.ip-logged > svg { width: 13px; height: 13px; color: var(--slate-400); }
+.ip-reveal,
+.ip-value {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 1px 8px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  font-size: 11.5px;
+  font-weight: 600;
+  line-height: 1.6;
+  color: var(--slate-700);
+}
+.ip-value { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-weight: 500; }
+.ip-reveal svg { width: 12px; height: 12px; }
+.ip-reveal:hover { border-color: var(--slate-700); background: var(--slate-700); color: #fff; }
+.post-meta .status_type { margin-left: 8px; }
+.post-edited > svg { vertical-align: -2px; }
+.post-edited > a { font-weight: 600; }
+
+/* Onay bekleyen / silinmiş / yok sayılan mesajlar */
+.post.unapproved_post { background: #fdf8ec; box-shadow: inset 3px 0 0 #b7791f, var(--shadow); }
+.post.unapproved_post .post-author { background: #fbf3e0; }
+.post.deleted_post { background: #fcf3f2; box-shadow: inset 3px 0 0 #b4534b, var(--shadow); }
+.post.deleted_post .post-body { opacity: .7; }
+.ignored_post,
+.deleted_post_collapsed {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 18px;
+  background: var(--surface);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  font-size: 13px;
+  color: var(--text-3);
+}
+.ignored_post_message,
+.deleted_post_message { display: flex; flex-direction: row-reverse; align-items: center; gap: 12px; }
+.deleted_post_hidden .post-content { padding: 16px 20px; color: var(--text-3); }
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width: 760px) {
+  .post { grid-template-columns: 1fr; }
+  .post-author {
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+    padding: 12px 14px;
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+    border-radius: var(--radius) var(--radius) 0 0;
+  }
+  .avatar-xl, .post-author .avatar-xl { --size: 44px; border-radius: 11px; font-size: 18px; }
+  .pa-who { align-items: flex-start; }
+  .pa-status { width: 10px; height: 10px; right: -2px; bottom: -2px; box-shadow: 0 0 0 2px var(--surface); }
+  /* Ad / ünvan / yıldızlar alt alta (yıldızlar ünvanın yanına yapışmaz) */
+  .pa-who { flex-direction: column; align-items: flex-start; gap: 1px; }
+  .pa-stars { margin-top: 1px; line-height: 1; }
+  .post-edited { margin: 0 14px; }
+  .pa-stats { width: auto; margin-left: auto; padding: 0; border: 0; gap: 2px; font-size: 11.5px; }
+  .pa-stats div:nth-child(n+3) { display: none; }
+  .post-head, .post-body { padding-left: 14px; padding-right: 14px; }
+  .post-sig { margin: 0 14px; }
+  .post-foot { padding: 6px 8px; }
+  .pf-left { display: none; }
+  .pf-right { width: 100%; justify-content: flex-end; }
+}
+
+/* MyBB: geri yükleme sadece silinmiş mesajda, düzenleme/alıntı silinmiş mesajda gizli */
+.post:not(.deleted_post) .postbit_qrestore,
+.post:not(.deleted_post) .status_type,
+.post.deleted_post .postbit_mirage { display: none; }
+.post.trow_selected { background: #eef1f5; }
+
+/* =========================================================
+   Mesaj ekleri (postbit_attachments*)
+   ========================================================= */
+.post-attachments { display: flex; flex-direction: column; gap: 10px; margin: 0 20px 16px; padding-top: 14px; border-top: 1px dashed var(--border); }
+.att-title { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--text-3); }
+.att-title svg { width: 14px; height: 14px; }
+.att-media { display: flex; flex-wrap: wrap; gap: 8px; }
+.att-media br { display: none; }   /* MyBB her N küçük resimde <br> ekler */
+.att-thumb { display: block; overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius-sm); }
+.att-thumb img { display: block; max-height: 120px; transition: opacity .15s; }
+.att-thumb:hover img { opacity: .85; }
+.att-image { max-width: 100%; border-radius: var(--radius-sm); }
+.att-files { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 8px; }
+.att-files:empty { display: none; }
+.att-file {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 0 10px;
+  align-items: center;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+}
+.att-file:hover { border-color: var(--slate-300); background: var(--slate-50); color: var(--text); }
+.att-icon { grid-row: 1 / span 2; display: grid; place-items: center; width: 32px; height: 32px; border-radius: 8px; background: var(--slate-100); }
+.att-icon img { max-width: 16px; max-height: 16px; }
+.att-name { overflow: hidden; font-size: 13.5px; font-weight: 600; white-space: nowrap; text-overflow: ellipsis; }
+.att-meta { grid-column: 2; font-size: 12px; color: var(--text-3); }
+.att-file > svg { grid-column: 3; grid-row: 1 / span 2; width: 16px; height: 16px; color: var(--slate-400); }
+.att-unapproved { grid-column: 1 / -1; font-size: 12.5px; font-weight: 600; color: var(--text-3); }

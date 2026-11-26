@@ -1,0 +1,47 @@
+<html xml:lang="{$lang->settings['htmllang']}" lang="{$lang->settings['htmllang']}" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$mybb->settings['bbname']} - {$lang->report_center}</title>
+{$headerinclude}
+<script type="text/javascript" src="{$mybb->asset_url}/jscripts/inline_reports.js?ver=1821"></script>
+</head>
+<body>
+{$header}
+<form action="modcp.php" method="post">
+<input type="hidden" name="my_post_key" value="{$mybb->post_code}" />
+<input type="hidden" name="page" value="{$page}" />
+<table width="100%" border="0" align="center">
+<tr>
+{$modcp_nav}
+<td valign="top">
+	<table border="0" cellspacing="0" cellpadding="0" class="tborder ucp-table mcp-reports">
+		<tr>
+			<td class="thead" colspan="5"><strong>{$lang->report_center}</strong><a href="modcp.php?action=allreports" class="ucp-head-link">{$lang->view_all_reports}</a></td>
+		</tr>
+		<tr>
+			<td class="tcat">{$lang->report_info}</td>
+			<td class="tcat">{$lang->report_type}</td>
+			<td class="tcat ucp-num">{$lang->report_count}</td>
+			<td class="tcat">{$lang->report_lastpost}</td>
+			<td class="tcat ucp-check"><input type="checkbox" name="allbox" onclick="inlineReports.checkAll(this);" aria-label="{$lang->select_all}" /></td>
+		</tr>
+		{$selectall}
+		{$reports}
+	</table>
+	{$reportspages}
+	<div class="mcp-q-footer">
+		<input type="hidden" name="action" value="do_reports" />
+		<input type="submit" id="inline_read" class="btn btn-dark" name="reportsubmit" value="{$lang->mark_read} ({$inlinecount})" />
+	</div>
+</td>
+</tr>
+</table>
+</form>
+{$footer}
+<script type="text/javascript">
+<!--
+	var mark_read_text = "{$lang->mark_read}";
+	var all_text = "{$report_count}";
+// -->
+</script>
+</body>
+</html>

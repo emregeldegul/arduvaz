@@ -1,0 +1,41 @@
+<html xml:lang="{$lang->settings['htmllang']}" lang="{$lang->settings['htmllang']}" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$mybb->settings['bbname']} - {$lang->pm_folders}</title>
+{$headerinclude}
+</head>
+<body>
+{$header}
+<form action="private.php" method="post">
+<input type="hidden" name="my_post_key" value="{$mybb->post_code}" />
+<input type="hidden" name="action" value="do_folders" />
+<table width="100%" border="0" align="center">
+<tr>
+{$usercpnav}
+<td valign="top">
+	<section class="panel">
+		<header class="panel-head"><svg><use href="{$theme['imgdir']}/icons.svg#i-archive"/></svg><h1>{$lang->pm_folders}</h1></header>
+		<div class="form-rows">
+			<div class="form-row">
+				<div class="form-label">{$lang->existing_folders}<span class="form-desc">{$lang->edit_folder_note}</span></div>
+				<div class="form-field pm-folder-list">
+					{$folderlist}
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-label">{$lang->new_folders}<span class="form-desc">{$lang->add_folders_note}</span></div>
+				<div class="form-field pm-folder-list">
+					{$newfolders}
+				</div>
+			</div>
+		</div>
+		<div class="ucp-actions">
+			<input type="submit" class="btn btn-dark btn-sm" name="submit" value="{$lang->update_folders}" />
+		</div>
+	</section>
+</td>
+</tr>
+</table>
+</form>
+{$footer}
+</body>
+</html>

@@ -1,0 +1,12 @@
+<button type="button" class="icon-btn" id="searchToggle" aria-controls="searchPanel" aria-expanded="false" aria-label="{$lang->search_button}" data-tip="{$lang->search_button}"><svg><use href="{$theme['imgdir']}/icons.svg#i-search"/></svg></button>
+<div class="search-panel" id="searchPanel" hidden>
+	<form action="{$mybb->settings['bburl']}/search.php" class="wrapper search-form" id="search" role="search">
+		<svg><use href="{$theme['imgdir']}/icons.svg#i-search"/></svg>
+		<input name="keywords" type="search" class="textbox" id="searchInput" placeholder="{$lang->search_button}…" aria-label="{$lang->search_button}" />
+		<input type="hidden" name="action" value="do_search" />
+		<input type="hidden" name="postthread" value="1" />
+		<button type="submit" class="btn btn-dark btn-sm">{$lang->search_button}</button>
+		<!-- TODO:lang -->
+		<button type="button" class="icon-btn" id="searchClose" aria-label="Close"><svg><use href="{$theme['imgdir']}/icons.svg#i-close"/></svg></button>
+	</form>
+</div>

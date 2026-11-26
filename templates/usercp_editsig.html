@@ -1,0 +1,51 @@
+<html xml:lang="{$lang->settings['htmllang']}" lang="{$lang->settings['htmllang']}" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$mybb->settings['bbname']} - {$lang->edit_sig}</title>
+{$headerinclude}
+</head>
+<body>
+{$header}
+<form action="usercp.php" method="post">
+<input type="hidden" name="my_post_key" value="{$mybb->post_code}" />
+<table width="100%" border="0" align="center">
+<tr>
+{$usercpnav}
+<td valign="top">
+	{$error}
+	{$signature}
+	<section class="panel">
+		<header class="panel-head"><svg><use href="{$theme['imgdir']}/icons.svg#i-quote"/></svg><h1>{$lang->edit_sig}</h1></header>
+		<p class="sig-note"><svg><use href="{$theme['imgdir']}/icons.svg#i-note"/></svg>{$lang->edit_sig_note}</p>
+		<div class="form-rows">
+			<div class="form-row form-row-message sig-editor">
+				<div class="form-field">
+					<textarea rows="12" cols="70" id="signature" name="signature" aria-label="{$lang->edit_sig}">{$sig}</textarea>
+					{$codebuttons}
+					<!-- İmzada izin verilenler (MyBB satırları <br /> ile ayırır; CSS sütunlara dağıtır) -->
+					<p class="sig-rules">{$lang->edit_sig_note2}</p>
+				</div>
+				<div class="form-smilies">{$smilieinserter}</div>
+			</div>
+			<div class="form-row sig-update">
+				<!-- TODO:lang -->
+				<span class="form-label">Signature in existing posts</span>
+				<div class="form-field form-checks form-checks-inline">
+					<label class="check"><input type="radio" class="radio" name="updateposts" value="enable" /> {$lang->enable_sig_posts}</label>
+					<label class="check"><input type="radio" class="radio" name="updateposts" value="disable" /> {$lang->disable_sig_posts}</label>
+					<label class="check"><input type="radio" class="radio" name="updateposts" value="0" checked="checked" /> {$lang->leave_sig_settings}</label>
+				</div>
+			</div>
+		</div>
+	</section>
+	<div class="ucp-submit">
+		<input type="hidden" name="action" value="do_editsig" />
+		<input type="submit" class="btn btn-light" name="preview" value="{$lang->preview}" />
+		<input type="submit" class="btn btn-dark" name="submit" value="{$lang->update_sig}" />
+	</div>
+</td>
+</tr>
+</table>
+</form>
+{$footer}
+</body>
+</html>

@@ -1,0 +1,39 @@
+<html xml:lang="{$lang->settings['htmllang']}" lang="{$lang->settings['htmllang']}" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$mybb->settings['bbname']} - {$lang->login}</title>
+{$headerinclude}
+</head>
+<body>
+{$header}
+<main class="msg-page">
+	{$inline_errors}
+	{$member_loggedin_notice}
+	<section class="panel auth-card">
+		<div class="modal-head">
+			<span class="brand-logo"><svg><use href="{$theme['imgdir']}/icons.svg#i-logo"/></svg></span>
+			<h1>{$lang->login}</h1>
+			<!-- TODO:lang -->
+			<p>Sign in to your account and pick up where you left off.</p>
+		</div>
+		<form action="member.php" method="post" class="modal-form">
+			<label class="field">
+				<span>{$lang->username}</span>
+				<input type="text" class="textbox" name="username" value="{$username}" autocomplete="username" />
+			</label>
+			<label class="field">
+				<span class="field-row">{$lang->password} <a href="member.php?action=lostpw">{$lang->lostpw_note}</a></span>
+				<input type="password" class="textbox" name="password" value="{$password}" autocomplete="current-password" />
+			</label>
+			<label class="check" title="{$lang->remember_me_desc}"><input type="checkbox" class="checkbox" name="remember" checked="checked" value="yes" /> {$lang->remember_me}</label>
+			{$captcha}
+			<input type="hidden" name="action" value="do_login" />
+			<input type="hidden" name="url" value="{$redirect_url}" />
+			<input name="my_post_key" type="hidden" value="{$mybb->post_code}" />
+			<button type="submit" class="btn btn-dark btn-block" name="submit" value="{$lang->login}">{$lang->login}</button>
+		</form>
+		<p class="modal-foot">{$lang->pw_note}</p>
+	</section>
+</main>
+{$footer}
+</body>
+</html>

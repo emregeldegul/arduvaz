@@ -1,0 +1,16 @@
+<section class="panel stats-panel after-sidebar">
+	<header class="panel-head">
+		<svg><use href="{$theme['imgdir']}/icons.svg#i-chart"/></svg>
+		<h2>{$lang->boardstats}</h2>
+		{$statspage}
+	</header>
+	<dl class="board-figs">
+		<div><svg><use href="{$theme['imgdir']}/icons.svg#i-chat"/></svg><dt>{$lang->forumbit_threads}</dt><dd data-number>{$stats['numthreads']}</dd></div>
+		<div><svg><use href="{$theme['imgdir']}/icons.svg#i-reply"/></svg><dt>{$lang->forumbit_posts}</dt><dd data-number>{$stats['numposts']}</dd></div>
+		<div><svg><use href="{$theme['imgdir']}/icons.svg#i-users"/></svg><dt class="cap">{$lang->online_member_plural}</dt><dd data-number>{$stats['numusers']}</dd></div>
+	</dl>
+	<div class="board-notes">
+		<p><svg><use href="{$theme['imgdir']}/icons.svg#i-user-plus"/></svg>{$lang->stats_newestuser}</p>
+		<p><svg><use href="{$theme['imgdir']}/icons.svg#i-chart"/></svg>{$lang->stats_mostonline}</p>
+	</div>
+</section>

@@ -1,0 +1,74 @@
+<html xml:lang="{$lang->settings['htmllang']}" lang="{$lang->settings['htmllang']}" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$mybb->settings['bbname']} - {$lang->modlogs}</title>
+{$headerinclude}
+</head>
+<body>
+{$header}
+<table width="100%" border="0" align="center">
+<tr>
+{$modcp_nav}
+<td valign="top">
+	<form action="modcp.php?action=modlogs" method="post" class="panel mcp-filter">
+		<header class="panel-head"><svg><use href="{$theme['imgdir']}/icons.svg#i-search"/></svg><h2>{$lang->filter_modlogs}</h2></header>
+		<div class="form-rows mcp-filter-grid">
+			<div class="form-row">
+				<label class="form-label" for="fid">{$lang->forum}</label>
+				<div class="form-field">{$forum_select}</div>
+			</div>
+			<div class="form-row">
+				<label class="form-label" for="mcp_uid">{$lang->from_moderator}</label>
+				<div class="form-field">
+					<select name="uid" id="mcp_uid">
+						<option value="">{$lang->all_moderators}</option>
+						<option value="">----------</option>
+						{$user_options}
+					</select>
+				</div>
+			</div>
+			<div class="form-row">
+				<label class="form-label" for="mcp_sortby">{$lang->sort_by}</label>
+				<div class="form-field form-inline">
+					<select name="sortby" id="mcp_sortby">
+						<option value="dateline"{$sortbysel['dateline']}>{$lang->date}</option>
+						<option value="username"{$sortbysel['username']}>{$lang->username}</option>
+						<option value="forum"{$sortbysel['forum']}>{$lang->forum_name}</option>
+						<option value="thread"{$sortbysel['thread']}>{$lang->thread_subject}</option>
+					</select>
+					{$lang->in}
+					<select name="order" aria-label="{$lang->order}">
+						<option value="asc"{$ordersel['asc']}>{$lang->asc}</option>
+						<option value="desc"{$ordersel['desc']}>{$lang->desc}</option>
+					</select>
+					{$lang->order}
+				</div>
+			</div>
+			<div class="form-row">
+				<label class="form-label" for="mcp_perpage">{$lang->per_page}</label>
+				<div class="form-field form-inline"><input type="text" name="perpage" id="mcp_perpage" value="{$perpage}" size="4" class="textbox form-num" /></div>
+			</div>
+		</div>
+		<div class="ucp-actions">
+			<input type="submit" class="btn btn-dark btn-sm" value="{$lang->filter_logs}" />
+		</div>
+	</form>
+	<table border="0" cellspacing="0" cellpadding="0" class="tborder ucp-table mcp-logs">
+		<tr>
+			<td class="thead" colspan="5"><strong>{$lang->modlogs}</strong></td>
+		</tr>
+		<tr>
+			<td class="tcat">{$lang->username}</td>
+			<td class="tcat">{$lang->date}</td>
+			<td class="tcat">{$lang->action}</td>
+			<td class="tcat">{$lang->information}</td>
+			<td class="tcat">{$lang->ip}</td>
+		</tr>
+		{$results}
+	</table>
+	{$resultspages}
+</td>
+</tr>
+</table>
+{$footer}
+</body>
+</html>

@@ -1,0 +1,29 @@
+<html xml:lang="{$lang->settings['htmllang']}" lang="{$lang->settings['htmllang']}" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$mybb->settings['bbname']} - {$lang->forum_subscriptions}</title>
+{$headerinclude}
+</head>
+<body>
+{$header}
+<table width="100%" border="0" align="center">
+<tr>
+{$usercpnav}
+<td valign="top">
+	<table border="0" cellspacing="0" cellpadding="0" class="tborder ucp-table">
+		<tr>
+			<td class="thead" colspan="5"><strong>{$lang->forum_subscriptions}</strong></td>
+		</tr>
+		<tr>
+			<td class="tcat" colspan="2">{$lang->forum}</td>
+			<td class="tcat ucp-num">{$lang->posts}</td>
+			<td class="tcat ucp-num">{$lang->threads}</td>
+			<td class="tcat">{$lang->lastpost}</td>
+		</tr>
+		{$forums}
+	</table>
+</td>
+</tr>
+</table>
+{$footer}
+</body>
+</html>

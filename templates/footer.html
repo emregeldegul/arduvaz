@@ -1,0 +1,78 @@
+		</div>
+	</div>
+
+	<div id="footer" class="site-footer">
+		<div class="wrapper footer-top upper">
+			<div class="footer-about">
+				<a href="{$mybb->settings['bburl']}/index.php" class="footer-brand">
+					<span class="brand-logo"><svg><use href="{$theme['imgdir']}/icons.svg#i-logo"/></svg></span>
+					<span>{$mybb->settings['homename']}</span>
+				</a>
+				<!-- MOCK: site tanıtım metni ve sosyal bağlantılar -->
+				<p>A friendly book club for curious readers. We pick a new book every month, host buddy reads and spoiler-tagged debates, and swap recommendations from every shelf.</p>
+				<div class="footer-social">
+					<a href="#" aria-label="Newsletter"><svg><use href="{$theme['imgdir']}/icons.svg#i-mail"/></svg></a>
+					<a href="#" aria-label="Reading list"><svg><use href="{$theme['imgdir']}/icons.svg#i-book"/></svg></a>
+					<a href="{$mybb->settings['bburl']}/syndication.php" aria-label="{$lang->bottomlinks_syndication}"><svg><use href="{$theme['imgdir']}/icons.svg#i-rss"/></svg></a>
+				</div>
+			</div>
+
+			<!-- TODO:lang (sütun başlıkları) -->
+			<nav class="footer-col">
+				<h4>Community</h4>
+				{$showteamlink}
+				{$menu_memberlist}
+				{$menu_calendar}
+				{$contact_us}
+			</nav>
+
+			<!-- MOCK: siteye özel kaynak bağlantıları -->
+			<nav class="footer-col">
+				<h4>Resources</h4>
+				<a href="{$mybb->settings['homeurl']}">{$mybb->settings['homename']}</a>
+				<a href="https://www.gutenberg.org" target="_blank" rel="noopener">Project Gutenberg ↗</a>
+				<a href="https://openlibrary.org" target="_blank" rel="noopener">Open Library ↗</a>
+			</nav>
+
+			<nav class="footer-col bottom_links">
+				<h4>Forum Tools</h4>
+				<a href="{$mybb->settings['bburl']}/misc.php?action=markread{$post_code_string}"><svg><use href="{$theme['imgdir']}/icons.svg#i-check"/></svg>{$lang->bottomlinks_markread}</a>
+				<a href="{$mybb->settings['bburl']}/misc.php?action=syndication"><svg><use href="{$theme['imgdir']}/icons.svg#i-rss"/></svg>{$lang->bottomlinks_syndication}</a>
+				<a href="<archive_url>"><svg><use href="{$theme['imgdir']}/icons.svg#i-archive"/></svg>{$lang->bottomlinks_litemode}</a>
+			</nav>
+		</div>
+
+		<div class="footer-bottom lower">
+			<div class="wrapper footer-bottom-inner">
+				<div class="fb-group">
+					<span>&copy; {$copy_year} {$mybb->settings['homename']}</span>
+					<!-- MOCK: yasal sayfalar -->
+					<nav class="fb-links">
+						<a href="#">Club Rules</a>
+						<a href="#">Privacy</a>
+						<a href="#">Terms of Use</a>
+					</nav>
+				</div>
+				<div class="fb-group fb-right">
+					{$lang_select}
+					{$theme_select}
+					<span class="fb-time" id="current_time"><svg><use href="{$theme['imgdir']}/icons.svg#i-clock"/></svg>{$lang->welcome_current_time}</span>
+					<!-- MyBB is free software developed and maintained by a volunteer community.
+						It would be much appreciated by the MyBB Group if you left the full copyright and "powered by" notice intact,
+						to show your support for MyBB.  If you choose to remove or modify the copyright below,
+						you may be refused support on the MyBB Community Forums.
+
+						This is free software, support us and we'll support you. -->
+					<span class="powered" id="copyright">{$lang->powered_by} <a href="https://mybb.com" target="_blank" rel="noopener">MyBB</a></span>
+					<!-- End powered by -->
+					<!-- Theme credit: required by the Arduvaz Theme License (LICENSE.md). Do not remove or hide it. -->
+					<span class="powered theme-credit"><a href="https://mybb.tr" target="_blank" rel="noopener">Arduvaz</a> theme by <a href="https://mybb.tr" target="_blank" rel="noopener">MyBB.tr</a></span>
+					<a href="#top" class="to-top">{$lang->bottomlinks_returntop} ↑</a>
+				</div>
+			</div>
+		</div>
+		<debugstuff>
+	</div>
+	<!-- The following piece of code allows MyBB to run scheduled tasks. DO NOT REMOVE -->{$task_image}<!-- End task image code -->
+	{$auto_dst_detection}
+</div>

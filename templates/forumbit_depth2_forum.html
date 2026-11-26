@@ -1,0 +1,29 @@
+<article class="forum-row">
+	<div class="forum-status forum_{$lightbulb['folder']} ajax_mark_read" title="{$lightbulb['altonoff']}" id="mark_read_{$forum['fid']}"><svg><use href="{$theme['imgdir']}/icons.svg#forum_{$lightbulb['folder']}"/></svg></div>
+	<div class="forum-main">
+		<h3><a href="{$forum_url}">{$forum['name']}</a>{$forum_viewers_text}</h3>
+		<p>{$forum['description']}</p>
+		{$modlist}
+		{$subforums}
+	</div>
+	{$lastpost}
+	<div class="forum-more dropdown">
+		<!-- TODO:lang -->
+		<button type="button" class="dots-btn" data-dropdown aria-label="Forum options" aria-expanded="false"><svg><use href="{$theme['imgdir']}/icons.svg#i-dots"/></svg></button>
+		<div class="dropdown-menu dropdown-right forum-menu" role="menu">
+			<!-- TODO:lang -->
+			<a href="{$mybb->settings['bburl']}/newthread.php?fid={$forum['fid']}" class="fm-newthread" role="menuitem"><svg><use href="{$theme['imgdir']}/icons.svg#i-edit"/></svg>New Thread</a>
+			<a href="{$mybb->settings['bburl']}/search.php?action=getnew&amp;fid={$forum['fid']}" class="fm-search" role="menuitem"><svg><use href="{$theme['imgdir']}/icons.svg#i-sparkle"/></svg>{$lang->welcome_newposts}</a>
+			<a href="{$mybb->settings['bburl']}/search.php?action=getdaily&amp;fid={$forum['fid']}" class="fm-search" role="menuitem"><svg><use href="{$theme['imgdir']}/icons.svg#i-clock"/></svg>{$lang->welcome_todaysposts}</a>
+			<a href="{$lastpost_link}" class="fm-lastpost" role="menuitem"><svg><use href="{$theme['imgdir']}/icons.svg#i-last"/></svg>{$lang->forumbit_lastpost}</a>
+			<!-- TODO:lang — okunmamış mesaj yoksa CSS ile gizlenir; AJAX varsa sayfa yenilenmeden okundu sayar -->
+			<a href="{$mybb->settings['bburl']}/misc.php?action=markread&amp;fid={$forum['fid']}&amp;my_post_key={$mybb->post_code}" class="fm-markread" role="menuitem" onclick="if (typeof use_xmlhttprequest != 'undefined' &amp;&amp; use_xmlhttprequest == 1) { MyBB.markForumRead(document.getElementById('mark_read_{$forum['fid']}')); return false; }"><svg><use href="{$theme['imgdir']}/icons.svg#i-check"/></svg>Mark as read</a>
+			<hr />
+			<a href="{$mybb->settings['bburl']}/syndication.php?fid={$forum['fid']}" class="fm-rss" role="menuitem"><svg><use href="{$theme['imgdir']}/icons.svg#i-rss"/></svg>{$lang->bottomlinks_syndication}</a>
+			<div class="forum-menu-stats">
+				<div><strong>{$threads}</strong><span>{$lang->forumbit_threads}</span>{$unapproved['unapproved_threads']}</div>
+				<div><strong>{$posts}</strong><span>{$lang->forumbit_posts}</span>{$unapproved['unapproved_posts']}</div>
+			</div>
+		</div>
+	</div>
+</article>

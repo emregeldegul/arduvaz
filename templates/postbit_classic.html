@@ -1,0 +1,40 @@
+{$ignore_bit}{$deleted_bit}
+<a name="pid{$post['pid']}" id="pid{$post['pid']}"></a>
+<div class="post classic {$unapproved_shade}" style="{$post_visibility}" id="post_{$post['pid']}">
+	<aside class="post-author post_author scaleimages">
+		<span class="pa-avatar">{$post['useravatar']}{$post['onlinestatus']}</span>
+		<div class="pa-who author_information">
+			<span class="pa-name">{$post['profilelink']}</span>
+			<span class="pa-title">{$post['usertitle']}</span>
+			<span class="pa-stars">{$post['userstars']}</span>
+			{$post['groupimage']}
+		</div>
+		<dl class="pa-stats author_statistics">
+			{$post['user_details']}
+		</dl>
+	</aside>
+	<div class="post-content post_content">
+		<header class="post-head post_head">
+			{$post['icon']}
+			<span class="post-date post_date"><svg><use href="{$theme['imgdir']}/icons.svg#i-clock"/></svg><span>{$post['postdate']}</span></span>
+			{$post['subject_extra']}
+			{$post['posturl']}
+		</header>
+		<div class="post-body post_body scaleimages" id="pid_{$post['pid']}">
+			{$post['message']}
+		</div>
+		{$post['attachments']}
+		<div class="post-edited post_edit" id="edited_by_{$post['pid']}">{$post['editedmsg']}</div>
+		{$post['signature']}
+		<div class="post-meta post_meta" id="post_meta_{$post['pid']}">{$post['iplogged']}{$post['poststatus']}</div>
+		{$post['input_editreason']}
+		<footer class="post-foot post_controls">
+			<div class="pf-left postbit_buttons author_buttons">
+				{$post['button_email']}{$post['button_pm']}{$post['button_www']}{$post['button_find']}{$post['button_rep']}
+			</div>
+			<div class="pf-right postbit_buttons post_management_buttons">
+				{$post['button_edit']}{$post['button_quickdelete']}{$post['button_quickrestore']}{$post['button_report']}{$post['button_warn']}{$post['button_purgespammer']}{$post['button_multiquote']}{$post['button_quote']}{$post['button_reply_pm']}{$post['button_replyall_pm']}{$post['button_forward_pm']}{$post['button_delete_pm']}
+			</div>
+		</footer>
+	</div>
+</div>

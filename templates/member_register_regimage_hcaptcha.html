@@ -1,0 +1,10 @@
+<section class="panel rg-section">
+	<header class="panel-head"><svg><use href="{$theme['imgdir']}/icons.svg#i-shield"/></svg><h2>{$lang->human_verification}</h2></header>
+	<div class="rg-body">
+		<p class="rg-hint">{$lang->verification_note_hcaptcha}</p>
+		<div class="captcha-widget">
+			<script type="text/javascript" src="{$server}"></script>
+			<div class="h-captcha" data-sitekey="{$public_key}" data-theme="{$captcha_theme}" data-size="{$captcha_size}"></div>
+		</div>
+	</div>
+</section>

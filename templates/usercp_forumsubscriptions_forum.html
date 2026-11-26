@@ -1,0 +1,7 @@
+<tr>
+	<td class="trow1 ucp-icon" width="1"><span class="forum-status forum_{$lightbulb['folder']}" title="{$lightbulb['altonoff']}"><svg><use href="{$theme['imgdir']}/icons.svg#forum_{$lightbulb['folder']}"/></svg></span></td>
+	<td class="trow1"><strong><a href="{$forum_url}">{$forum['name']}</a></strong><span class="ucp-meta"><a href="usercp.php?action=removesubscription&amp;type=forum&amp;fid={$forum['fid']}&amp;my_post_key={$mybb->post_code}" class="ucp-danger-link">{$lang->unsubscribe}</a> · <a href="newthread.php?fid={$forum['fid']}">{$lang->new_thread}</a></span></td>
+	<td class="trow1 ucp-num">{$posts}</td>
+	<td class="trow1 ucp-num">{$threads}</td>
+	<td class="trow1 ucp-last">{$lastpost}</td>
+</tr>

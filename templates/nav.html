@@ -1,0 +1,6 @@
+<!-- Breadcrumb: ev simgesi + üst sayfalar. İlk öğe (forum adı = ana sayfa) CSS ile gizli, çünkü simge zaten ana sayfa;
+     bulunduğun sayfa (nav_bit_active) yazılmaz, başlığı sayfada zaten var. -->
+<nav class="breadcrumb navigation">
+	<a href="{$mybb->settings['bburl']}/index.php" class="crumb-home" aria-label="{$mybb->settings['bbname']}"><svg><use href="{$theme['imgdir']}/icons.svg#i-home"/></svg></a>
+	{$nav}
+</nav>

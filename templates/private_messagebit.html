@@ -1,0 +1,8 @@
+<tr>
+	<td class="{$bgcolor} ucp-icon"><span class="pm-status pm-{$msgstatus}" title="{$msgalt}"><svg><use href="{$theme['imgdir']}/icons.svg#pm_{$msgstatus}"/></svg></span></td>
+	<td class="{$bgcolor} ucp-icon">{$icon}</td>
+	<td class="{$bgcolor}"><a class="{$msgstatus} pm-subject" href="private.php?action=read&amp;pmid={$message['pmid']}">{$message['subject']}</a>{$denyreceipt}</td>
+	<td class="{$bgcolor} pm-from">{$tofromusername}</td>
+	<td class="{$bgcolor} ucp-last pm-date">{$senddate}</td>
+	<td class="{$bgcolor} ucp-check"><input type="checkbox" class="checkbox mod-check" name="check[{$message['pmid']}]" value="1" /></td>
+</tr>

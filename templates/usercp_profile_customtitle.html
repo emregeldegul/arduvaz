@@ -1,0 +1,18 @@
+<section class="panel">
+	<header class="panel-head"><svg><use href="{$theme['imgdir']}/icons.svg#i-star"/></svg><h2>{$lang->custom_usertitle}</h2></header>
+	<div class="form-rows">
+		<p class="form-note">{$lang->custom_usertitle_note}</p>
+		<div class="form-row">
+			<span class="form-label">{$lang->default_usertitle}</span>
+			<div class="form-field form-static"><strong>{$defaulttitle}</strong></div>
+		</div>
+		{$currentcustom}
+		<div class="form-row">
+			<label class="form-label" for="usertitle">{$lang->new_custom_usertitle}</label>
+			<div class="form-field">
+				<input type="text" class="textbox" name="usertitle" id="usertitle" maxlength="{$mybb->settings['customtitlemaxlength']}" value="{$newtitle}" />
+				{$reverttitle}
+			</div>
+		</div>
+	</div>
+</section>

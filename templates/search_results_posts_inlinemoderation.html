@@ -1,0 +1,51 @@
+<script type="text/javascript" src="{$mybb->asset_url}/jscripts/inline_moderation.js?ver=1838"></script>
+<section class="panel mod-tools" id="modTools">
+	<button type="button" class="mod-toggle" aria-expanded="false" aria-controls="modBody">
+		<svg><use href="{$theme['imgdir']}/icons.svg#i-shield"/></svg>
+		<span>{$lang->inline_post_moderation}</span>
+		<svg class="chev"><use href="{$theme['imgdir']}/icons.svg#i-chevron"/></svg>
+	</button>
+	<div class="mod-body" id="modBody" hidden>
+		<div class="mod-block">
+			<form action="moderation.php" method="post" class="mod-row">
+				<input type="hidden" name="my_post_key" value="{$mybb->post_code}" />
+				<input type="hidden" name="tid" value="0" />
+				<input type="hidden" name="searchid" value="{$sid}" />
+				<input type="hidden" name="modtype" value="inlinepost" />
+				<input type="hidden" name="url" value="{$return_url}" />
+				<input type="hidden" name="inlinetype" value="search" />
+				<select name="action" class="select" aria-label="{$lang->inline_post_moderation}">
+					<optgroup label="{$lang->standard_mod_tools}">
+						<option value="multisoftdeleteposts">{$lang->inline_soft_delete_posts}</option>
+						<option value="multirestoreposts">{$lang->inline_restore_posts}</option>
+						<option value="multideleteposts">{$lang->inline_delete_posts}</option>
+						<option value="multimergeposts">{$lang->inline_merge_posts}</option>
+						<option value="multisplitposts">{$lang->inline_split_posts}</option>
+						<option value="multimoveposts">{$lang->inline_move_posts}</option>
+						<option value="multiapproveposts">{$lang->inline_approve_posts}</option>
+						<option value="multiunapproveposts">{$lang->inline_unapprove_posts}</option>
+					</optgroup>
+					{$customposttools}
+				</select>
+				<input type="submit" class="btn btn-dark btn-sm" name="go" value="{$lang->go} ({$inlinecount})" id="inline_go" />
+				<input type="button" onclick="inlineModeration.clearChecked();" value="{$lang->clear}" class="btn btn-light btn-sm" />
+			</form>
+		</div>
+		<div class="mod-block">
+			<!-- TODO:lang -->
+			<div class="mod-links">
+				<a href="{$mybb->settings['bburl']}/modcp.php?action=modqueue"><svg><use href="{$theme['imgdir']}/icons.svg#i-clock"/></svg>Awaiting approval</a>
+				<a href="{$mybb->settings['bburl']}/modcp.php?action=reports"><svg><use href="{$theme['imgdir']}/icons.svg#i-bell"/></svg>Reported posts</a>
+				<a href="{$mybb->settings['bburl']}/modcp.php?action=modlogs"><svg><use href="{$theme['imgdir']}/icons.svg#i-book"/></svg>Moderator log</a>
+			</div>
+		</div>
+	</div>
+</section>
+<script type="text/javascript">
+<!--
+	var go_text = "{$lang->inline_go}";
+	var all_text = "{$postcount}";
+	var inlineType = "search";
+	var inlineId = "{$sid}";
+// -->
+</script>

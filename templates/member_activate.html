@@ -1,0 +1,32 @@
+<html xml:lang="{$lang->settings['htmllang']}" lang="{$lang->settings['htmllang']}" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$mybb->settings['bbname']} - {$lang->account_activation}</title>
+{$headerinclude}
+</head>
+<body>
+{$header}
+<main class="msg-page">
+	<section class="panel auth-card">
+		<div class="modal-head">
+			<span class="brand-logo"><svg><use href="{$theme['imgdir']}/icons.svg#i-user-check"/></svg></span>
+			<h1>{$lang->activate_account}</h1>
+			<!-- TODO:lang -->
+			<p>Enter the activation code from your email to activate your account.</p>
+		</div>
+		<form action="member.php" method="post" class="modal-form">
+			<label class="field">
+				<span>{$lang->username}</span>
+				<input type="text" class="textbox" name="username" value="{$user['username']}" />
+			</label>
+			<label class="field">
+				<span>{$lang->activation_code}</span>
+				<input type="text" class="textbox" name="code" value="{$code}" autocomplete="off" />
+			</label>
+			<input type="hidden" name="action" value="activate" />
+			<button type="submit" class="btn btn-dark btn-block" name="regsubmit" value="{$lang->activate_account}">{$lang->activate_account}</button>
+		</form>
+	</section>
+</main>
+{$footer}
+</body>
+</html>

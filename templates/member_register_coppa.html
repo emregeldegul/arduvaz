@@ -1,0 +1,47 @@
+<html xml:lang="{$lang->settings['htmllang']}" lang="{$lang->settings['htmllang']}" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$mybb->settings['bbname']} - {$lang->coppa_compliance}</title>
+{$headerinclude}
+</head>
+<body>
+{$header}
+<main class="rg rg-agreement">
+	<form action="member.php" method="post" class="panel rg-section">
+		<header class="panel-head"><svg><use href="{$theme['imgdir']}/icons.svg#i-shield"/></svg><h2>{$lang->coppa_compliance}</h2></header>
+		<div class="rg-body rg-terms">{$coppa_desc}</div>
+		<div class="form-rows">
+			<div class="form-row">
+				<label class="form-label" for="day">{$lang->date_of_birth}<span class="form-desc">{$lang->hide_dob}</span></label>
+				<div class="form-field form-date">
+					<select name="bday1" id="day" class="select" aria-label="{$lang->day}">
+						<option value="">{$lang->day}</option>
+						{$bdaysel}
+					</select>
+					<select name="bday2" id="month" class="select" aria-label="{$lang->month}">
+						<option value="">{$lang->month}</option>
+						<option value="1" {$bdaymonthsel['1']}>{$lang->month_1}</option>
+						<option value="2" {$bdaymonthsel['2']}>{$lang->month_2}</option>
+						<option value="3" {$bdaymonthsel['3']}>{$lang->month_3}</option>
+						<option value="4" {$bdaymonthsel['4']}>{$lang->month_4}</option>
+						<option value="5" {$bdaymonthsel['5']}>{$lang->month_5}</option>
+						<option value="6" {$bdaymonthsel['6']}>{$lang->month_6}</option>
+						<option value="7" {$bdaymonthsel['7']}>{$lang->month_7}</option>
+						<option value="8" {$bdaymonthsel['8']}>{$lang->month_8}</option>
+						<option value="9" {$bdaymonthsel['9']}>{$lang->month_9}</option>
+						<option value="10" {$bdaymonthsel['10']}>{$lang->month_10}</option>
+						<option value="11" {$bdaymonthsel['11']}>{$lang->month_11}</option>
+						<option value="12" {$bdaymonthsel['12']}>{$lang->month_12}</option>
+					</select>
+					<input type="text" class="textbox form-year" name="bday3" id="year" maxlength="4" inputmode="numeric" placeholder="{$lang->year}" aria-label="{$lang->year}" value="{$birthday_year}" />
+				</div>
+			</div>
+		</div>
+		<div class="rg-submit-row">
+			<input type="hidden" name="action" value="register" />
+			<button type="submit" class="btn btn-dark" name="agree" value="{$lang->continue_registration}">{$lang->continue_registration}</button>
+		</div>
+	</form>
+</main>
+{$footer}
+</body>
+</html>

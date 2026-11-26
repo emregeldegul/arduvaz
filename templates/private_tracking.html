@@ -1,0 +1,53 @@
+<html xml:lang="{$lang->settings['htmllang']}" lang="{$lang->settings['htmllang']}" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$mybb->settings['bbname']} - {$lang->pm_tracking}</title>
+{$headerinclude}
+</head>
+<body>
+{$header}
+<table width="100%" border="0" align="center">
+<tr>
+{$usercpnav}
+<td valign="top">
+	{$read_multipage}
+	<form action="private.php" method="post">
+		<input type="hidden" name="my_post_key" value="{$mybb->post_code}" />
+		<input type="hidden" name="action" value="do_tracking" />
+		<table border="0" cellspacing="0" cellpadding="0" class="tborder ucp-table">
+			<tr>
+				<td class="thead" colspan="5"><strong>{$lang->read_messages}</strong></td>
+			</tr>
+			<tr>
+				<td class="tcat" colspan="2">{$lang->message_title}</td>
+				<td class="tcat">{$lang->sentto}</td>
+				<td class="tcat">{$lang->dateread}</td>
+				<td class="tcat ucp-check"><input type="checkbox" class="checkbox checkall mod-check" name="allbox" /></td>
+			</tr>
+			{$readmessages}
+			{$stoptrackingread}
+		</table>
+	</form>
+	{$unread_multipage}
+	<form action="private.php" method="post">
+		<input type="hidden" name="my_post_key" value="{$mybb->post_code}" />
+		<input type="hidden" name="action" value="do_tracking" />
+		<table border="0" cellspacing="0" cellpadding="0" class="tborder ucp-table">
+			<tr>
+				<td class="thead" colspan="5"><strong>{$lang->unread_messages}</strong></td>
+			</tr>
+			<tr>
+				<td class="tcat" colspan="2">{$lang->message_title}</td>
+				<td class="tcat">{$lang->sentto}</td>
+				<td class="tcat">{$lang->datesent}</td>
+				<td class="tcat ucp-check"><input type="checkbox" class="checkbox checkall mod-check" name="allbox" /></td>
+			</tr>
+			{$unreadmessages}
+			{$stoptrackingunread}
+		</table>
+	</form>
+</td>
+</tr>
+</table>
+{$footer}
+</body>
+</html>

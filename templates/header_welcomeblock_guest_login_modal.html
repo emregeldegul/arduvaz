@@ -1,0 +1,13 @@
+<label class="field">
+	<span>{$login_username}</span>
+	<input name="quick_username" id="quick_login_username" type="text" value="" class="textbox initial_focus" autocomplete="username" />
+</label>
+<label class="field">
+	<span class="field-row">{$lang->password} <a href="{$mybb->settings['bburl']}/member.php?action=lostpw" class="lost_password">{$lang->lost_password}</a></span>
+	<input name="quick_password" id="quick_login_password" type="password" value="" class="textbox" autocomplete="current-password" />
+</label>
+<label class="check remember_me">
+	<input name="quick_remember" id="quick_login_remember" type="checkbox" value="yes" class="checkbox" checked="checked" />
+	{$lang->remember_me}
+</label>
+<button name="submit" type="submit" class="btn btn-dark btn-block">{$lang->welcome_login}</button>

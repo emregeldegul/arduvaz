@@ -1,0 +1,96 @@
+<html xml:lang="{$lang->settings['htmllang']}" lang="{$lang->settings['htmllang']}" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$mybb->settings['bbname']}</title>
+{$headerinclude}
+<script type="text/javascript">
+<!--
+	lang.no_new_posts = "{$lang->no_new_posts}";
+	lang.click_mark_read = "{$lang->click_mark_read}";
+// -->
+</script>
+</head>
+<body>
+{$header}
+<section class="hero">
+	<div class="hero-text">
+		<h1>{$mybb->settings['bbname']}</h1>
+		<!-- MOCK: site açıklaması -->
+		<p>A cozy corner of the internet for people who read too much and talk about it even more.</p>
+	</div>
+	<div class="hero-actions">
+		<a href="{$mybb->settings['bburl']}/search.php?action=getnew" class="btn btn-light">{$lang->welcome_newposts} <svg><use href="{$theme['imgdir']}/icons.svg#i-sparkle"/></svg></a>
+		<a href="{$mybb->settings['bburl']}/search.php?action=getdaily" class="btn btn-dark">{$lang->welcome_todaysposts} <svg><use href="{$theme['imgdir']}/icons.svg#i-clock"/></svg></a>
+	</div>
+</section>
+
+<main class="layout layout-home">
+	<div class="content">
+		{$forums}
+
+		<div class="legend forum-legend forum_legend">
+			<span><i class="forum-status forum_on"><svg><use href="{$theme['imgdir']}/icons.svg#forum_on"/></svg></i>{$lang->new_posts}</span>
+			<span><i class="forum-status forum_off"><svg><use href="{$theme['imgdir']}/icons.svg#forum_off"/></svg></i>{$lang->no_new_posts}</span>
+			<span><i class="forum-status forum_offclose"><svg><use href="{$theme['imgdir']}/icons.svg#forum_offclose"/></svg></i>{$lang->forum_closed}</span>
+			<span><i class="forum-status forum_offlink"><svg><use href="{$theme['imgdir']}/icons.svg#forum_offlink"/></svg></i>{$lang->forum_redirect}</span>
+			<a href="{$mybb->settings['bburl']}/misc.php?action=markread{$post_code_string}" class="legend-action"><svg><use href="{$theme['imgdir']}/icons.svg#i-check"/></svg>{$lang->bottomlinks_markread}</a>
+		</div>
+
+		{$boardstats}
+	</div>
+
+	<aside class="sidebar">
+		{$logoutlink}
+
+		<section class="panel user-tray guest-tray" data-uid="{$mybb->user['uid']}">
+			<div class="tray-head">
+				<span class="avatar avatar-default avatar-lg" aria-hidden="true"><svg><use href="{$theme['imgdir']}/icons.svg#i-avatar"/></svg></span>
+				<div class="tray-who">
+					<span class="tray-name">{$lang->welcome_guest}</span>
+					<!-- TODO:lang -->
+					<span class="user-title">Sign in to start threads and post replies.</span>
+				</div>
+			</div>
+			<form method="post" action="{$mybb->settings['bburl']}/member.php" class="tray-login">
+				<input name="action" type="hidden" value="do_login" />
+				<input name="url" type="hidden" value="{$mybb->settings['bburl']}/index.php" />
+				<input name="quick_login" type="hidden" value="1" />
+				<input name="my_post_key" type="hidden" value="{$mybb->post_code}" />
+				<label class="field">
+					<span>{$lang->username}</span>
+					<input name="quick_username" id="tray_login_username" type="text" value="" class="textbox" autocomplete="username" />
+				</label>
+				<label class="field">
+					<span>{$lang->password}</span>
+					<input name="quick_password" id="tray_login_password" type="password" value="" class="textbox" autocomplete="current-password" />
+				</label>
+				<div class="login-row">
+					<label class="check"><input name="quick_remember" id="tray_login_remember" type="checkbox" value="yes" class="checkbox" checked="checked" /> {$lang->remember_me}</label>
+					<a href="{$mybb->settings['bburl']}/member.php?action=lostpw">{$lang->lost_password}</a>
+				</div>
+				<button type="submit" class="btn btn-dark btn-block">{$lang->welcome_login}</button>
+			</form>
+			<!-- TODO:lang -->
+			<p class="tray-register">Don't have an account? <a href="{$mybb->settings['bburl']}/member.php?action=register">{$lang->welcome_register}</a></p>
+		</section>
+
+		<!-- Son konular: MyBB'nin kendi RSS beslemesinden (syndication.php) arduvaz.js ile doldurulur; eklenti gerekmez.
+		     Veri gelene kadar iskelet satırlar görünür; besleme boşsa ya da tarayıcı desteklemiyorsa kutu gizlenir. -->
+		<section class="panel latest-box is-loading" id="latestThreads" data-feed="{$mybb->settings['bburl']}/syndication.php?limit=6" data-by="{$lang->by}" aria-busy="true">
+			<header class="panel-head">
+				<svg><use href="{$theme['imgdir']}/icons.svg#i-sparkle"/></svg>
+				<h2>{$lang->latest_threads}</h2>
+			</header>
+			<ul class="latest-list">
+				<li class="lt-skeleton" aria-hidden="true"><i></i><i></i><i></i></li>
+				<li class="lt-skeleton" aria-hidden="true"><i></i><i></i><i></i></li>
+				<li class="lt-skeleton" aria-hidden="true"><i></i><i></i><i></i></li>
+				<li class="lt-skeleton" aria-hidden="true"><i></i><i></i><i></i></li>
+				<li class="lt-skeleton" aria-hidden="true"><i></i><i></i><i></i></li>
+			</ul>
+			<a href="{$mybb->settings['bburl']}/search.php?action=getnew" class="panel-foot">{$lang->welcome_newposts} <svg><use href="{$theme['imgdir']}/icons.svg#i-arrow"/></svg></a>
+		</section>
+	</aside>
+</main>
+{$footer}
+</body>
+</html>

@@ -1,0 +1,123 @@
+<html xml:lang="{$lang->settings['htmllang']}" lang="{$lang->settings['htmllang']}" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$thread['subject']}</title>
+{$headerinclude}
+<script type="text/javascript">
+<!--
+	var quickdelete_confirm = "{$lang->quickdelete_confirm}";
+	var quickrestore_confirm = "{$lang->quickrestore_confirm}";
+	var allowEditReason = "{$mybb->settings['alloweditreason']}";
+	var thread_deleted = "{$thread_deleted}";
+	var visible_replies = "{$thread['replies']}";
+	lang.save_changes = "{$lang->save_changes}";
+	lang.cancel_edit = "{$lang->cancel_edit}";
+	lang.quick_edit_update_error = "{$lang->quick_edit_update_error}";
+	lang.quick_reply_post_error = "{$lang->quick_reply_post_error}";
+	lang.quick_delete_error = "{$lang->quick_delete_error}";
+	lang.quick_delete_success = "{$lang->quick_delete_success}";
+	lang.quick_delete_thread_success = "{$lang->quick_delete_thread_success}";
+	lang.quick_restore_error = "{$lang->quick_restore_error}";
+	lang.quick_restore_success = "{$lang->quick_restore_success}";
+	lang.editreason = "{$lang->postbit_editreason}";
+	lang.post_deleted_error = "{$lang->post_deleted_error}";
+	lang.softdelete_thread = "{$lang->soft_delete_thread}";
+	lang.restore_thread = "{$lang->restore_thread}";
+// -->
+</script>
+<!-- jeditable (jquery) -->
+<script type="text/javascript" src="{$mybb->asset_url}/jscripts/report.js?ver=1820"></script>
+<script src="{$mybb->asset_url}/jscripts/jeditable/jeditable.min.js"></script>
+<script type="text/javascript" src="{$mybb->asset_url}/jscripts/thread.js?ver=1838"></script>
+</head>
+<body>
+{$header}
+<main class="st">
+	{$threadnotesbox}
+
+	<section class="panel thread-info">
+		<div class="ti-top">
+			<div class="ti-text">
+				<h1>{$thread['displayprefix']}{$thread['subject']}</h1>
+				<p class="ti-sub">
+					<a href="forumdisplay.php?fid={$fid}" class="ti-forum"><svg><use href="{$theme['imgdir']}/icons.svg#i-chat"/></svg>{$forum['name']}</a>
+					<span class="ti-desc">{$forum['description']}</span>
+				</p>
+			</div>
+			<div class="ti-side">
+				{$ratethread}
+				<div class="ti-actions thread_tools">
+					{$printthread}
+					{$sendthread}
+					{$addremovesubscription}
+					{$addpoll}
+				</div>
+			</div>
+		</div>
+		<!-- TODO:lang (bilgi etiketleri) -->
+		<dl class="ti-facts">
+			<div class="fact"><dt>Started by</dt><dd><a href="member.php?action=profile&amp;uid={$thread['uid']}">{$thread['username']}</a></dd></div>
+			<div class="fact"><dt>Started</dt><dd><time data-timestamp="{$thread['dateline']}"></time></dd></div>
+			<div class="fact"><dt>Last reply</dt><dd><time data-timestamp="{$thread['lastpost']}"></time></dd></div>
+			<div class="fact"><dt>Replies</dt><dd data-number>{$thread['replies']}</dd></div>
+			<div class="fact"><dt>Views</dt><dd data-number>{$thread['views']}</dd></div>
+		</dl>
+	</section>
+
+	{$pollbox}
+
+	<div class="fd-toolbar">
+		{$multipage}
+		{$newreply}
+	</div>
+
+	<div class="posts" id="posts">
+		{$posts}
+	</div>
+
+	<div class="fd-toolbar">
+		{$multipage}
+		{$newreply}
+	</div>
+
+	<nav class="st-nav">
+		<a href="{$next_oldest_link}" class="btn btn-light btn-sm"><svg class="flip"><use href="{$theme['imgdir']}/icons.svg#i-arrow"/></svg>{$lang->next_oldest}</a>
+		<div class="st-modes"><a href="showthread.php?mode={$thread_toggle}&amp;tid={$tid}&amp;pid={$pid}#pid{$pid}" class="st-mode">{$lang->thread_toggle}</a>{$threadnoteslink}</div>
+		<a href="{$next_newest_link}" class="btn btn-light btn-sm">{$lang->next_newest}<svg><use href="{$theme['imgdir']}/icons.svg#i-arrow"/></svg></a>
+	</nav>
+
+	{$quickreply}
+	{$threadexbox}
+	{$similarthreads}
+
+	<div class="fd-bottom">
+		<div class="fd-info">
+			{$search_thread}
+			<!-- Konu bağlantısını kopyala (arduvaz.js: [data-copy]) -->
+			<div class="jump st-link">
+				<!-- TODO:lang -->
+				<label for="thread_link">Thread link</label>
+				<div class="jump-row">
+					<input type="text" id="thread_link" class="textbox select" value="{$mybb->settings['bburl']}/showthread.php?tid={$tid}" readonly="readonly" onclick="this.select();" />
+					<!-- TODO:lang -->
+					<button type="button" class="btn btn-light btn-sm st-link-copy" data-copy="#thread_link"><svg><use href="{$theme['imgdir']}/icons.svg#i-copy"/></svg><span>Copy</span></button>
+				</div>
+			</div>
+			{$usersbrowsing}
+		</div>
+		<div class="panel fd-side">
+			{$moderationoptions}
+			{$forumjump}
+		</div>
+	</div>
+</main>
+{$footer}
+<script type="text/javascript">
+	var thread_deleted = "{$thread_deleted}";
+	if(thread_deleted == "1")
+	{
+		$("#quick_reply_form, .new_reply_button, .thread_tools, .inline_rating").hide();
+		$("#moderator_options_selector option.option_mirage").attr("disabled","disabled");
+	}
+</script>
+</body>
+</html>

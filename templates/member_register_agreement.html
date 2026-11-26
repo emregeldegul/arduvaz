@@ -1,0 +1,28 @@
+<html xml:lang="{$lang->settings['htmllang']}" lang="{$lang->settings['htmllang']}" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$mybb->settings['bbname']} - {$lang->agreement}</title>
+{$headerinclude}
+</head>
+<body>
+{$header}
+<main class="rg rg-agreement">
+	<form action="member.php" method="post" class="panel rg-section">
+		<header class="panel-head"><svg><use href="{$theme['imgdir']}/icons.svg#i-book"/></svg><h2>{$lang->agreement}</h2></header>
+		{$coppa_agreement}
+		<div class="rg-body rg-terms">
+			<p>{$lang->agreement_1}</p>
+			<p>{$lang->agreement_2}</p>
+			<p>{$lang->agreement_3}</p>
+			<p>{$lang->agreement_4}</p>
+			<p><strong>{$lang->agreement_5}</strong></p>
+		</div>
+		<div class="rg-submit-row">
+			<input type="hidden" name="step" value="agreement" />
+			<input type="hidden" name="action" value="register" />
+			<button type="submit" class="btn btn-dark" name="agree" value="{$lang->i_agree}">{$lang->i_agree}</button>
+		</div>
+	</form>
+</main>
+{$footer}
+</body>
+</html>

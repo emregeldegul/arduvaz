@@ -1,0 +1,45 @@
+<html xml:lang="{$lang->settings['htmllang']}" lang="{$lang->settings['htmllang']}" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$mybb->settings['bbname']} - {$lang->subscriptions}</title>
+{$headerinclude}
+</head>
+<body>
+{$header}
+<table width="100%" border="0" align="center">
+<tr>
+{$usercpnav}
+<td valign="top">
+	{$multipage}
+	<form action="usercp.php" method="post" name="input">
+		<input type="hidden" name="my_post_key" value="{$mybb->post_code}" />
+		<input type="hidden" name="action" value="do_subscriptions" />
+		<table border="0" cellspacing="0" cellpadding="0" class="tborder ucp-table">
+			<tr>
+				<td class="thead" colspan="7"><strong>{$lang->subscriptions} ({$threadcount})</strong></td>
+			</tr>
+			<tr>
+				<td class="tcat" colspan="3">{$lang->thread}</td>
+				<td class="tcat ucp-num">{$lang->replies}</td>
+				<td class="tcat ucp-num">{$lang->views}</td>
+				<td class="tcat">{$lang->lastpost}</td>
+				<td class="tcat ucp-check"><input name="allbox" type="checkbox" class="checkbox checkall mod-check" value="1" /></td>
+			</tr>
+			{$threads}
+			{$remove_options}
+		</table>
+	</form>
+	{$multipage}
+	<div class="legend thread-legend thread_legend">
+		<span><i class="thread-icon" data-folder="newfolder"><svg><use href="{$theme['imgdir']}/icons.svg#thread_newfolder"/></svg></i>{$lang->new_posts_thread}</span>
+		<span><i class="thread-icon" data-folder="folder"><svg><use href="{$theme['imgdir']}/icons.svg#thread_folder"/></svg></i>{$lang->no_new_thread}</span>
+		<span><i class="thread-icon" data-folder="newhotfolder"><svg><use href="{$theme['imgdir']}/icons.svg#thread_newhotfolder"/></svg></i>{$lang->new_hot_thread}</span>
+		<span><i class="thread-icon" data-folder="hotfolder"><svg><use href="{$theme['imgdir']}/icons.svg#thread_hotfolder"/></svg></i>{$lang->hot_thread}</span>
+		<span><i class="thread-icon" data-folder="closefolder"><svg><use href="{$theme['imgdir']}/icons.svg#thread_closefolder"/></svg></i>{$lang->closed_thread}</span>
+		<span><i class="thread-icon" data-folder="dot_folder"><svg><use href="{$theme['imgdir']}/icons.svg#thread_dot_folder"/></svg></i>{$lang->posts_by_you}</span>
+	</div>
+</td>
+</tr>
+</table>
+{$footer}
+</body>
+</html>

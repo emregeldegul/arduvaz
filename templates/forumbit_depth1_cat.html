@@ -1,0 +1,12 @@
+<section class="category" id="cat_{$forum['fid']}">
+	<header class="category-head thead{$expthead}">
+		<div class="tip-anchor">
+			<h2><a href="{$forum_url}">{$forum['name']}</a></h2>
+			<span class="cat-tip" role="tooltip">{$forum['description']}</span>
+		</div>
+		<div class="expcolimage collapse-btn"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" id="cat_{$forum['fid']}_img" class="expander" alt="{$expaltext}" title="{$expaltext}" /></div>
+	</header>
+	<div class="category-body" style="{$expdisplay}" id="cat_{$forum['fid']}_e">
+		{$sub_forums}
+	</div>
+</section>

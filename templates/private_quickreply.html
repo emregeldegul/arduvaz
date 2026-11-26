@@ -1,0 +1,34 @@
+<section class="panel quick-reply" id="quickReply">
+	<header class="panel-head">
+		<svg><use href="{$theme['imgdir']}/icons.svg#i-reply"/></svg>
+		<h2>{$lang->quick_reply}</h2>
+	</header>
+	<form action="private.php" method="post" name="input" class="qr-body">
+		<input type="hidden" name="my_post_key" value="{$mybb->post_code}" />
+		<input type="hidden" name="to" value="{$to}" />
+		<input type="hidden" name="bcc" value="{$bcc_form_val}" />
+		<input type="hidden" name="subject" value="Re: {$subject}" />
+		<input type="hidden" name="action" value="do_send" />
+		<input type="hidden" name="pmid" value="{$pmid}" />
+		<input type="hidden" name="do" value="reply" />
+		<div class="qr-author">
+			<span class="avatar avatar-default qr-avatar" aria-hidden="true"><svg><use href="{$theme['imgdir']}/icons.svg#i-avatar"/></svg></span>
+			<span class="qr-name">{$mybb->user['username']}</span>
+		</div>
+		<div class="qr-main">
+			<textarea name="message" id="message" rows="6" cols="80" tabindex="1" aria-label="{$lang->message}">{$quoted_message}</textarea>
+			<div class="qr-foot">
+				<div class="qr-opts">
+					<label class="qr-opt"><input type="checkbox" class="checkbox mod-check" name="options[signature]" value="1"{$optionschecked['signature']} /> {$lang->quickreply_signature}</label>
+					<label class="qr-opt"><input type="checkbox" class="checkbox mod-check" name="options[disablesmilies]" value="1"{$optionschecked['disablesmilies']} /> {$lang->quickreply_disable_smilies}</label>
+					<label class="qr-opt"><input type="checkbox" class="checkbox mod-check" name="options[savecopy]" value="1"{$optionschecked['savecopy']} /> {$lang->quickreply_save_copy}</label>
+					{$private_send_tracking}
+				</div>
+				<div class="qr-btns">
+					<input type="submit" class="btn btn-light btn-sm" name="preview" value="{$lang->preview}" tabindex="3" />
+					<input type="submit" class="btn btn-dark btn-sm" value="{$lang->send_message}" tabindex="2" accesskey="s" />
+				</div>
+			</div>
+		</div>
+	</form>
+</section>

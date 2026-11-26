@@ -1,0 +1,15 @@
+<article class="mcp-q-item {$altbg}">
+	<header class="mcp-q-head">
+		<div class="mcp-q-title">
+			<a href="{$post['postlink']}#pid{$post['pid']}" class="mcp-q-subject">{$post['subject']}</a>
+			<span class="ucp-meta">{$profile_link} · {$postdate}</span>
+			<span class="ucp-meta modqueue_meta">{$forum}{$thread}</span>
+		</div>
+		<div class="mcp-choices modqueue_controls" role="radiogroup">
+			<label class="mcp-choice label_radio_ignore"><input type="radio" class="radio radio_ignore" name="posts[{$post['pid']}]" value="ignore" checked="checked" /> {$lang->ignore}</label>
+			<label class="mcp-choice label_radio_delete"><input type="radio" class="radio radio_delete" name="posts[{$post['pid']}]" value="delete" /> {$lang->delete}</label>
+			<label class="mcp-choice label_radio_approve"><input type="radio" class="radio radio_approve" name="posts[{$post['pid']}]" value="approve" /> {$lang->approve}</label>
+		</div>
+	</header>
+	<div class="mcp-q-body post_body">{$post['message']}</div>
+</article>

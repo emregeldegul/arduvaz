@@ -1,0 +1,7 @@
+<tr class="mcp-ann-row">
+	<td class="{$trow}"><div class="mcp-ann-title" style="--pad: {$padding}px;">{$icon}<a href="announcements.php?aid={$aid}">{$subject}</a></div></td>
+	<td class="{$trow} mcp-ann-actions">
+		<a href="modcp.php?action=edit_announcement&amp;aid={$aid}" class="mcp-act" title="{$lang->edit}"><svg><use href="{$theme['imgdir']}/icons.svg#i-edit"/></svg><span>{$lang->edit}</span></a>
+		<a href="modcp.php?action=delete_announcement&amp;aid={$aid}" class="mcp-act mcp-act-danger" title="{$lang->delete}"><svg><use href="{$theme['imgdir']}/icons.svg#i-trash"/></svg><span>{$lang->delete}</span></a>
+	</td>
+</tr>

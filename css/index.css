@@ -1,0 +1,336 @@
+/* =========================================================
+   Arduvaz — index.css
+   Ana sayfaya özel stiller. Sadece index.php sayfasında yüklenir.
+   ========================================================= */
+
+/* Ana sayfada breadcrumb gösterilmez */
+.breadcrumb { display: none; }
+#content > .wrapper { padding-top: 4px; }
+
+/* =========================================================
+   HERO
+   ========================================================= */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-top: 30px;
+  padding-bottom: 26px;
+}
+.hero h1 {
+  margin: 0 0 8px;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -.025em;
+  line-height: 1.15;
+}
+.hero p { margin: 0; color: var(--text-2); font-size: 15px; }
+.hero-actions { display: flex; gap: 10px; flex-shrink: 0; }
+.hero-actions .btn:hover svg { transform: none; }
+
+/* =========================================================
+   SİMGE AÇIKLAMALARI
+   ========================================================= */
+.legend .forum-status { width: 28px; height: 28px; border-radius: 7px; }
+.legend .forum-status svg { width: 14px; height: 14px; }
+.legend-action {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  color: var(--slate-700);
+}
+.legend-action svg { width: 15px; height: 15px; }
+
+/* Ana sayfa simge açıklamaları (geniş ekran): 2x2 ızgara, "tümünü okundu say" sağda */
+@media (min-width: 761px) {
+  .forum-legend {
+    display: grid;
+    grid-template-columns: repeat(2, max-content) 1fr;
+    gap: 12px 36px;
+  }
+  .forum-legend .legend-action { grid-column: 3; grid-row: 1; justify-self: end; }
+}
+
+/* Son konular (RSS'ten doldurulur) */
+.latest-list { list-style: none; margin: 0; padding: 0; background: var(--surface); }
+.latest-list li { padding: 11px 18px; }
+.latest-list li + li { border-top: 1px solid var(--border); }
+.latest-list .lt-title {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--slate-900);
+  letter-spacing: -.01em;
+}
+.latest-list .lt-title:hover { color: var(--slate-600); }
+.latest-list .lt-meta,
+.latest-list .lt-by { display: block; font-size: 12px; line-height: 1.45; color: var(--text-3); }
+.latest-list .lt-meta { margin-top: 2px; }
+.latest-list .lt-by a { font-weight: 600; color: var(--slate-700); }
+/* Yüklenirken iskelet: başlık / tarih / yazar çubukları */
+.lt-skeleton i { display: block; height: 10px; border-radius: 5px; background: var(--slate-100); animation: ltPulse 1.2s ease-in-out infinite alternate; }
+.lt-skeleton i:nth-child(1) { width: 78%; height: 12px; margin: 2px 0 7px; }
+.lt-skeleton i:nth-child(2) { width: 45%; margin-bottom: 6px; }
+.lt-skeleton i:nth-child(3) { width: 30%; }
+@keyframes ltPulse { from { opacity: 1; } to { opacity: .45; } }
+@media (prefers-reduced-motion: reduce) { .lt-skeleton i { animation: none; } }
+.latest-box.is-loading .panel-foot { visibility: hidden; }
+
+/* İstatistikler */
+.user-list { margin-top: 10px !important; font-size: 13px; color: var(--slate-400); line-height: 1.8; }
+.user-list a { color: var(--slate-600); font-weight: 500; }
+.user-list a:hover { color: var(--slate-900); }
+.user-list a.more { color: var(--text-3); font-style: italic; }
+
+/* Kim çevrimiçi / forum istatistikleri */
+.head-link {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 30px;
+  padding: 0 11px;
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--slate-700);
+  transition: background .15s, color .15s;
+}
+.panel-head .head-link svg { width: 14px; height: 14px; color: currentColor; }
+.head-link:hover { background: var(--slate-800); color: #fff; }
+.who-online { padding: 4px 20px; }
+.who-block { padding: 16px 0; }
+.who-block + .who-block { border-top: 1px solid var(--border); }
+.who-block p { margin: 0; }
+.who-lead { font-size: 14px; color: var(--text-2); }
+.who-lead b { font-weight: 700; color: var(--slate-900); }
+/* Forum istatistikleri: üç ana sayı + alt notlar */
+.board-figs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0;
+  background: var(--surface);
+}
+.board-figs div {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas: "icon label" "icon value";
+  align-items: center;
+  column-gap: 14px;
+  padding: 16px 20px;
+}
+.board-figs div + div { border-left: 1px solid var(--border); }
+.board-figs svg { grid-area: icon; width: 20px; height: 20px; color: var(--slate-400); }
+.board-figs dt { grid-area: label; font-size: 12.5px; color: var(--text-3); }
+.board-figs dd { grid-area: value; margin: 0; font-size: 19px; font-weight: 700; letter-spacing: -.01em; color: var(--slate-900); font-variant-numeric: tabular-nums; }
+.board-notes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 6px 24px;
+  padding: 12px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text-2);
+}
+.board-notes p { margin: 0; }
+.board-notes svg { width: 15px; height: 15px; margin: -2px 8px 0 0; vertical-align: middle; color: var(--slate-400); }
+.board-notes a, .board-notes b { font-weight: 700; color: var(--slate-900); }
+.board-notes a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.board-notes time { color: var(--text-3); }
+@media (max-width: 560px) {
+  .board-figs div { grid-template-columns: 1fr; grid-template-areas: "label" "value"; padding: 12px 14px; }
+  .board-figs svg { display: none; }
+  .board-figs dd { font-size: 16px; }
+}
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
+/* Kullanıcı tepsisi */
+.tray-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  margin: -1px -1px 0;
+  border-radius: var(--radius) var(--radius) 0 0;
+  background: var(--head-tint);
+}
+.tray-head .avatar { background: var(--surface); }
+.tray-body { padding: 0 18px 16px; }
+.tray-who { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.tray-name { font-size: 16px; font-weight: 700; letter-spacing: -.01em; }
+.user-title {
+  align-self: flex-start;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--text-3);
+}
+.pm-notice {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  background: var(--slate-100);
+  color: var(--slate-700);
+  font-size: 13px;
+  transition: background .15s;
+}
+.pm-notice:hover { background: var(--slate-200); color: var(--slate-900); }
+.pm-notice svg { width: 16px; height: 16px; color: var(--slate-600); }
+.pm-notice span { flex: 1; }
+.pm-notice b { color: var(--slate-900); }
+.pm-notice .pm-arrow { width: 14px; height: 14px; color: var(--slate-400); }
+
+.quick-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 12px;
+}
+.quick-grid a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 11px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--slate-700);
+  white-space: nowrap;
+  transition: background .15s, border-color .15s, color .15s;
+}
+.quick-grid a svg { width: 16px; height: 16px; color: var(--slate-400); }
+.quick-grid a:hover { background: var(--slate-50); border-color: var(--slate-300); color: var(--slate-900); }
+.quick-grid a:hover svg { color: var(--slate-700); }
+.tray-logout {
+  margin-left: auto;
+  align-self: flex-start;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  color: var(--slate-500);
+  transition: background .15s, color .15s;
+}
+.tray-logout svg { width: 16px; height: 16px; }
+.tray-logout:hover { background: #fef2f2; color: var(--c-admin); }
+.pm-count {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--slate-800);
+  color: #fff !important;
+  font-size: 11.5px;
+  font-weight: 600;
+}
+
+/* Kullanıcı bilgileri: konu, mesaj, referans, rep, son ziyaret, kayıt */
+.tray-meta {
+  margin: 0 -18px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.tray-meta div { padding: 10px 18px; border-bottom: 1px solid var(--border); }
+.tray-meta div:nth-child(odd):not(.wide) { border-right: 1px solid var(--border); }
+.tray-meta .wide { grid-column: 1 / -1; }
+.tray-meta div { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 13px; }
+.tray-meta dt { display: flex; align-items: center; gap: 8px; color: var(--text-3); }
+.tray-meta dt svg { width: 15px; height: 15px; color: var(--slate-400); }
+.tray-meta dd { margin: 0; font-weight: 600; color: var(--slate-700); }
+.tray-meta dd a { color: var(--slate-900); font-variant-numeric: tabular-nums; }
+.tray-meta dd a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.tray-meta dd a.rep-pos { color: #3f7a63; }
+
+.panel-foot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 11px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--slate-600);
+}
+.panel-foot svg { width: 14px; height: 14px; }
+.panel-foot:hover { background: var(--surface-2); }
+
+/* Misafir giriş kartı */
+.tray-login { display: grid; gap: 12px; padding: 16px 18px 4px; }
+.login-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 12.5px; }
+.login-row a { font-weight: 600; color: var(--slate-600); }
+.login-row a:hover { color: var(--slate-900); }
+.tray-login .btn { margin-top: 2px; }
+.tray-register { margin: 0; padding: 12px 18px 16px; text-align: center; font-size: 13px; color: var(--text-3); }
+.tray-register a { font-weight: 700; color: var(--slate-900); }
+.tray-register a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.guest-tray .user-title { line-height: 1.4; }
+
+/* Kart üye/misafir durumuna göre gösterilir (MyBB şablonlarında koşul yok) */
+.guest-tray:not([data-uid="0"]) { display: none; }
+
+/* İtibar puanı: artı/eksi rengi */
+.tray-meta [data-rep]:not([data-rep="0"]):not([data-rep^="-"]) { color: #3f7a63; }
+.tray-meta [data-rep]:not([data-rep="0"]):not([data-rep^="-"])::before { content: "+"; }
+.tray-meta [data-rep^="-"] { color: var(--c-admin); }
+
+/* İstatistik: "üyeler" dil değişkeni küçük harfle gelir */
+.board-figs dt.cap::first-letter { text-transform: uppercase; }
+
+/* Okunmamış özel mesaj yoksa sayaç gizlenir */
+.pm-count[data-count="0"] { display: none; }
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width: 980px) {
+  .layout-home { display: flex; flex-direction: column; align-items: stretch; gap: 20px; padding-bottom: 40px; }
+  .layout-home .content { display: contents; }
+  .layout-home .sidebar { order: 1; }
+  .layout-home .after-sidebar { order: 2; }
+}
+
+@media (max-width: 760px) {
+  .hero { flex-direction: column; align-items: flex-start; padding-top: 22px; padding-bottom: 20px; }
+  .hero h1 { font-size: 27px; }
+  .hero-actions { width: 100%; flex-wrap: wrap; }
+  .hero-actions .btn { flex: 1 1 auto; justify-content: center; min-width: 0; }
+  .legend .forum-status { width: 28px; height: 28px; }
+  .legend-action { margin-left: 0; }
+}
+
+/* Ana sayfa simge açıklamaları (mobil): düzenli 2 sütun, aksiyon ayrı satırda */
+@media (max-width: 760px) {
+  .forum-legend {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 14px;
+    padding: 14px 16px 0;
+    font-size: 12.5px;
+  }
+  .forum-legend > span { min-width: 0; gap: 8px; }
+  .forum-legend .hide-sm { display: none; }
+  .forum-legend:not(:has(.legend-action)) { padding-bottom: 14px; }
+  .forum-legend .forum-status { width: 26px; height: 26px; flex-shrink: 0; }
+  .forum-legend .forum-status svg { width: 13px; height: 13px; }
+  .forum-legend .legend-action {
+    grid-column: 1 / -1;
+    justify-content: center;
+    margin: 2px -16px 0;
+    padding: 12px 16px;
+    border-top: 1px solid var(--border);
+  }
+}

@@ -1,0 +1,146 @@
+/* =========================================================
+   Arduvaz — memberlist.css
+   Üye listesi. Sadece memberlist.php sayfasında yüklenir.
+   ========================================================= */
+
+.ml { display: flex; flex-direction: column; gap: 16px; padding-bottom: 56px; }
+.ml-filter .panel-head h1 { margin: 0; font-size: 16px; font-weight: 700; letter-spacing: -.01em; }
+.ml-count { margin-left: auto; font-size: 13px; color: var(--text-3); }
+.ml-count b { color: var(--slate-900); }
+.ml-form { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 14px 20px; background: var(--surface); }
+.ml-search { position: relative; flex: 1 1 260px; }
+.ml-search svg { position: absolute; left: 12px; top: 50%; width: 16px; height: 16px; transform: translateY(-50%); color: var(--slate-400); pointer-events: none; }
+.ml-search input {
+  width: 100%;
+  height: 36px;
+  padding: 0 12px 0 36px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  font: inherit;
+  font-size: 13.5px;
+  color: var(--text);
+}
+.ml-search input:focus { outline: 2px solid var(--slate-300); border-color: var(--slate-400); }
+.ml-form .select { flex: 0 1 200px; }
+.ml-search-web { flex: 1 1 200px; }
+.ml-letters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  padding: 10px 16px 12px;
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+}
+.ml-letters a {
+  min-width: 30px;
+  height: 30px;
+  padding: 0 8px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--slate-500);
+  transition: background .15s, color .15s;
+}
+.ml-letters a:hover { background: var(--slate-100); color: var(--slate-900); }
+.ml-letters a.is-active { background: var(--slate-800); color: #fff; }
+
+.ml-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+.ml-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 20px 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  text-align: center;
+  transition: border-color .15s, box-shadow .15s, transform .15s;
+}
+.ml-card:hover { border-color: var(--slate-300); box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+.ml-av { --size: 150px; border-radius: 16px; }
+.ml-name { margin: 14px 0 0; font-size: 16px; font-weight: 700; letter-spacing: -.01em; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ml-name a { color: var(--slate-900); }
+.ml-name a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.ml-title { display: flex; align-items: center; gap: 6px; margin: 2px 0 0; font-size: 12.5px; font-weight: 500; color: var(--text-3); }
+.ml-title .pa-stars { margin: 0; }
+.ml-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  margin: 16px 0 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--body-tint);
+}
+.ml-stats div { padding: 8px 6px; }
+.ml-stats div + div { border-left: 1px solid var(--border); }
+.ml-stats dt { font-size: 11px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--slate-500); }
+.ml-stats dd { margin: 1px 0 0; font-size: 15px; font-weight: 700; color: var(--slate-900); font-variant-numeric: tabular-nums; }
+.ml-meta { width: 100%; margin: 12px 0 0; display: grid; gap: 5px; font-size: 12.5px; }
+.ml-meta div { display: flex; justify-content: space-between; gap: 8px; }
+.ml-meta dt { color: var(--text-3); }
+.ml-meta dd { margin: 0; font-weight: 600; color: var(--slate-700); }
+.ml-actions { display: flex; gap: 8px; width: 100%; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border); }
+.ml-actions .btn { flex: 1; }
+.ml-actions .btn svg { width: 15px; height: 15px; }
+.ml-actions .icon-btn { width: 34px; height: 34px; }
+
+@media (max-width: 1180px) {
+  .ml-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 860px) {
+  .ml-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+}
+@media (max-width: 560px) {
+  .ml-card { padding: 18px 12px 14px; }
+  .ml-av { --size: 96px; border-radius: 14px; }
+  .ml-name { font-size: 14.5px; margin-top: 10px; }
+  .ml-meta { display: none; }
+  .ml-form .select { flex: 1 1 140px; }
+  .ml-count { display: none; }
+  .ml-letters { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+  .ml-letters a { flex-shrink: 0; }
+}
+
+/* =========================================================
+   MYBB UYUMU
+   ========================================================= */
+.ml-av { position: relative; overflow: hidden; }
+.ml-av img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.ml-av img[src*="default_avatar"] { display: none; }
+.ml-title .pa-stars:empty { display: none; }
+.ml-title { flex-wrap: wrap; justify-content: center; text-align: center; }
+.ml-groupimage { max-width: 100%; margin-top: 6px; }
+.ml-order { display: flex; align-items: center; gap: 12px; font-size: 13px; color: var(--text-2); }
+.ml-order label { display: inline-flex; align-items: center; gap: 5px; cursor: pointer; }
+.ml-order input { margin: 0; accent-color: var(--slate-800); }
+.ml-empty { grid-column: 1 / -1; margin: 0; padding: 40px 20px; text-align: center; color: var(--text-3); background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+.ml-stats:has(> div:nth-child(3)) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.ml-search .select2-container { width: 100%; }
+
+/* Kullanıcı adı alanı: MyBB select2 (otomatik tamamlama) görünümü */
+.ml-search svg { z-index: 1; pointer-events: none; }
+.ml-search .select2-container .select2-choice {
+  height: 38px;
+  padding-left: 38px;
+  line-height: 36px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: none;
+  font-size: 13.5px;
+  color: var(--text);
+}
+.ml-search .select2-container .select2-choice .select2-arrow { display: none; }
+.ml-search .select2-container .select2-choice .select2-chosen { margin-right: 26px; }
+.ml-search .select2-container .select2-choice.select2-default { color: var(--slate-400); }
+.ml-search .select2-container-active .select2-choice { border-color: var(--slate-400); box-shadow: 0 0 0 3px rgba(100, 116, 139, .15); }
+
+@media (max-width: 560px) {
+  .ml-stats > div:nth-child(n+3) { display: none; }
+  .ml-stats:has(> div:nth-child(3)) { grid-template-columns: 1fr 1fr; }
+}

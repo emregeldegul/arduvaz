@@ -1,0 +1,55 @@
+/* =========================================================
+   Arduvaz — online.css
+   Kimler çevrimiçi ve bugün gelenler. Sadece online.php sayfasında yüklenir.
+   ========================================================= */
+
+.online-page { display: flex; flex-direction: column; gap: 16px; padding-bottom: 56px; }
+.online-page .fd-toolbar:not(:has(*)) { display: none; }
+
+.online-cols,
+.online-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 160px minmax(0, 1.4fr);
+  gap: 16px;
+  align-items: center;
+  padding: 0 20px;
+}
+.online-today .online-cols,
+.online-today .online-row { grid-template-columns: minmax(0, 1fr) 200px; }
+.online-cols {
+  min-height: 40px;
+  border-top: 1px solid var(--border);
+  background: var(--surface-2);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--slate-600);
+}
+.online-cols a { color: inherit; }
+.online-cols a:hover { color: var(--slate-900); }
+
+.online-row {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  border-top: 1px solid var(--slate-100);
+  background: var(--surface);
+  font-size: 13.5px;
+}
+.online-row:hover { background: var(--slate-50); }
+.online-user { min-width: 0; font-weight: 600; }
+.online-ip { display: block; margin-top: 2px; font-size: 12px; font-weight: 400; color: var(--text-3); }
+.online-ip a { margin-left: 4px; font-weight: 600; color: var(--slate-600); }
+.online-time { font-size: 13px; color: var(--text-3); }
+.online-loc { min-width: 0; color: var(--text-2); overflow-wrap: anywhere; }
+.online-loc a { font-weight: 600; color: var(--slate-800); }
+.online-loc a:hover { color: var(--slate-900); }
+.online-summary { margin: 0; padding: 14px 20px; border-top: 1px solid var(--slate-100); font-size: 13px; text-align: center; color: var(--text-2); background: var(--surface-2); }
+
+@media (max-width: 760px) {
+  .online-cols { display: none; }
+  .online-row,
+  .online-today .online-row { grid-template-columns: minmax(0, 1fr) auto; gap: 4px 12px; padding: 12px 16px; }
+  .online-loc { grid-column: 1 / -1; font-size: 13px; }
+  .panel-head-links { gap: 12px; }
+}

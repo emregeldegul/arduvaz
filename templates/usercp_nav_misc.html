@@ -1,0 +1,15 @@
+<div class="ucp-group">
+	<div class="ucp-group-head tcat_collapse{$collapsedimg['usercpmisc']}">
+		<span>{$lang->ucp_nav_misc}</span>
+		<div class="expcolimage collapse-btn"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" id="usercpmisc_img" class="expander" alt="{$expaltext}" title="{$expaltext}" /></div>
+	</div>
+	<div class="ucp-links" style="{$collapsed['usercpmisc_e']}" id="usercpmisc_e">
+		<a href="usercp.php?action=usergroups" class="usercp_nav_item usercp_nav_usergroups"><svg><use href="{$theme['imgdir']}/icons.svg#i-users"/></svg>{$lang->ucp_nav_usergroups}</a>
+		<a href="usercp.php?action=editlists" class="usercp_nav_item usercp_nav_editlists"><svg><use href="{$theme['imgdir']}/icons.svg#i-user-check"/></svg>{$lang->ucp_nav_editlists}</a>
+		{$attachmentop}
+		<a href="usercp.php?action=drafts" class="usercp_nav_item usercp_nav_drafts"><svg><use href="{$theme['imgdir']}/icons.svg#i-note"/></svg>{$draftcount}</a>
+		<a href="usercp.php?action=subscriptions" class="usercp_nav_item usercp_nav_subscriptions"><svg><use href="{$theme['imgdir']}/icons.svg#i-bell"/></svg>{$lang->ucp_nav_subscribed_threads}</a>
+		<a href="usercp.php?action=forumsubscriptions" class="usercp_nav_item usercp_nav_fsubscriptions"><svg><use href="{$theme['imgdir']}/icons.svg#i-chat"/></svg>{$lang->ucp_nav_forum_subscriptions}</a>
+		<a href="{$profile_link}" class="usercp_nav_item usercp_nav_viewprofile"><svg><use href="{$theme['imgdir']}/icons.svg#i-eye"/></svg>{$lang->ucp_nav_view_profile}</a>
+	</div>
+</div>

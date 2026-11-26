@@ -1,0 +1,164 @@
+/* =========================================================
+   Arduvaz — showthread.css
+   Konu sayfası: konu bilgi alanı, hızlı yanıt. MyBB'nin showthread.css dosyasının yerini alır.
+   ========================================================= */
+
+.st { display: flex; flex-direction: column; gap: 16px; padding-bottom: 56px; }
+
+/* ---- Konu bilgi alanı (kompakt) ---- */
+.thread-info { background: var(--surface); }
+.ti-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 14px 20px;
+}
+.ti-text { min-width: 0; }
+.ti-text h1 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -.015em;
+  line-height: 1.3;
+}
+.ti-text h1 .prefix { font-size: 11px; }
+.ti-sub {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 3px 0 0;
+  min-width: 0;
+  font-size: 12.5px;
+  color: var(--text-3);
+}
+.ti-forum { display: inline-flex; align-items: center; gap: 5px; flex-shrink: 0; font-weight: 600; color: var(--slate-700); }
+.ti-forum svg { width: 13px; height: 13px; color: var(--slate-400); }
+.ti-forum:hover { color: var(--slate-900); }
+.ti-desc { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ti-desc::before { content: "·"; margin-right: 8px; color: var(--slate-300); }
+
+.ti-side { display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
+.ti-rating { display: flex; flex-direction: column; align-items: flex-end; }
+.rate-text { font-size: 11.5px; color: var(--text-3); }
+.rate-text b { color: var(--slate-800); }
+
+.ti-actions { display: flex; gap: 6px; padding-left: 16px; border-left: 1px solid var(--border); }
+.ti-btn {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--slate-500);
+  transition: background .15s, border-color .15s, color .15s;
+}
+.ti-btn svg { width: 15px; height: 15px; }
+.ti-btn:hover { border-color: var(--slate-300); background: var(--slate-50); color: var(--slate-900); }
+.ti-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 22px;
+  margin: 0;
+  padding: 9px 20px;
+  border-top: 1px solid var(--border);
+  background: var(--body-tint);
+  font-size: 12.5px;
+}
+.fact { display: flex; align-items: center; gap: 5px; white-space: nowrap; }
+.fact dt { color: var(--text-3); }
+.fact dt::after { content: ":"; }
+.fact dd { display: flex; align-items: center; gap: 5px; margin: 0; font-weight: 600; color: var(--slate-800); }
+.fact dd a { color: var(--slate-800); }
+
+/* ---- Hızlı yanıt ---- */
+/* =========================================================
+   MYBB UYUMU
+   ========================================================= */
+/* MyBB önekten sonra &nbsp; ekler; flex gap (4px) ile birlikte ~9px aralık kalır */
+.ti-text h1:has(> .prefix) { gap: 4px; }
+.ti-rating .rate-text { margin-top: 2px; }
+.ti-actions:empty { display: none; }
+.fact time:empty::before { content: "\2013"; }
+.flip { transform: rotate(180deg); }
+
+/* Önceki/sonraki konu ve görünüm modu */
+.st-nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; font-size: 13px; }
+.st-nav .btn svg { width: 15px; height: 15px; }
+.st-mode { font-weight: 600; color: var(--slate-600); }
+.st-mode:hover { color: var(--slate-900); }
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width: 980px) {
+  .ti-top { flex-wrap: wrap; }
+  .ti-text { flex-basis: 100%; }
+  .ti-side { width: 100%; justify-content: space-between; }
+}
+@media (max-width: 760px) {
+  .ti-top { gap: 12px; padding: 14px 16px; }
+  .ti-desc { display: none; }
+  /* Başlık düz metin akışı: prefix başlığın başında durur, ayrı satıra düşmez */
+  .ti-text h1 { display: block; font-size: 16.5px; line-height: 1.4; }
+  .ti-text h1 .prefix { display: inline-flex; vertical-align: 2px; margin-right: 2px; }
+  .ti-sub { margin-top: 5px; }
+
+  /* Puan + araçlar: başlığın altında tek bant; puan solda (yıldız + oy bilgisi), araçlar sağda */
+  .ti-side { align-items: center; padding-top: 12px; border-top: 1px solid var(--border); }
+  .ti-side .ti-rating { flex-direction: column; align-items: flex-start; gap: 3px; }
+  .ti-side .ti-rating .rate-text { margin-top: 0; }
+  .ti-actions { border-left: 0; padding-left: 0; }
+  .ti-side:not(:has(.ti-rating)) { justify-content: flex-end; }
+
+  /* Bilgiler: üstte kısa olanlar (açan / yanıt / görüntülenme), altta iki tarih; etiket üstte, değer altta */
+  .ti-facts { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px 12px; padding: 12px 16px; }
+  .fact { flex-direction: column; align-items: flex-start; gap: 1px; min-width: 0; grid-column: span 2; }
+  .fact:nth-child(2), .fact:nth-child(3) { grid-column: span 3; order: 1; }
+  .fact dt { font-size: 11.5px; }
+  .fact dt::after { content: none; }
+  .fact dd { max-width: 100%; overflow: hidden; text-overflow: ellipsis; }
+}
+
+@media print {
+  .site-header, .site-footer, .breadcrumb, .ti-actions, .rate-stars,
+  .fd-toolbar, .post-foot, .quick-reply { display: none !important; }
+  body { background: #fff; }
+}
+
+/* Görünüm / not bağlantıları */
+.st-modes { display: flex; align-items: center; gap: 16px; }
+
+/* Konu notları (moderatör) — .thead daraltma için var, rengini ezer */
+.st-notes .panel-head.thead { padding: 14px 14px 14px 20px; background: var(--head-tint); color: var(--text); font-weight: inherit; }
+.st-notes .panel-head h2 { flex: 1; }
+.st-notes .collapse-btn { position: relative; width: 28px; height: 28px; border-radius: 7px; color: var(--slate-600); }
+.st-notes .collapse-btn:hover { background: var(--slate-200); }
+.st-notes .collapse-btn img { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
+.st-notes .collapse-btn::before,
+.st-notes .collapse-btn::after { content: ""; position: absolute; top: 50%; left: 50%; width: 10px; height: 2px; margin: -1px 0 0 -5px; border-radius: 1px; background: currentColor; pointer-events: none; }
+.st-notes .collapse-btn::after { transform: rotate(90deg); opacity: 0; }
+.st-notes .thead_collapsed .collapse-btn::after { opacity: 1; }
+.st-notes .thead_collapsed { border-radius: var(--radius); }
+.st-notes-body { padding: 14px 20px; background: var(--surface); font-size: 14px; line-height: 1.6; color: var(--text-2); }
+.st-notes-all { font-weight: 600; }
+
+/* Ağaç görünümü */
+.st-tree-list { padding: 10px 20px 14px; background: var(--surface); font-size: 13.5px; }
+.st-tree-item { position: relative; padding: 5px 0 5px 14px; }
+.st-tree-item::before { content: ""; position: absolute; left: 2px; top: 13px; width: 5px; height: 5px; border-radius: 50%; background: var(--slate-300); }
+.st-tree-item.is-active::before { background: var(--slate-800); }
+.st-tree-meta { font-size: 12.5px; color: var(--text-3); }
+
+/* Benzer konular */
+.st-similar-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 10px; padding: 16px 20px 20px; background: var(--surface); }
+.st-similar-item { display: flex; flex-direction: column; gap: 6px; padding: 12px 14px; border: 1px solid var(--border); border-radius: var(--radius-sm); }
+.st-similar-item h3 { margin: 0; font-size: 14px; font-weight: 600; line-height: 1.4; }
+.st-similar-item h3 .prefix { margin-right: 6px; }
+.st-similar-meta { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 12.5px; color: var(--text-3); }
+.st-similar-last { font-size: 12px; color: var(--text-3); }

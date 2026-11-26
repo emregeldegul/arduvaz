@@ -1,0 +1,54 @@
+<html xml:lang="{$lang->settings['htmllang']}" lang="{$lang->settings['htmllang']}" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$mybb->settings['bbname']} - {$lang->edit_post}</title>
+{$headerinclude}
+{$post_javascript}
+</head>
+<body>
+{$header}
+<main class="post-page">
+	{$preview}
+	{$post_errors}
+	{$attacherror}
+	{$moderation_notice}
+	{$deletebox}
+	<form id="editpost" action="editpost.php?pid={$pid}&amp;processed=1" name="input" method="post" enctype="multipart/form-data" class="post-form">
+		<input type="hidden" name="my_post_key" value="{$mybb->post_code}" />
+		<section class="panel">
+			<header class="panel-head"><svg><use href="{$theme['imgdir']}/icons.svg#i-edit"/></svg><h1>{$lang->edit_post}</h1>{$loginbox}</header>
+			<div class="form-rows">
+				<div class="form-row">
+					<label class="form-label" for="subject">{$lang->subject}</label>
+					<div class="form-field form-subject">{$prefixselect}<input type="text" class="textbox" name="subject" id="subject" maxlength="85" value="{$subject}" tabindex="1" /></div>
+				</div>
+				{$posticons}
+				<div class="form-row form-row-message">
+					<label class="form-label" for="message">{$lang->your_message}</label>
+					<div class="form-field">
+						<textarea name="message" id="message" rows="20" cols="70" tabindex="3">{$message}</textarea>
+						{$codebuttons}
+					</div>
+					<div class="form-smilies">{$smilieinserter}</div>
+				</div>
+				{$editreason}
+				<!-- Seçenek satırları: arduvaz.js sekmelere çevirir (JS yoksa satır olarak kalır) -->
+				<div class="post-opts">
+					{$postoptions}
+					{$subscriptionmethod}
+					{$pollbox}
+				</div>
+			</div>
+		</section>
+		{$attachbox}
+		<div class="post-actions">
+			<input type="submit" class="btn btn-dark" name="submitbutton" value="{$lang->update_post}" tabindex="3" accesskey="s" />
+			<input type="submit" class="btn btn-light" name="previewpost" value="{$lang->preview_post}" tabindex="4" />
+		</div>
+		<input type="hidden" name="action" value="do_editpost" />
+		<input type="hidden" name="attachmentaid" value="" />
+		<input type="hidden" name="attachmentact" value="" />
+	</form>
+</main>
+{$footer}
+</body>
+</html>

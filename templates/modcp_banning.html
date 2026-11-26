@@ -1,0 +1,30 @@
+<html xml:lang="{$lang->settings['htmllang']}" lang="{$lang->settings['htmllang']}" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$mybb->settings['bbname']} - {$lang->ban_banned}</title>
+{$headerinclude}
+</head>
+<body>
+{$header}
+<table width="100%" border="0" align="center">
+<tr>
+{$modcp_nav}
+<td valign="top">
+	<table border="0" cellspacing="0" cellpadding="0" class="tborder ucp-table mcp-bans">
+		<tr>
+			<td class="thead" colspan="4"><strong>{$lang->ban_banned}</strong><a href="modcp.php?action=banuser" class="ucp-head-link">{$lang->ban_user}</a></td>
+		</tr>
+		<tr>
+			<td class="tcat">{$lang->username}</td>
+			<td class="tcat">{$lang->reason}</td>
+			<td class="tcat">{$lang->ban_length}</td>
+			<td class="tcat">{$lang->ban_bannedby}</td>
+		</tr>
+		{$bannedusers}
+	</table>
+	{$multipage}
+</td>
+</tr>
+</table>
+{$footer}
+</body>
+</html>

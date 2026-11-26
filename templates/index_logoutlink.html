@@ -1,0 +1,32 @@
+<section class="panel user-tray">
+	<div class="tray-head">
+		<span class="avatar avatar-default avatar-lg" aria-hidden="true"><svg><use href="{$theme['imgdir']}/icons.svg#i-avatar"/></svg></span>
+		<div class="tray-who">
+			<a href="{$mybb->settings['bburl']}/member.php?action=profile&amp;uid={$mybb->user['uid']}" class="tray-name">{$mybb->user['username']}</a>
+			<span class="user-title">{$mybb->user['usertitle']}</span><span class="user-title user-group">{$mybb->usergroup['title']}</span>
+		</div>
+		<a href="{$mybb->settings['bburl']}/member.php?action=logout&amp;logoutkey={$mybb->user['logoutkey']}" class="tray-logout" aria-label="{$lang->index_logout}" title="{$lang->index_logout}"><svg><use href="{$theme['imgdir']}/icons.svg#i-power"/></svg></a>
+	</div>
+	<div class="tray-body">
+		<dl class="tray-meta">
+			<div><dt><svg><use href="{$theme['imgdir']}/icons.svg#i-chat"/></svg>{$lang->forumbit_threads}</dt><dd><a href="{$mybb->settings['bburl']}/search.php?action=finduserthreads&amp;uid={$mybb->user['uid']}">{$mybb->user['threadnum']}</a></dd></div>
+			<div><dt><svg><use href="{$theme['imgdir']}/icons.svg#i-reply"/></svg>{$lang->forumbit_posts}</dt><dd><a href="{$mybb->settings['bburl']}/search.php?action=finduser&amp;uid={$mybb->user['uid']}">{$mybb->user['postnum']}</a></dd></div>
+			<!-- TODO:lang -->
+			<div><dt><svg><use href="{$theme['imgdir']}/icons.svg#i-user-plus"/></svg>Referrals</dt><dd>{$mybb->user['referrals']}</dd></div>
+			<!-- TODO:lang -->
+			<div><dt><svg><use href="{$theme['imgdir']}/icons.svg#i-heart"/></svg>Rep</dt><dd><a href="{$mybb->settings['bburl']}/reputation.php?uid={$mybb->user['uid']}" data-rep="{$mybb->user['reputation']}">{$mybb->user['reputation']}</a></dd></div>
+			<!-- TODO:lang -->
+			<div class="wide"><dt><svg><use href="{$theme['imgdir']}/icons.svg#i-clock"/></svg>Last visit</dt><dd>{$lastvisit}</dd></div>
+		</dl>
+		<a href="{$mybb->settings['bburl']}/private.php" class="pm-notice">
+			<svg><use href="{$theme['imgdir']}/icons.svg#i-mail"/></svg>
+			<span>{$lang->private_messages}</span>
+			<b class="pm-count" data-count="{$mybb->user['pms_unread']}">{$mybb->user['pms_unread']}</b>
+			<svg class="pm-arrow"><use href="{$theme['imgdir']}/icons.svg#i-arrow"/></svg>
+		</a>
+		<div class="quick-grid">
+			<a href="{$mybb->settings['bburl']}/member.php?action=profile&amp;uid={$mybb->user['uid']}"><svg><use href="{$theme['imgdir']}/icons.svg#i-user"/></svg>{$lang->postbit_button_profile}</a>
+			<a href="{$mybb->settings['bburl']}/usercp.php"><svg><use href="{$theme['imgdir']}/icons.svg#i-gear"/></svg>{$lang->welcome_usercp}</a>
+		</div>
+	</div>
+</section>

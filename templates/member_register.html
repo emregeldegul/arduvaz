@@ -1,0 +1,114 @@
+<html xml:lang="{$lang->settings['htmllang']}" lang="{$lang->settings['htmllang']}" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$mybb->settings['bbname']} - {$lang->registration}</title>
+{$headerinclude}
+<script type="text/javascript" src="{$mybb->asset_url}/jscripts/validate/jquery.validate.min.js?ver=1821"></script>
+</head>
+<body>
+{$header}
+<main class="rg">
+	<form action="member.php" method="post" id="registration_form" class="rg-form">
+		<input type="text" style="visibility: hidden; position: absolute;" value="" name="regcheck1" aria-hidden="true" tabindex="-1" />
+		<input type="text" style="visibility: hidden; position: absolute;" value="true" name="regcheck2" aria-hidden="true" tabindex="-1" />
+		{$regerrors}
+		<div class="panel rg-card">
+			<header class="panel-head"><svg><use href="{$theme['imgdir']}/icons.svg#i-user-plus"/></svg><h2>{$lang->registration}</h2></header>
+			<div class="rg-cols">
+				<div class="rg-col">
+					<section class="rg-section">
+						<header class="panel-head"><svg><use href="{$theme['imgdir']}/icons.svg#i-user"/></svg><h2>{$lang->account_details}</h2></header>
+						<div class="rg-body">
+							<div class="rg-field">
+								<label for="username">{$lang->username}</label>
+								<input type="text" class="textbox" name="username" id="username" value="{$username}" autocomplete="username" />
+							</div>
+							{$passboxes}
+							<div class="rg-row">
+								<div class="rg-field">
+									<label for="email">{$lang->email}</label>
+									<input type="email" class="textbox" name="email" id="email" maxlength="50" value="{$email}" autocomplete="email" />
+								</div>
+								<div class="rg-field">
+									<label for="email2">{$lang->confirm_email}</label>
+									<input type="email" class="textbox" name="email2" id="email2" maxlength="50" value="{$email2}" autocomplete="email" />
+								</div>
+							</div>
+							<div class="rg-status" id="email_status" style="display: none;">&nbsp;</div>
+							{$hiddencaptcha}
+						</div>
+					</section>
+					{$requiredfields}
+					{$customfields}
+					{$referrer}
+				</div>
+
+				<div class="rg-col rg-col-side">
+					<section class="rg-section">
+						<header class="panel-head"><svg><use href="{$theme['imgdir']}/icons.svg#i-gear"/></svg><h2>{$lang->account_prefs}</h2></header>
+						<div class="rg-body">
+							<fieldset class="rg-checks">
+								<legend class="sr-only">{$lang->account_prefs}</legend>
+								<label class="check"><input type="checkbox" class="checkbox" name="allownotices" id="allownotices" value="1" {$allownoticescheck} /> {$lang->allow_notices}</label>
+								<label class="check"><input type="checkbox" class="checkbox" name="hideemail" id="hideemail" value="1" {$hideemailcheck} /> {$lang->hide_email}</label>
+								<label class="check"><input type="checkbox" class="checkbox" name="receivepms" id="receivepms" value="1" {$receivepmscheck} /> {$lang->receive_pms}</label>
+								<label class="check"><input type="checkbox" class="checkbox" name="pmnotice" id="pmnotice" value="1"{$pmnoticecheck} /> {$lang->pm_notice}</label>
+								<label class="check"><input type="checkbox" class="checkbox" name="pmnotify" id="pmnotify" value="1" {$pmnotifycheck} /> {$lang->email_notify_newpm}</label>
+								<label class="check"><input type="checkbox" class="checkbox" name="invisible" id="invisible" value="1" {$invisiblecheck} /> {$lang->invisible_mode}</label>
+							</fieldset>
+							<div class="rg-field">
+								<label for="subscriptionmethod">{$lang->subscription_method}</label>
+								<select name="subscriptionmethod" id="subscriptionmethod" class="select">
+									<option value="0" {$no_auto_subscribe_selected}>{$lang->no_auto_subscribe}</option>
+									<option value="1" {$no_subscribe_selected}>{$lang->no_subscribe}</option>
+									<option value="2" {$instant_email_subscribe_selected}>{$lang->instant_email_subscribe}</option>
+									<option value="3" {$instant_pm_subscribe_selected}>{$lang->instant_pm_subscribe}</option>
+								</select>
+							</div>
+						</div>
+					</section>
+
+					<section class="rg-section">
+						<header class="panel-head"><svg><use href="{$theme['imgdir']}/icons.svg#i-globe"/></svg><h2>{$lang->time_offset}</h2></header>
+						<div class="rg-body">
+							<p class="rg-hint">{$lang->time_offset_desc}</p>
+							<div class="rg-field rg-select">
+								<label for="timezoneoffset">{$lang->time_offset}</label>
+								{$tzselect}
+							</div>
+							<div class="rg-field">
+								<label for="dstcorrection">{$lang->dst_correction}</label>
+								<select name="dstcorrection" id="dstcorrection" class="select">
+									<option value="2" {$dst_auto_selected}>{$lang->dst_correction_auto}</option>
+									<option value="1" {$dst_enabled_selected}>{$lang->dst_correction_enabled}</option>
+									<option value="0" {$dst_disabled_selected}>{$lang->dst_correction_disabled}</option>
+								</select>
+							</div>
+						</div>
+					</section>
+
+					{$boardlanguage}
+				</div>
+			</div>
+
+			<!-- Doğrulama (görsel / captcha sağlayıcı + güvenlik sorusu) tam genişlikte, yan yana -->
+			<div class="rg-verify">
+				{$regimage}
+				{$questionbox}
+			</div>
+
+			<footer class="rg-submit">
+				<input type="hidden" name="regtime" value="{$time}" />
+				<input type="hidden" name="step" value="registration" />
+				<input type="hidden" name="action" value="do_register" />
+				<!-- TODO:lang -->
+				<p>Already have an account? <a href="{$mybb->settings['bburl']}/member.php?action=login" onclick="$('#quick_login').modal({ fadeDuration: 250, keepelement: true, zIndex: (typeof modal_zindex !== 'undefined' ? modal_zindex : 9999) }); return false;">{$lang->welcome_login}</a></p>
+				<button type="submit" class="btn btn-dark" name="regsubmit" value="{$lang->submit_registration}">{$lang->submit_registration}</button>
+			</footer>
+		</div>
+	</form>
+</main>
+{$validator_javascript}
+<script type="text/javascript" src="{$mybb->asset_url}/jscripts/regvalidator.js?ver=1823"></script>
+{$footer}
+</body>
+</html>

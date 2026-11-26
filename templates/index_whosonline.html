@@ -1,0 +1,13 @@
+<section class="panel who-panel after-sidebar">
+	<header class="panel-head">
+		<svg><use href="{$theme['imgdir']}/icons.svg#i-users"/></svg>
+		<h2>{$lang->whos_online}</h2>
+		<a href="{$mybb->settings['bburl']}/online.php" class="head-link">{$lang->complete_list} <svg><use href="{$theme['imgdir']}/icons.svg#i-arrow"/></svg></a>
+	</header>
+	<div class="who-online">
+		<div class="who-block">
+			<p class="who-lead">{$lang->online_note}</p>
+			<p class="user-list">{$onlinemembers}</p>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,31 @@
+<html xml:lang="{$lang->settings['htmllang']}" lang="{$lang->settings['htmllang']}" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$mybb->settings['bbname']} - {$lang->warning_log}</title>
+{$headerinclude}
+</head>
+<body>
+{$header}
+<main class="warn-page">
+	<section class="panel warn-card">
+		<header class="panel-head">
+			<svg><use href="{$theme['imgdir']}/icons.svg#i-alert"/></svg>
+			<h1>{$lang->warning_details}</h1>
+			<span class="warn-status">{$status}</span>
+		</header>
+		<dl class="info-list">
+			{$warning_info}
+			<div><dt>{$lang->warning}</dt><dd>{$warning_type} {$points}</dd></div>
+			<div><dt>{$lang->date_issued}</dt><dd>{$date_issued}</dd></div>
+			<div><dt>{$lang->issued_by}</dt><dd>{$issuedby}</dd></div>
+			<div><dt>{$lang->expiry_date}</dt><dd>{$expires} <small>{$revoked_date}</small></dd></div>
+		</dl>
+		<div class="warn-notes">
+			<h2>{$lang->details_warning_note}</h2>
+			<div class="warn-notes-body">{$notes}</div>
+		</div>
+	</section>
+	{$revoke}
+</main>
+{$footer}
+</body>
+</html>

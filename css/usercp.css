@@ -1,0 +1,390 @@
+/* =========================================================
+   Arduvaz — usercp.css
+   Kullanıcı paneli ve özel mesajlar. MyBB'nin usercp.css dosyasının yerini alır.
+   usercp.php, usercp2.php ve private.php sayfalarında yüklenir.
+   ========================================================= */
+
+/* Yerleşim: MyBB'nin bütün panel sayfaları <table><tr>{$usercpnav}<td>içerik</td></tr></table>
+   yapısını kullanır. Menü hücresi (td.ucp-nav) olan tablo iki sütunlu ızgaraya dönüşür. */
+table:has(> tbody > tr > td.ucp-nav) { display: block; width: 100%; padding-bottom: 56px; border-spacing: 0; }
+table:has(> tbody > tr > td.ucp-nav) > tbody { display: block; }
+table:has(> tbody > tr > td.ucp-nav) > tbody > tr {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+table:has(> tbody > tr > td.ucp-nav) > tbody > tr > td { display: flex; flex-direction: column; gap: 20px; min-width: 0; padding: 0; }
+table:has(> tbody > tr > td.ucp-nav) > tbody > tr > td > br { display: none; }
+table:has(> tbody > tr > td.ucp-nav) > tbody > tr > td > .tborder,
+table:has(> tbody > tr > td.ucp-nav) > tbody > tr > td > form > .tborder { margin: 0; }
+table:has(> tbody > tr > td.ucp-nav) > tbody > tr > td > form { display: flex; flex-direction: column; gap: 16px; margin: 0; }
+table:has(> tbody > tr > td.ucp-nav) > tbody > tr > td > form.panel { gap: 0; }
+
+/* Menü */
+.ucp-nav { position: sticky; top: 88px; }
+.ucp-menu { overflow: hidden; }
+.ucp-links { display: flex; flex-direction: column; padding: 6px; background: var(--surface); }
+.ucp-links a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 7px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--slate-700);
+}
+.ucp-links a svg { width: 16px; height: 16px; color: var(--slate-400); }
+.ucp-links a:hover { background: var(--slate-100); color: var(--slate-900); }
+.ucp-links a.is-active { background: var(--slate-800); color: #fff; }
+.ucp-links a.is-active svg { color: var(--slate-300); }
+
+/* Hiyerarşi (varsayılan temadaki gibi): Gelen Kutusu altındaki klasörler,
+   Profili Düzenle altındaki hesap bağlantıları girintili gösterilir. */
+.ucp-links a.usercp_nav_sub_pmfolder,
+.ucp-links a.usercp_nav_trash_pmfolder,
+.ucp-links a.usercp_nav_username,
+.ucp-links a.usercp_nav_password,
+.ucp-links a.usercp_nav_email,
+.ucp-links a.usercp_nav_avatar,
+.ucp-links a.usercp_nav_editsig {
+  margin-left: 18px;
+  padding: 6px 10px 6px 14px;
+  border-left: 1px solid var(--border);
+  border-radius: 0 7px 7px 0;
+  font-size: 13px;
+}
+.ucp-links a.usercp_nav_sub_pmfolder svg,
+.ucp-links a.usercp_nav_trash_pmfolder svg,
+.ucp-links a.usercp_nav_username svg,
+.ucp-links a.usercp_nav_password svg,
+.ucp-links a.usercp_nav_email svg,
+.ucp-links a.usercp_nav_avatar svg,
+.ucp-links a.usercp_nav_editsig svg { width: 14px; height: 14px; }
+.ucp-group { border-top: 1px solid var(--border); }
+.ucp-group-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px 10px 16px;
+  background: var(--surface-2);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--slate-500);
+}
+.ucp-group-head .collapse-btn {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  color: var(--slate-500);
+}
+.ucp-group-head .collapse-btn:hover { background: var(--slate-100); }
+.ucp-group-head .collapse-btn img { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
+.ucp-group-head .collapse-btn::before,
+.ucp-group-head .collapse-btn::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 2px;
+  margin: -1px 0 0 -5px;
+  border-radius: 1px;
+  background: currentColor;
+  pointer-events: none;
+}
+.ucp-group-head .collapse-btn::after { transform: rotate(90deg); opacity: 0; }
+.ucp-group-head.tcat_collapse_collapsed .collapse-btn::after { opacity: 1; }
+
+/* Ana sayfa: hesap özeti */
+.ucp-summary h1 { margin: 0; font-size: 15px; font-weight: 700; }
+.ucp-summary-body { display: flex; gap: 20px; padding: 20px; background: var(--surface); }
+.ucp-avatar { --size: 120px; position: relative; flex-shrink: 0; overflow: hidden; border-radius: 16px; }
+.ucp-avatar img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.ucp-avatar img[src*="default_avatar"] { display: none; }
+.ucp-who { flex: 1; min-width: 0; }
+.ucp-name { display: block; margin-bottom: 4px; font-size: 18px; font-weight: 700; letter-spacing: -.01em; }
+.ucp-who .info-list { padding: 0; }
+.ucp-who .info-list > div {
+  display: grid;
+  grid-template-columns: 170px minmax(0, 1fr);
+  gap: 12px;
+  padding: 5px 0;
+  font-size: 13px;
+}
+.ucp-who .info-list > div + div { border-top: 0; }
+.ucp-who .info-list dd { text-align: left; }
+.ucp-who .info-list dd small { display: inline; margin-left: 6px; }
+
+/* Not defteri ve form düğmeleri */
+.ucp-notepad { overflow: hidden; }
+.ucp-notepad-body { padding: 16px 20px; background: var(--surface); }
+.ucp-notepad textarea { width: 100%; min-height: 160px; resize: vertical; }
+.ucp-actions { display: flex; justify-content: flex-end; gap: 8px; padding: 12px 20px; border-top: 1px solid var(--border); background: var(--surface-2); }
+
+/* Form sayfaları (profil, seçenekler, avatar, imza, şifre, e-posta) */
+.ucp-title h1 { margin: 0; font-size: 18px; font-weight: 700; letter-spacing: -.01em; }
+.ucp-grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; align-items: start; }
+.ucp-col { display: flex; flex-direction: column; gap: 20px; min-width: 0; }
+.ucp-submit { display: flex; justify-content: flex-end; gap: 8px; }
+.ucp-submit .btn { height: 42px; padding: 0 20px; }
+.panel-head h1 { margin: 0; font-size: 15px; font-weight: 700; letter-spacing: -.01em; }
+.ucp-avatar-current { display: flex; align-items: center; gap: 20px; padding: 20px; background: var(--surface); border-bottom: 1px solid var(--slate-100); }
+.ucp-avatar-note { font-size: 13.5px; line-height: 1.6; color: var(--text-2); }
+.ucp-sig { padding: 16px 20px; font-size: 14px; background: var(--surface); }
+
+@media (max-width: 1100px) {
+  .ucp-grid-2 { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 980px) {
+  table:has(> tbody > tr > td.ucp-nav) > tbody > tr { grid-template-columns: 1fr; }
+  .ucp-nav { position: static; }
+}
+@media (max-width: 560px) {
+  .ucp-summary-body { flex-direction: column; align-items: center; text-align: center; }
+  .ucp-who { width: 100%; text-align: left; }
+  .ucp-who .info-list > div { grid-template-columns: 1fr; gap: 0; }
+}
+
+/* Liste tabloları (abonelikler, taslaklar, ekler, gruplar, istekler) */
+.ucp-table .thead strong { font-size: 14px; }
+.ucp-table .tcat { white-space: nowrap; }
+.ucp-table td { vertical-align: middle; }
+.ucp-table .ucp-icon { width: 1%; padding-right: 0; }
+.ucp-table .ucp-icon .thread-icon,
+.ucp-table .ucp-icon .forum-status { width: 34px; height: 34px; border-radius: 9px; }
+.ucp-table .ucp-icon svg { width: 16px; height: 16px; }
+.ucp-table .post-icon { max-height: 16px; }
+.ucp-table .ucp-num { width: 1%; text-align: center; white-space: nowrap; }
+.ucp-table .ucp-check { width: 1%; text-align: center; }
+.ucp-table .ucp-last { white-space: nowrap; font-size: 12.5px; color: var(--text-3); }
+/* Forum abonelikleri: son mesaj (forumbit_depth2_forum_lastpost) avatarın yanında, forum listesindeki gibi */
+.ucp-last .forum-last { display: flex; align-items: center; gap: 10px; max-width: 320px; }
+.ucp-last .forum-last .avatar { --size: 36px; flex: none; border-radius: 9px; }
+.ucp-last .last-info { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.ucp-last .last-title { overflow: hidden; text-overflow: ellipsis; font-size: 13px; font-weight: 600; color: var(--slate-900); }
+.ucp-last .last-meta { overflow: hidden; text-overflow: ellipsis; font-size: 12px; color: var(--text-3); }
+.ucp-last .last-meta a { font-weight: 600; color: var(--slate-700); }
+.ucp-table .subject_new { font-weight: 700; }
+.ucp-table .goto-unread { display: inline-flex; margin-right: 4px; color: var(--slate-500); vertical-align: -2px; }
+.ucp-table .goto-unread svg { width: 14px; height: 14px; }
+.ucp-meta { display: block; margin-top: 2px; font-size: 12px; font-weight: 400; color: var(--text-3); }
+.ucp-meta a { color: var(--slate-600); }
+.ucp-empty { padding: 28px 20px !important; text-align: center; color: var(--text-3); }
+.ucp-head-link { float: right; font-size: 12.5px; font-weight: 600; }
+.ucp-head-note { font-size: 12px; font-weight: 400; color: #cfd6dd; }
+.ucp-tfoot { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.ucp-tfoot-actions { display: flex; align-items: center; gap: 8px; font-size: 13px; }
+.ucp-danger-link { font-weight: 600; color: #b4534b !important; }
+.thread-legend { padding: 12px 16px; }
+.thread-legend .thread-icon { width: 28px; height: 28px; border-radius: 7px; }
+.thread-legend .thread-icon svg { width: 14px; height: 14px; }
+
+/* Arkadaş / yok sayılanlar listesi */
+.ucp-add-user { display: flex; gap: 8px; align-items: flex-start; }
+.ucp-add-user .textbox,
+.ucp-add-user .select2-container { flex: 1; min-width: 0; }
+.ucp-add-user .select2-container-multi .select2-choices { min-height: 38px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--surface); }
+.ucp-list-current { border-top: 1px solid var(--slate-100); }
+.ucp-user-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 8px; margin: 0; padding: 14px 20px 18px; list-style: none; }
+.ucp-user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 6px 6px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  font-size: 13.5px;
+  font-weight: 600;
+}
+.ucp-user > a:not(.ucp-user-remove) { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ucp-user-status { width: 8px; height: 8px; flex-shrink: 0; border-radius: 50%; background: var(--slate-300); }
+.ucp-user-status.is-online { background: #3f7a63; }
+.ucp-user-remove { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 6px; color: var(--slate-400); }
+.ucp-user-remove:hover { background: #fef2f2; color: #b4534b; }
+.ucp-user-remove svg { width: 14px; height: 14px; }
+.ucp-user-empty { grid-column: 1 / -1; padding: 8px 0; font-size: 13px; color: var(--text-3); }
+#receivedrequests .tborder,
+#sentrequests .tborder { margin: 0; }
+
+/* =========================================================
+   ÖZEL MESAJLAR
+   ========================================================= */
+.pm-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 20px;
+  flex-wrap: wrap;
+  padding: 8px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.pm-tabs { display: flex; flex-wrap: wrap; gap: 4px; }
+.pm-tab { display: inline-flex; align-items: center; gap: 7px; padding: 7px 12px; border-radius: 7px; font-size: 13px; font-weight: 600; color: var(--slate-700); }
+.pm-tab svg { width: 15px; height: 15px; color: var(--slate-400); }
+.pm-tab:hover { background: var(--slate-100); color: var(--slate-900); }
+
+/* Kota çubuğu */
+.pmspace { display: flex; align-items: center; gap: 10px; padding-right: 8px; font-size: 12px; color: var(--text-3); }
+.pmspace_container { display: block; width: 120px; height: 6px; border-radius: 3px; background: var(--slate-100); overflow: hidden; }
+.pmspace_used { display: block; max-width: 100%; height: 100%; background: #3f7a63; }
+.pmspace_used.high_warning { background: #b4534b; }
+.pmspace_used.moderate_warning { background: #b7791f; }
+
+/* Gelen kutusu */
+.pm-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.pm-search { display: flex; align-items: center; gap: 6px; }
+.pm-search .textbox { height: 32px; width: 200px; }
+.pm-adv { font-size: 12.5px; font-weight: 600; color: #fff; }
+.pm-table .tcat a { color: inherit; }
+/* Gönderen ve tarih içerik kadar dar, yan yana; başlık sütunu kalan alanı alır */
+.pm-table .pm-from,
+.pm-table .pm-date { width: 1%; white-space: nowrap; padding-right: 36px; }
+.pm-status {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--slate-50);
+  color: var(--slate-400);
+}
+.pm-status svg { width: 16px; height: 16px; }
+.pm-status.pm-new_pm { background: var(--slate-700); border-color: var(--slate-700); color: #fff; }
+.pm-status.pm-re_pm,
+.pm-status.pm-fw_pm { color: var(--slate-600); }
+.pm-subject { font-weight: 500; color: var(--slate-800); }
+.pm-subject.new_pm { font-weight: 700; color: var(--slate-900); }
+.pm-sep { height: 6px; padding: 0 !important; background: var(--slate-100); }
+.pm-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.pm-footer .ucp-tfoot-actions { margin-left: auto; }
+.pm-table .ucp-tfoot { justify-content: flex-end; }
+.sort-arrow { display: inline-flex; vertical-align: middle; margin-left: 2px; }
+.sort-arrow svg { width: 13px; height: 13px; }
+.sort-arrow[data-next="desc"] svg { transform: rotate(180deg); }
+
+/* Mesaj okuma ve yazma */
+.pm-read-title h1 { font-size: 18px; }
+/* Başlık sadece bir satır: kartla arası 20px yerine 10px */
+.pm-read-title + * { margin-top: -10px; }
+/* "Kime:" başlık satırında tarih ile aynı hizada (eski margin-top aşağı itiyordu) */
+.pm-to { font-size: 12.5px; color: var(--text-3); }
+.post-head .pm-to { display: inline-flex; align-items: center; gap: 4px; margin: 0; padding-left: 10px; border-left: 1px solid var(--slate-200); line-height: 1; }
+.pm-to a { font-weight: 600; }
+#posts_container { min-width: 0; }
+.form-label .form-link { margin-left: 6px; }
+.form-field textarea#to,
+.form-field textarea#bcc { width: 100%; min-height: 60px; }
+
+/* ÖM: klasör yönetimi, boşaltma, dışa aktarma, gelişmiş arama */
+.pm-folder-list { display: grid; gap: 8px; max-width: 420px; }
+.pm-folder { display: flex; align-items: center; gap: 10px; }
+.pm-folder .textbox { flex: 1; min-width: 0; height: 38px; }
+.pm-folder-lock { display: grid; place-items: center; flex-shrink: 0; width: 28px; color: var(--slate-400); cursor: help; }
+.pm-folder-lock svg { width: 15px; height: 15px; }
+.pm-folder:not(:has(.pm-folder-lock)) { padding-right: 38px; }
+.form-field select.pm-folder-select { width: 100%; max-width: 320px; height: auto; min-height: 120px; padding: 6px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--surface); font: inherit; font-size: 13.5px; }
+.ucp-note { padding: 12px 20px !important; font-size: 13px; color: var(--text-2); }
+.pm-excerpt { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+.form-field .form-checks-inline { margin-top: 2px; }
+
+/* İmza düzenleme: açıklama panel üstünde, editör tam genişlik, izinler editör altında sütunlu */
+.sig-note { display: flex; align-items: center; gap: 10px; margin: 0; padding: 12px 20px; border-bottom: 1px solid var(--slate-100); background: var(--surface); font-size: 13px; color: var(--text-2); }
+.sig-note svg { flex: none; width: 16px; height: 16px; color: var(--slate-400); }
+.form-row-message.sig-editor,
+.form-row-message.sig-editor:has(.form-smilies:empty) { grid-template-columns: minmax(0, 1fr) auto; }
+.form-row-message.sig-editor:has(.form-smilies:empty) { grid-template-columns: minmax(0, 1fr); }
+.sig-editor textarea { min-height: 220px; }
+.sig-rules {
+  columns: 3;              /* MyBB'nin 5 satırı (<br /> ayrımlı) 2 + 2 + 1 dağılır */
+  column-gap: 24px;
+  white-space: nowrap;
+  margin: 10px 0 0;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--text-3);
+}
+.sig-update .form-checks-inline { padding-top: 9px; gap: 8px 24px; }
+@media (max-width: 760px) {
+  .form-row-message.sig-editor { grid-template-columns: 1fr; }
+  .sig-rules { columns: auto; white-space: normal; }
+}
+
+/* Boş durum rehberi (ör. taslaklar): MyBB metni paragraf + numaralı liste içerir; sola hizalı, ikonlu */
+.ucp-table td.ucp-empty-guide { padding: 24px 20px !important; text-align: left; color: var(--text-2); }
+.ucp-guide { display: flex; align-items: flex-start; gap: 16px; max-width: 680px; }
+.ucp-guide-icon { display: grid; flex: none; place-items: center; width: 42px; height: 42px; border-radius: 11px; background: var(--slate-100); color: var(--slate-500); }
+.ucp-guide-icon svg { width: 20px; height: 20px; }
+.ucp-guide-text { font-size: 13.5px; line-height: 1.6; }
+.ucp-guide-text p { margin: 0 0 6px; }
+.ucp-guide-text ol { margin: 6px 0 0; padding-left: 20px; }
+.ucp-guide-text li { margin: 3px 0; padding-left: 4px; }
+/* Boşken anlamsız kalan "tümünü seç" ve pasif silme butonu gizlenir */
+.ucp-table:has(.ucp-empty) .tcat .checkall { display: none; }
+.ucp-submit input[disabled] { display: none; }
+
+/* Özel mesaj yazma: alıcı kutusunun altındaki araçlar (arkadaşlardan seç, BCC) */
+.pm-to-tools { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.pm-to-tools:not(:has(button)) { display: none; }
+.pm-to-tools .btn svg { width: 14px; height: 14px; }
+
+/* Arkadaş seçme penceresi (xmlhttp.php?action=get_buddyselect; MyBB JS ortalar ve #buddyselect_container'a koyar) */
+#buddyselect_container { width: min(360px, calc(100vw - 32px)); border-radius: var(--radius); box-shadow: 0 0 0 100vmax rgba(15, 23, 42, .35), var(--shadow-lg); }
+.bs-panel { overflow: hidden; background: var(--surface); }
+.bs-close { display: grid; place-items: center; width: 30px; height: 30px; margin-left: auto; border: 0; border-radius: 7px; background: none; color: var(--slate-500); cursor: pointer; }
+.bs-close:hover { background: rgba(15, 23, 42, .06); color: var(--slate-900); }
+.bs-close svg { width: 16px; height: 16px; }
+.bs-desc { margin: 0; padding: 10px 16px; border-bottom: 1px solid var(--slate-100); font-size: 12.5px; color: var(--text-3); }
+.bs-list { display: grid; max-height: 240px; padding: 6px; overflow-y: auto; }
+.bs-item { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 8px; font-size: 13.5px; cursor: pointer; }
+.bs-item:hover { background: var(--slate-50); }
+.bs-item:has(input:checked) { background: var(--slate-100); font-weight: 600; }
+.bs-item input { margin: 0; accent-color: var(--slate-800); }
+.bs-dot { flex: none; width: 9px; height: 9px; border-radius: 50%; background: var(--slate-300); }
+.bs-dot.is-online { background: #3f7a63; box-shadow: 0 0 0 3px #dcebe4; }
+.bs-selected { padding: 10px 16px; border-top: 1px solid var(--slate-100); font-size: 12.5px; }
+.bs-selected strong { display: block; margin-bottom: 4px; color: var(--slate-700); }
+#buddyselect_buddies { min-height: 18px; max-height: 54px; overflow-y: auto; color: var(--text-2); }
+#buddyselect_buddies:empty::before { content: "—"; color: var(--text-3); }
+.bs-actions { display: flex; justify-content: flex-end; gap: 8px; padding: 12px 16px; border-top: 1px solid var(--border); background: var(--surface-2); }
+
+/* =========================================================
+   Liste tabloları — mobil (UCP + Mod CP; usercp.css ikisine de bağlı)
+   Geniş tablolar sayfayı yana kaydırmasın: tablo kendi kutusunda yatay kayar.
+   Uzun metinler önce satır kırar (nowrap kalkar); başlık (thead) içeriği sticky
+   olduğundan kaydırırken başlık ve sağdaki bağlantı görünür kalır.
+   ========================================================= */
+@media (max-width: 760px) {
+  .ucp-table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+  .ucp-table > tbody { display: table; width: 100%; }
+  .ucp-table .tcat,
+  .ucp-table .ucp-last { white-space: normal; }
+  /* Kelimeler bölünmez; dar ekranda sütunlar okunur genişlikte kalır, fazlası kutu içinde kayar */
+  .ucp-table td { min-width: 96px; }
+  .ucp-table td[colspan], .ucp-table td.thead { min-width: 0; }
+  .ucp-table td.thead > * { position: sticky; left: 16px; }
+  .ucp-table td.thead strong { display: block; }
+  .ucp-table td.thead .ucp-head-link { float: none; display: inline-block; margin-top: 3px; color: #cfd6dd; }
+  .ucp-table .ucp-num,
+  .ucp-table .ucp-check,
+  .ucp-table .ucp-icon { min-width: 0; white-space: nowrap; }
+}

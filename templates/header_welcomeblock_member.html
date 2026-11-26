@@ -1,0 +1,25 @@
+<div class="quick-actions">
+	{$searchlink}
+</div>
+{$pmslink}
+
+<div class="user-menu dropdown">
+	<button type="button" class="user-trigger" data-dropdown aria-expanded="false" aria-haspopup="true">
+		<span class="avatar avatar-default avatar-sm" aria-hidden="true"><svg><use href="{$theme['imgdir']}/icons.svg#i-avatar"/></svg></span>
+		<span class="user-trigger-name">{$mybb->user['username']}</span>
+		<svg class="chev"><use href="{$theme['imgdir']}/icons.svg#i-chevron"/></svg>
+	</button>
+	<div class="dropdown-menu dropdown-right" role="menu">
+		<div class="dropdown-head">
+			<strong>{$mybb->user['username']}</strong>
+			<span class="user-title">{$mybb->user['usertitle']}</span><span class="user-group">{$mybb->usergroup['title']}</span>
+		</div>
+		{$usercplink}
+		{$modcplink}
+		{$admincplink}
+		<hr />
+		{$buddylink}
+		<hr />
+		<a href="{$mybb->settings['bburl']}/member.php?action=logout&amp;logoutkey={$mybb->user['logoutkey']}" class="logout danger" role="menuitem"><svg><use href="{$theme['imgdir']}/icons.svg#i-power"/></svg>{$lang->welcome_logout}</a>
+	</div>
+</div>

@@ -1,0 +1,1829 @@
+/* =========================================================
+   Arduvaz — global.css
+   Arduvaz theme for MyBB — (c) 2026 MyBB.tr — https://mybb.tr
+   Licensed under the Arduvaz Theme License (LICENSE.md). The footer credit link must stay visible.
+   Tüm sayfalarda yüklenen ortak stiller.
+   Sayfaya özel stiller kendi dosyalarındadır (index.css, forumdisplay.css ...).
+   ========================================================= */
+
+:root {
+  --slate-950: #0b1220;
+  --slate-900: #0f172a;
+  --slate-800: #1e293b;
+  --slate-700: #334155;
+  --slate-600: #475569;
+  --slate-500: #64748b;
+  --slate-400: #94a3b8;
+  --slate-300: #cbd5e1;
+  --slate-200: #e2e8f0;
+  --slate-100: #f1f5f9;
+  --slate-50:  #f8fafc;
+  --white:     #ffffff;
+
+  --bg:        #f3f5f8;
+  --surface:   var(--white);
+  --surface-2: var(--slate-50);
+  --border:    var(--slate-200);
+  --text:      var(--slate-900);
+  --text-2:    var(--slate-600);
+  --text-3:    var(--slate-500);
+  --cat-head:  #4b5863;
+  --head-tint: #dde3e9;   /* kart başlıkları (açık arduvaz) */
+  --body-tint: #f8fafb;   /* kart gövdeleri */
+  --accent:    var(--slate-800);
+
+  --c-admin:   #dc2626;
+  --c-mod:     #059669;
+  --c-new:     #0f766e;
+
+  --radius:    12px;
+  --radius-sm: 8px;
+  --shadow:    0 1px 2px rgba(15, 23, 42, .04), 0 1px 3px rgba(15, 23, 42, .06);
+  --shadow-lg: 0 12px 32px -8px rgba(15, 23, 42, .22), 0 2px 6px rgba(15, 23, 42, .08);
+  --container: 1380px;
+  --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.site-footer { margin-top: auto; }
+
+a { color: inherit; text-decoration: none; }
+a:hover { color: var(--slate-600); }
+button { font: inherit; color: inherit; cursor: pointer; }
+[hidden] { display: none !important; }
+svg { width: 18px; height: 18px; flex-shrink: 0; }
+:focus-visible { outline: 2px solid var(--slate-500); outline-offset: 2px; border-radius: 6px; }
+
+.wrapper {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---------- Avatar (harf tabanlı yer tutucu) ---------- */
+.avatar {
+  --size: 38px;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 10px;
+  background: var(--slate-200);
+  color: var(--slate-600);
+  display: inline-grid;
+  place-items: center;
+  font-weight: 600;
+  font-size: calc(var(--size) * .4);
+  flex-shrink: 0;
+  user-select: none;
+}
+.avatar-sm { --size: 30px; border-radius: 8px; }
+.avatar-lg { --size: 52px; border-radius: 12px; }
+/* Varsayılan (bilinmeyen) avatar — düz siluet */
+.avatar-default { overflow: hidden; place-items: end center; background: var(--slate-200); color: var(--slate-400); }
+.avatar-default svg { width: 100%; height: 100%; display: block; }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 42px;
+  padding: 0 18px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 14px;
+  border: 1px solid transparent;
+  transition: background .15s, border-color .15s, color .15s, transform .15s;
+  white-space: nowrap;
+}
+.btn svg { width: 16px; height: 16px; transition: transform .15s; }
+.btn-dark { background: var(--slate-800); color: #fff; }
+.btn-dark:hover { background: var(--slate-900); color: #fff; }
+.btn-dark:hover svg { transform: translateX(2px); }
+.btn-light { background: var(--surface); border-color: var(--border); color: var(--text); }
+.btn-light:hover { border-color: var(--slate-300); background: var(--slate-50); color: var(--text); }
+.btn-sm { height: 34px; padding: 0 14px; font-size: 13px; }
+.btn-block { width: 100%; }
+
+.icon-btn {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--slate-600);
+  transition: background .15s, color .15s, border-color .15s;
+}
+.icon-btn:hover { background: var(--slate-50); color: var(--slate-900); border-color: var(--slate-300); }
+.icon-btn .badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 9px;
+  background: var(--slate-800);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 18px;
+  text-align: center;
+  box-shadow: 0 0 0 2px var(--surface);
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, .92);
+  backdrop-filter: saturate(180%) blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  height: 68px;
+  gap: 8px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: -.01em;
+  padding-right: 22px;
+  margin-right: 14px;
+  border-right: 1px solid var(--border);
+  height: 36px;
+}
+.brand:hover { color: var(--text); }
+.brand-logo {
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  background: var(--slate-800);
+  color: #fff;
+  display: grid;
+  place-items: center;
+}
+.brand-logo-sm { width: 26px; height: 26px; border-radius: 7px; }
+.brand-logo-sm svg { width: 14px; height: 14px; }
+
+.main-nav { display: flex; gap: 2px; }
+.main-nav a {
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  color: var(--slate-600);
+  font-weight: 500;
+  transition: background .15s, color .15s;
+}
+.main-nav a:hover { background: var(--slate-100); color: var(--slate-900); }
+.main-nav a.active { color: var(--slate-900); font-weight: 600; }
+
+.header-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Hızlı erişim ikonları (arama, yeni / son mesajlar): arama ikonuyla aynı aralıkta dizilir */
+.quick-actions { display: contents; }
+.header-actions > .user-menu,
+.header-actions > .auth-actions { margin-left: 4px; }
+
+/* Header ikon ipuçları */
+.header-actions [data-tip]::after {
+  content: attr(data-tip);
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  z-index: 45;
+  padding: 5px 8px;
+  border-radius: 6px;
+  background: var(--slate-900);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.2;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, -3px);
+  transition: opacity .12s, transform .12s;
+}
+.header-actions [data-tip]:hover::after,
+.header-actions [data-tip]:focus-visible::after { opacity: 1; transform: translate(-50%, 0); transition-delay: .25s; }
+@media (hover: none) { .header-actions [data-tip]::after { display: none; } }
+
+.user-trigger {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 4px 8px 4px 4px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background: none;
+  font-weight: 600;
+  transition: background .15s, border-color .15s;
+}
+.user-trigger:hover, .user-trigger[aria-expanded="true"] { background: var(--slate-100); }
+.user-trigger .chev { width: 16px; height: 16px; color: var(--slate-500); transition: transform .2s; }
+.user-trigger[aria-expanded="true"] .chev { transform: rotate(180deg); }
+
+.nav-toggle { display: none; }
+
+/* Search panel */
+.search-panel {
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  animation: slideDown .18s ease-out;
+}
+.search-form {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 64px;
+}
+.search-form > svg { color: var(--slate-400); }
+.search-form input {
+  flex: 1;
+  border: 0;
+  outline: 0;
+  font: inherit;
+  font-size: 15px;
+  background: transparent;
+  color: var(--text);
+}
+.search-form .icon-btn { border-color: transparent; }
+
+@keyframes slideDown { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+
+/* =========================================================
+   DROPDOWN (ortak)
+   ========================================================= */
+.dropdown { position: relative; }
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 40;
+  min-width: 210px;
+  padding: 6px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition: opacity .15s, transform .15s, visibility .15s;
+}
+.dropdown-right { left: auto; right: 0; }
+.dropdown.open .dropdown-menu { opacity: 1; visibility: visible; transform: none; }
+.dropdown-menu a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px;
+  border-radius: 7px;
+  color: var(--slate-700);
+  font-weight: 500;
+  font-size: 13.5px;
+}
+.dropdown-menu a svg { width: 16px; height: 16px; color: var(--slate-500); }
+.dropdown-menu a:hover { background: var(--slate-100); color: var(--slate-900); }
+.dropdown-menu a.danger:hover { background: #fef2f2; color: var(--c-admin); }
+.dropdown-menu a.danger:hover svg { color: var(--c-admin); }
+.dropdown-menu hr { border: 0; border-top: 1px solid var(--border); margin: 6px 0; }
+.dropdown-head {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 10px 10px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid var(--border);
+}
+.dropdown-head span { font-size: 12px; color: var(--text-3); }
+
+/* =========================================================
+   LAYOUT
+   ========================================================= */
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 24px;
+  align-items: start;
+  padding-bottom: 56px;
+}
+.content, .sidebar { display: flex; flex-direction: column; gap: 20px; min-width: 0; }
+
+/* =========================================================
+   PANEL (ortak kart)
+   ========================================================= */
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.panel > :last-child { border-radius: 0 0 calc(var(--radius) - 1px) calc(var(--radius) - 1px); }
+.panel-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 20px;
+  margin: -1px -1px 0;          /* kart kenarlığını örter */
+  border-radius: var(--radius) var(--radius) 0 0;
+  background: var(--head-tint);
+}
+.panel-head svg { color: var(--slate-600); }
+.panel { background: var(--body-tint); }
+.panel-head h1,
+.panel-head h2 { margin: 0; font-size: 14.5px; font-weight: 700; letter-spacing: -.01em; }
+.panel-head-links { display: flex; align-items: center; gap: 16px; margin-left: auto; font-size: 13px; font-weight: 600; }
+.panel-head-links a { display: inline-flex; align-items: center; gap: 6px; color: var(--slate-700); }
+.panel-head-links a:hover { color: var(--slate-900); }
+.panel-head-links svg { width: 15px; height: 15px; }
+
+/* Bildirim şeritleri (forum kapalı, moderasyon, özel mesaj) */
+.notices { display: grid; gap: 8px; margin-bottom: 20px; }
+.notice {
+  --tone: var(--slate-600);
+  --tone-bg: var(--slate-100);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px 10px 14px;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--tone);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  font-size: 13.5px;
+  color: var(--text-2);
+  transition: opacity .16s, transform .16s;
+}
+.notice.is-leaving { opacity: 0; transform: translateY(-4px); }
+.notice-critical { --tone: #b4534b; --tone-bg: #fbeeed; }
+.notice-warning  { --tone: #b7791f; --tone-bg: #fcf3e3; }
+.notice-info     { --tone: var(--slate-600); --tone-bg: var(--slate-100); }
+.notice-icon {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  background: var(--tone-bg);
+  color: var(--tone);
+}
+.notice-icon svg { width: 16px; height: 16px; }
+.notice-text { flex: 1; min-width: 0; margin: 0; }
+.notice-text b { font-weight: 700; color: var(--slate-900); }
+.notice-text a:not([class]) { color: inherit; }
+.notice-text a:not([class]):hover { color: var(--slate-900); text-decoration: underline; text-underline-offset: 3px; }
+.notice-subject { font-weight: 600; color: var(--slate-900); }
+.notice-subject:hover { text-decoration: underline; text-underline-offset: 3px; }
+.notice-sep { margin: 0 8px; color: var(--slate-300); }
+.notice-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  height: 30px;
+  padding: 0 11px;
+  border-radius: var(--radius-sm);
+  background: var(--tone-bg);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--tone);
+  white-space: nowrap;
+  transition: background .15s, color .15s;
+}
+.notice-action svg { width: 14px; height: 14px; }
+.notice-action:hover { background: var(--tone); color: #fff; }
+.notice-close {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  margin-left: -4px;
+  border: 0;
+  border-radius: 7px;
+  background: none;
+  color: var(--slate-400);
+}
+.notice-close svg { width: 15px; height: 15px; }
+.notice-close:hover { background: var(--slate-100); color: var(--slate-800); }
+@media (max-width: 760px) {
+  .notices { margin-bottom: 16px; }
+  .notice {
+    display: grid;
+    grid-template-columns: 30px minmax(0, 1fr) auto;
+    grid-template-areas: "icon text close" ". action action";
+    align-items: start;
+    row-gap: 8px;
+  }
+  .notice-icon { grid-area: icon; }
+  .notice-text { grid-area: text; align-self: center; }
+  .notice-action { grid-area: action; justify-self: start; }
+  .notice-close { grid-area: close; margin: 0; }
+  .notice-sep { margin: 0 6px; }
+}
+
+/* Misafir: header giriş/kayıt butonları */
+.auth-actions { display: flex; align-items: center; gap: 8px; }
+
+.field { display: grid; gap: 6px; }
+.field span { font-size: 12.5px; font-weight: 600; color: var(--slate-700); }
+.field input {
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  font: inherit;
+  font-size: 14px;
+  color: var(--text);
+  transition: border-color .15s, box-shadow .15s;
+}
+.field input:focus { outline: 0; border-color: var(--slate-400); box-shadow: 0 0 0 3px rgba(100, 116, 139, .15); }
+
+.check { display: inline-flex; align-items: center; gap: 7px; color: var(--text-2); cursor: pointer; }
+.check input { width: 15px; height: 15px; margin: 0; accent-color: var(--slate-800); }
+
+@media (max-width: 400px) {
+  .auth-actions .btn-sm { padding: 0 10px; }
+}
+
+/* Giriş modalı içeriği */
+.modal-head { padding: 28px 28px 4px; text-align: center; }
+.modal-head > .brand-logo { margin: 0 auto 14px; }
+.modal-brand { display: inline-flex; align-items: center; gap: 9px; margin-bottom: 16px; font-size: 14px; font-weight: 700; color: var(--text); }
+.modal-head h1,
+.modal-head h2 { margin: 0; font-size: 20px; font-weight: 700; letter-spacing: -.02em; }
+.modal-head p { margin: 6px 0 0; font-size: 13.5px; color: var(--text-2); }
+.modal-form { display: grid; gap: 14px; padding: 20px 28px 24px; }
+.field-row { display: flex; justify-content: space-between; align-items: baseline; }
+.field-row a { font-weight: 600; color: var(--slate-500); }
+.field-row a:hover { color: var(--slate-900); }
+.modal-form .check { font-size: 13px; }
+.modal-form .btn { height: 44px; }
+.modal-foot { margin: 0; padding: 14px 28px; border-top: 1px solid var(--border); background: var(--surface-2); text-align: center; font-size: 13px; color: var(--text-3); }
+.modal-foot a { font-weight: 700; color: var(--slate-900); }
+.modal-foot a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+.site-footer {
+  background: #343f4a;
+  color: #c3ccd5;
+  font-size: 13.5px;
+}
+.footer-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) repeat(3, minmax(0, 1fr));
+  gap: 40px;
+}
+.site-footer .footer-top { padding-top: 52px; padding-bottom: 44px; }
+.site-footer .footer-bottom-inner { padding-top: 12px; padding-bottom: 12px; }
+.footer-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+}
+.footer-brand:hover { color: #fff; }
+.footer-brand .brand-logo { background: var(--cat-head); }
+.footer-about p { margin: 16px 0 20px; max-width: 400px; line-height: 1.65; color: #aab5c0; }
+.footer-social { display: flex; gap: 8px; }
+.footer-social a {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, .06);
+  border: 1px solid rgba(255, 255, 255, .1);
+  color: #c3ccd5;
+  transition: background .15s, color .15s;
+}
+.footer-social a svg { width: 16px; height: 16px; }
+.footer-social a:hover { background: #fff; color: var(--slate-900); }
+.footer-col { display: flex; flex-direction: column; gap: 10px; }
+.footer-col h4 {
+  margin: 4px 0 6px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #fff;
+}
+.footer-col a { color: #aab5c0; transition: color .15s; }
+.footer-col a:hover { color: #fff; }
+.footer-bottom { border-top: 1px solid rgba(255, 255, 255, .08); background: #2d3741; }
+.footer-bottom-inner {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  min-height: 56px;
+  flex-wrap: wrap;
+  font-size: 12.5px;
+  color: #8c98a4;
+}
+.powered a { font-weight: 600; color: #c3ccd5; }
+.powered a:hover, .to-top:hover { color: #fff; }
+.to-top { margin-left: auto; font-weight: 500; color: #c3ccd5; }
+
+/* Footer alt şerit: sol (telif + yasal), sağ (saat, powered, başa dön) */
+.footer-bottom-inner .fb-group { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 20px; }
+.footer-bottom-inner .fb-right { margin-left: auto; }
+.fb-right .to-top { margin-left: 0; }
+.fb-links { display: flex; gap: 14px; }
+.fb-links a { color: #8c98a4; }
+.fb-links a:hover { color: #fff; }
+.fb-time { display: inline-flex; align-items: center; gap: 6px; }
+.fb-time svg { width: 14px; height: 14px; }
+.fb-time time { color: #c3ccd5; font-variant-numeric: tabular-nums; }
+.footer-col a:has(svg) { display: inline-flex; align-items: center; gap: 8px; }
+.footer-col a svg { width: 15px; height: 15px; color: #8c98a4; transition: color .15s; }
+.footer-col a:hover svg { color: #fff; }
+@media (max-width: 760px) {
+  .footer-bottom-inner { flex-direction: column; align-items: flex-start; padding-top: 16px; padding-bottom: 16px; }
+  .footer-bottom-inner .fb-right { margin-left: 0; }
+}
+
+@media (max-width: 980px) {
+  .footer-top { grid-template-columns: 1fr 1fr 1fr; }
+  .footer-about { grid-column: 1 / -1; }
+}
+@media (max-width: 560px) {
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 32px 24px; }
+  .site-footer .footer-top { padding-top: 40px; padding-bottom: 36px; }
+  .footer-bottom-inner { gap: 6px 16px; }
+}
+
+/* =========================================================
+   RESPONSIVE (ortak)
+   ========================================================= */
+@media (max-width: 980px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { position: static; display: grid; grid-template-columns: 1fr 1fr; }
+
+  .main-nav {
+    display: none;
+    position: absolute;
+    top: 68px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    padding: 10px 16px 14px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    box-shadow: var(--shadow-lg);
+  }
+  .main-nav.open { display: flex; }
+  .main-nav a { padding: 11px 12px; }
+  .nav-toggle { display: inline-grid; }
+  .brand { border-right: 0; padding-right: 0; }
+}
+
+@media (max-width: 760px) {
+  .wrapper { padding: 0 16px; }
+  .sidebar { grid-template-columns: 1fr; }
+  .user-trigger-name { display: none; }
+  .brand-name { font-size: 14px; }
+}
+
+@media (max-width: 560px) {
+  .header-actions { gap: 6px; }
+  .header-actions .icon-btn { width: 34px; height: 34px; }
+}
+
+@media (max-width: 400px) {
+  .brand-name { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+
+@media (min-width: 1280px) {
+  .layout { grid-template-columns: minmax(861px, 1fr) 340px; }
+}
+
+/* =========================================================
+   BREADCRUMB & SAYFALAMA
+   ========================================================= */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding-top: 28px;
+  padding-bottom: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-3);
+}
+.breadcrumb a { color: var(--slate-600); }
+.breadcrumb a:hover { color: var(--slate-900); }
+.breadcrumb [aria-current] { color: var(--slate-900); font-weight: 600; }
+.breadcrumb .crumb { display: inline-flex; align-items: center; gap: 6px; }
+/* İlk öğe her zaman forum adı (= ana sayfa): ev simgesi onun yerini tutar */
+.breadcrumb > .crumb:first-of-type { display: none; }
+.crumb-home {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+.crumb-home svg { width: 15px; height: 15px; }
+.crumb-sep { width: 14px; height: 14px; color: var(--slate-300); }
+
+/* Sayfalama */
+.pagination { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+.page-info { margin-right: 8px; font-size: 13px; color: var(--text-3); }
+.page-btn {
+  display: inline-grid;
+  place-items: center;
+  min-width: 34px;
+  height: 34px;
+  padding: 0 8px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--slate-600);
+  transition: background .15s, border-color .15s, color .15s;
+}
+.page-btn svg { width: 15px; height: 15px; }
+.page-btn:hover { border-color: var(--slate-300); color: var(--slate-900); }
+.page-btn.is-current { background: var(--cat-head); border-color: var(--cat-head); color: #fff; }
+.page-btn.is-disabled { opacity: .45; pointer-events: none; }
+.page-gap { padding: 0 4px; color: var(--slate-400); }
+
+/* =========================================================
+   MYBB TEMEL SINIFLAR
+   MyBB çekirdeğinin ve JS bileşenlerinin kullandığı sınıflar.
+   Henüz özel şablonu yazılmamış sayfalar da bunlarla düzgün görünür.
+   ========================================================= */
+
+/* ---------- Tablolar ---------- */
+table { color: inherit; font-size: inherit; }
+
+.tborder {
+  width: 100%;
+  margin: 0 auto 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  border-spacing: 0;
+  border-collapse: separate;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.tfixed { table-layout: fixed; word-wrap: break-word; }
+
+.thead {
+  padding: 12px 16px;
+  background: var(--cat-head);
+  color: #fff;
+  font-weight: 600;
+}
+.thead a { color: #fff; }
+.thead a:hover { color: var(--slate-200); }
+
+.tcat {
+  padding: 8px 16px;
+  background: var(--head-tint);
+  border-bottom: 1px solid var(--border);
+  color: var(--slate-700);
+  font-size: 12.5px;
+  font-weight: 600;
+}
+.tcat a { color: var(--slate-800); }
+
+.trow1,
+.trow2,
+td.trow_shaded,   /* onay bekleyen / silinmiş satırlar (ör. abonelikler): renk farklı, düzen aynı */
+td.trow_deleted {
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+}
+.trow1 { background: var(--surface); }
+.trow2 { background: var(--body-tint); }
+.trow_shaded { background: #fcf3e3; }
+td.trow_deleted { background: #fcf3f2; }
+tr.trow_selected td { background: var(--slate-100); }
+.no_bottom_border { border-bottom: 0; }
+
+.trow_sep {
+  padding: 6px 16px;
+  background: var(--slate-100);
+  border-bottom: 1px solid var(--border);
+  color: var(--slate-600);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.tfoot {
+  padding: 10px 16px;
+  background: var(--surface-2);
+  color: var(--text-2);
+}
+.tfoot a { color: var(--slate-800); }
+
+.smalltext { font-size: 12px; }
+.largetext { font-size: 16px; font-weight: 700; }
+
+/* ---------- Form öğeleri ---------- */
+fieldset {
+  margin: 0;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+
+input.textbox,
+textarea,
+select {
+  max-width: 100%;
+  padding: 7px 10px;
+  font: inherit;
+  font-size: 13.5px;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  outline: 0;
+  transition: border-color .15s, box-shadow .15s;
+}
+input.textbox:focus,
+textarea:focus,
+select:focus { border-color: var(--slate-400); box-shadow: 0 0 0 3px rgba(100, 116, 139, .15); }
+select:hover:not(:focus) { border-color: var(--slate-300); }
+textarea { line-height: 1.5; }
+
+/* Açılır liste: destekleyen tarayıcılarda (Chrome 135+) tema ile uyumlu seçim paneli,
+   diğerlerinde yerel liste. Çoklu seçim (listbox) hariç. */
+option { background: var(--surface); color: var(--text); }
+@supports (appearance: base-select) {
+  select:not([multiple]):not([size]),
+  select:not([multiple]):not([size])::picker(select) { appearance: base-select; }
+  select:not([multiple]):not([size]) { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; }
+  select:not([multiple]):not([size])::picker-icon { color: var(--slate-500); transition: rotate .15s; }
+  select:not([multiple]):not([size]):open::picker-icon { rotate: 180deg; }
+  .select::picker-icon { display: none; }
+  ::picker(select) {
+    margin-block: 4px;
+    padding: 5px;
+    max-height: min(320px, 60vh);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    box-shadow: var(--shadow-lg);
+    font-size: 13.5px;
+  }
+  /* Not: "::picker(select) option" geçersiz seçici (tüm kural yok sayılır); seçenekler select içinden hedeflenir */
+  select:not([multiple]):not([size]) option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 10px;
+    border-radius: 6px;
+    color: var(--slate-700);
+    cursor: pointer;
+  }
+  /* Seçili: kalın + tik; üzerinde/klavye odağında: koyu zemin (seçiliden ayrışsın) */
+  select:not([multiple]):not([size]) option:checked { color: var(--slate-900); font-weight: 600; }
+  select:not([multiple]):not([size]) option:hover,
+  select:not([multiple]):not([size]) option:focus-visible { background: var(--slate-800); color: #fff; outline: 0; }
+  select:not([multiple]):not([size]) option:hover::checkmark,
+  select:not([multiple]):not([size]) option:focus-visible::checkmark { color: #fff; }
+  select:not([multiple]):not([size]) option::checkmark { order: 1; margin-left: auto; color: var(--slate-600); }
+  select:not([multiple]):not([size]) option:disabled { color: var(--text-3); cursor: default; }
+  select:not([multiple]):not([size]) optgroup { padding: 4px 0; font-size: 11.5px; font-weight: 700; color: var(--text-3); text-transform: uppercase; letter-spacing: .04em; }
+  select:not([multiple]):not([size]) optgroup option { font-size: 13.5px; font-weight: 400; text-transform: none; letter-spacing: 0; }
+}
+
+input.button,
+button.button,
+a.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 36px;
+  padding: 0 14px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  background: var(--slate-800);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background .15s;
+}
+input.button:hover,
+button.button:hover,
+a.button:hover { background: var(--slate-900); color: #fff; }
+a.button.small_button { height: 30px; padding: 0 10px; font-size: 12px; }
+
+input.error, textarea.error, select.error { border-color: var(--c-admin); }
+input.valid, textarea.valid, select.valid { border-color: var(--c-mod); }
+label.error { display: block; margin: 4px 0; font-size: 12px; font-weight: 600; color: var(--c-admin); }
+
+/* ---------- Yardımcılar ---------- */
+.clear { clear: both; }
+.float_left { float: left; }
+.float_right { float: right; }
+.hidden { display: none; float: none; width: 1%; }
+.hiddenrow { display: none; }
+.selectall { background: #fcf3e3; text-align: center; }
+.expcolimage { float: right; cursor: pointer; }
+.smilie { vertical-align: middle; }
+.smilie_pointer { cursor: pointer; }
+.highlight { padding: 0 2px; background: #fef08a; }
+.subject_new { font-weight: 700; }
+hr { border: 0; border-top: 1px solid var(--border); }
+img { border: 0; }
+
+/* ---------- Mesaj kutuları ---------- */
+div.error,
+.red_alert,
+.pm_alert {
+  margin-bottom: 12px;
+  padding: 12px 16px;
+  border: 1px solid;
+  border-radius: var(--radius-sm);
+}
+div.error,
+.red_alert { background: #fbeeed; border-color: #f0d4d1; color: #7f2f28; }
+.pm_alert { background: var(--slate-100); border-color: var(--border); color: var(--slate-700); }
+div.error p { margin: 0 0 6px; }
+div.error p em { font-style: normal; font-weight: 700; }
+div.error ul { margin: 0; padding-left: 20px; }
+.success_message { font-weight: 600; color: var(--c-mod); }
+.error_message { font-weight: 600; color: var(--c-admin); }
+
+/* ---------- Açılır menü (MyBB popup_menu) ---------- */
+.popup_menu {
+  z-index: 60;
+  min-width: 180px;
+  padding: 6px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-lg);
+}
+.popup_menu .popup_item {
+  display: block;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  color: var(--slate-700);
+}
+.popup_menu .popup_item:hover { background: var(--slate-100); color: var(--slate-900); }
+
+/* ---------- Modal (jQuery modal) ---------- */
+.blocker {
+  position: fixed;
+  inset: 0;
+  z-index: 9999; /* headerinclude: modal_zindex; sabit header ve editörün üstünde kalmalı */
+  overflow: auto;
+  padding: 20px;
+  background: rgba(15, 23, 42, .45);
+  backdrop-filter: blur(3px);
+  display: flex;
+  animation: fadeIn .18s ease-out;
+}
+.blocker.behind { background: transparent; }
+
+.modal {
+  display: none;
+  position: relative;
+  z-index: 2;
+  flex: none;
+  width: min(560px, 100%);
+  margin: auto;
+  text-align: left;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  animation: modalIn .18s ease-out;
+}
+.modal a.close-modal {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-sm);
+  font-size: 0;
+  color: var(--slate-500);
+}
+.modal a.close-modal::before { content: "\00d7"; font-size: 24px; line-height: 1; }
+.modal a.close-modal:hover { background: var(--slate-100); color: var(--slate-900); }
+/* Koyu tablo başlığıyla açılan popup'larda (smilies, rep, notlar…) kapatma düğmesi açık renk */
+.modal:has(> .tborder:first-child, > .modal:first-child > .tborder:first-child) > a.close-modal { top: 10px; color: rgba(255, 255, 255, .75); }
+.modal:has(> .tborder:first-child, > .modal:first-child > .tborder:first-child) > a.close-modal:hover { background: rgba(255, 255, 255, .12); color: #fff; }
+#quick_login { width: min(400px, 100%); }
+/* MyBB'nin bazı popup şablonları (ör. misc_smilies_popup) iç içe .modal kullanır: içteki düz kap olsun */
+.modal .modal {
+  display: block;
+  width: auto;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  animation: none;
+  overflow: auto;
+}
+.modal .tborder { margin: 0; border: 0; border-radius: 0; box-shadow: none; }
+.modal-spinner {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  padding: 12px;
+  background: var(--slate-900);
+  border-radius: var(--radius-sm);
+  transform: translate(-50%, -50%);
+}
+@keyframes modalIn { from { opacity: 0; transform: translateY(8px) scale(.98); } to { opacity: 1; transform: none; } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* ---------- Onay pencereleri (jQuery Impromptu) ---------- */
+.jqifade { position: absolute; background: rgba(15, 23, 42, .45); }
+div.jqi {
+  position: absolute;
+  width: 400px;
+  max-width: calc(100% - 32px);
+  text-align: left;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+div.jqi .jqiclose {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  font-size: 22px;
+  line-height: 1;
+  color: var(--slate-500);
+  cursor: pointer;
+}
+div.jqi .jqititle { padding: 18px 20px 0; font-size: 16px; font-weight: 700; }
+div.jqi .jqimessage { padding: 12px 20px 18px; color: var(--text-2); }
+div.jqi .jqibuttonshide { display: none; }
+div.jqi .jqibuttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 12px 20px;
+  background: var(--surface-2);
+  border-top: 1px solid var(--border);
+}
+div.jqi .jqibuttons button {
+  height: 36px;
+  padding: 0 14px;
+  font-size: 13px;
+  font-weight: 600;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+div.jqi .jqibuttons button.jqidefaultbutton { background: var(--slate-800); border-color: transparent; color: #fff; }
+div.jqi .jqibuttons button[disabled] { opacity: .5; cursor: not-allowed; }
+
+/* ---------- Bildirim balonları (jGrowl) ---------- */
+.jGrowl { position: fixed; z-index: 9999; padding: 12px; font-size: 13px; }
+.jGrowl.top-left { top: 0; left: 0; }
+.jGrowl.top-right { top: 0; right: 0; }
+.jGrowl.bottom-left { bottom: 0; left: 0; }
+.jGrowl.bottom-right { bottom: 0; right: 0; }
+.jGrowl.center { top: 0; width: 50%; left: 25%; }
+.jGrowl .jGrowl-notification,
+.jGrowl .jGrowl-closer {
+  width: 280px;
+  margin-top: 8px;
+  padding: 12px 14px;
+  text-align: left;
+  color: #fff;
+  background: var(--slate-800);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-lg);
+}
+.jGrowl-notification .jGrowl-header { margin-bottom: 2px; font-weight: 700; }
+.jGrowl-notification .jGrowl-close {
+  float: right;
+  padding: 0;
+  font-size: 18px;
+  line-height: 1;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+.jGrowl-closer { text-align: center; cursor: pointer; }
+/* jGrowl kapsayıcıya boş bir yer tutucu .jGrowl-notification ekler (kapanan bildirimler de boşalır): görünmesin */
+.jGrowl .jGrowl-notification:empty { display: none; }
+.jGrowl .jGrowl-notification.jgrowl_success { background: var(--c-mod); }
+.jGrowl .jGrowl-notification.jgrowl_error { background: var(--c-admin); }
+.jGrowl .jGrowl-notification.jgrowl_process,
+.jGrowl .jGrowl-closer { background: var(--slate-600); }
+@media print { .jGrowl { display: none; } }
+
+/* =========================================================
+   MYBB YERLEŞİM UYUMU
+   ========================================================= */
+#container { flex: 1; display: flex; flex-direction: column; }
+#content { flex: 1; }
+
+/* Boş bildirim alanı yer kaplamasın */
+.notices:not(:has(*)) { display: none; }
+.notices { padding-top: 20px; margin-bottom: 0; }
+/* Bildirim varsa içerik fazladan aşağı itilmesin */
+.notices:has(*) + #content { margin-top: -14px; }
+.notice-text strong { font-weight: 700; color: var(--slate-900); }
+
+/* Okunmamış özel mesaj yoksa rozet gizlenir */
+.badge[data-count="0"] { display: none; }
+
+/* Breadcrumb: çoklu sayfa açılır menüsü */
+.breadcrumb { padding-top: 20px; padding-bottom: 16px; }
+.breadcrumb .pagination_breadcrumb_link { width: 14px; height: 14px; color: var(--slate-500); cursor: pointer; }
+/* Breadcrumb sayfa menüsü (multipage_breadcrumb; MyBB popupMenu açarken display:block verir):
+   bağlantının biraz altında açılan kart, küçük işaret oku ile */
+#breadcrumb_multipage_popup {
+  z-index: 60;
+  margin: 10px 0 0 -10px;  /* popupMenu kartı bağlantının sol kenarına hizalar; ok ikonun ortasına gelsin */
+  padding: 6px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  box-shadow: var(--shadow-lg);
+  white-space: nowrap;
+  font-size: 0;
+}
+#breadcrumb_multipage_popup::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 12px;              /* 10px kaydırma + 14px ikonun yarısı - okun yarısı */
+  width: 10px;
+  height: 10px;
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+  background: var(--surface);
+  transform: rotate(45deg);
+}
+#breadcrumb_multipage_popup > * { display: inline-flex; vertical-align: middle; margin: 0 2px; font-size: 13px; }
+
+/* Giriş modalı: kilitlenme uyarısı */
+.modal-lockout { margin: 0; color: var(--c-admin); font-size: 13px; text-align: center; }
+
+/* Footer: dil ve tema seçimi */
+.footer-bottom form { margin: 0; }
+.footer-bottom select {
+  padding: 4px 8px;
+  font-size: 12.5px;
+  color: #c3ccd5;
+  background: transparent;
+  border-color: rgba(255, 255, 255, .15);
+}
+.footer-bottom select option { color: var(--text); }
+.fb-time strong { font-weight: 500; }
+
+/* Hızlı arama paneli header'ın altında tam genişlikte açılır */
+.site-header .search-panel { position: absolute; top: 100%; left: 0; right: 0; }
+.footer-bottom .btn { height: 28px; padding: 0 10px; font-size: 12px; }
+
+/* Kullanıcı grubu stilleri (rütbe renkleri)
+   ACP > Kullanıcı Grupları > "Kullanıcı adı stili": <span class="u-admin">{username}</span> */
+.u-sys,
+.u-admin,
+.u-supermod,
+.u-mod,
+.u-member,
+.u-inactive,
+.u-guest,
+.u-banned { font-weight: 700; }
+.u-sys {
+  background: radial-gradient(circle at 35% 40%, #6fa3d6 0%, #3a6b9a 55%, #1f3d5c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.u-admin    { color: #2f5f8a; }  /* Üst Düzey Yönetici */
+.u-supermod { color: #2e6a52; }  /* Üst Düzey Yetkili */
+.u-mod      { color: #4f8f74; }  /* Bölüm Yetkilisi */
+.u-member   { color: #334155; }  /* Topluluk Üyesi */
+.u-inactive { color: #8c98a4; }  /* Pasif Hesap */
+.u-guest    { color: #aab5c0; }  /* Ziyaretçi */
+.u-banned   { color: #a0605a; text-decoration: line-through; text-decoration-thickness: 1.5px; }  /* Uzaklaştırılmış */
+
+/* Kullanıcı unvanı boşsa grup adı gösterilir */
+.user-title:not(:empty) + .user-group { display: none; }
+
+/* Seçim kutusu (form öğeleri) */
+.select {
+  height: 34px;
+  padding: 0 32px 0 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 10px center / 14px;
+  font: inherit;
+  font-size: 13px;
+  color: var(--text);
+  appearance: none;
+  -webkit-appearance: none;
+  transition: border-color .15s;
+}
+input.select { background-image: none; padding-right: 12px; }
+.select:hover { border-color: var(--slate-300); }
+.select:focus { outline: 2px solid var(--slate-300); outline-offset: 0; border-color: var(--slate-400); }
+
+/* Kategori / forum açıklaması: başlığın üstüne gelince sağında baloncuk (dokunmatik ve dar ekranda gizli) */
+.tip-anchor { position: relative; display: flex; align-items: center; min-width: 0; }
+.cat-tip {
+  position: absolute;
+  top: 50%;
+  left: calc(100% + 14px);
+  z-index: 30;
+  width: max-content;
+  max-width: 340px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: var(--slate-900);
+  box-shadow: var(--shadow-lg);
+  color: #fff;
+  font-size: 12.5px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0;
+  white-space: normal;
+  text-transform: none;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-4px, -50%);
+  transition: opacity .14s, transform .14s, visibility .14s;
+}
+.cat-tip::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -4px;
+  width: 9px;
+  height: 9px;
+  background: inherit;
+  transform: translateY(-50%) rotate(45deg);
+  border-radius: 2px;
+}
+.cat-tip:empty { display: none; }
+.category-head:hover .cat-tip,
+.tip-anchor:focus-within .cat-tip { opacity: 1; visibility: visible; transform: translate(0, -50%); transition-delay: .2s; }
+@media (hover: none), (max-width: 760px) { .cat-tip { display: none; } }
+
+/* Simge açıklamaları (ana sayfa, konu listesi) */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 22px;
+  padding: 14px 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text-2);
+  font-size: 13px;
+}
+.legend > span { display: inline-flex; align-items: center; gap: 9px; }
+
+/* =========================================================
+   SAYFA ARAÇLARI (forumdisplay, showthread)
+   ========================================================= */
+/* Üst/alt araç çubuğu */
+.fd-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.fd-toolbar .btn svg { width: 16px; height: 16px; }
+/* "Önceki sayfa" aynı sağ ok ikonunu kullanır: her sayfada (konu, arama, ÜP…) ters çevrilir */
+.pagination_previous svg { transform: rotate(180deg); }
+/* Sayfalama olmasa da eylem butonları (yeni konu / yanıt) hep sağda */
+.fd-toolbar > :not(.pagination) { margin-left: auto; }
+.fd-toolbar > :not(.pagination) ~ :not(.pagination) { margin-left: 0; }
+
+/* Alt bölüm: simgeler + forum atla */
+.fd-bottom {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 380px;
+  gap: 16px;
+  align-items: stretch;
+}
+/* Sol kart: simge açıklamaları + bu forumu görüntüleyenler (sağ kartla eşit yükseklik) */
+.fd-info {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+/* Konuda ara (showthread): kartın üstünde sabit; altında "görüntüleyenler" kalan yüksekliği doldurur */
+.fd-info > .jump { padding: 16px 18px; }
+.fd-info > .jump + .jump { padding-top: 0; }
+/* Konu bağlantısı: salt okunur alan + kopyala butonu */
+.st-link input[readonly] { background: var(--surface-2); color: var(--text-2); cursor: text; }
+.st-link-copy { flex-shrink: 0; gap: 6px; }
+.st-link-copy svg { width: 15px; height: 15px; }
+.st-link .st-link-copy.is-done { border-color: #b7d3c6; background: #eef6f2; color: #3f7a63; }
+.fd-info .browsing-block { flex: 1; display: flex; flex-direction: column; gap: 6px; margin: 0; padding: 14px 18px 16px; }
+.browsing-label { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: var(--slate-600); }
+.browsing-label svg { width: 15px; height: 15px; margin: 0; vertical-align: 0; }
+.browsing-list { margin: 0; font-size: 13.5px; line-height: 1.8; color: var(--text-2); }
+.jump { margin: 0; }
+.jump-row .btn { flex-shrink: 0; }
+.fd-info .legend { flex: 1; align-content: center; border: 0; border-radius: 0; background: transparent; }
+.fd-info .browsing {
+  padding: 12px 20px;
+  border-top: 1px solid var(--border);
+  background: var(--surface-2);
+  font-size: 13px;
+}
+.fd-info .browsing a { font-weight: 600; color: var(--slate-700); }
+.fd-info .browsing a.u-webmaster { color: var(--slate-900); }
+.thread-legend {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px 20px;
+  padding: 18px 20px;
+}
+.legend .thread-icon { width: 28px; height: 28px; border-radius: 7px; }
+.legend .thread-icon svg { width: 14px; height: 14px; }
+.legend .thread-icon[data-folder^="dot_"]::after { width: 8px; height: 8px; right: -2px; bottom: -2px; }
+
+.fd-side { padding: 16px 18px; display: flex; flex-direction: column; gap: 14px; }
+.jump label { display: block; margin-bottom: 6px; font-size: 12px; font-weight: 700; color: var(--slate-600); }
+.jump-row { display: flex; gap: 8px; }
+.jump-row .select { flex: 1; min-width: 0; }
+.jump-row .btn-light { padding: 0 10px; }
+.jump-row .btn-light svg { width: 15px; height: 15px; }
+.browsing {
+  margin: 0;
+  line-height: 1.7;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  font-size: 12.5px;
+  color: var(--text-3);
+}
+.browsing svg { width: 15px; height: 15px; margin-right: 6px; vertical-align: -3px; color: var(--slate-400); }
+@media (max-width: 980px) {
+  .fd-bottom { grid-template-columns: 1fr; }
+}
+
+/* =========================================================
+   ALINTI VE KOD (MyCode)
+   ========================================================= */
+blockquote.mycode_quote {
+  margin: 0 0 14px;
+  padding: 12px 16px;
+  border: 0;
+  border-left: 3px solid var(--slate-400);
+  border-radius: 0 8px 8px 0;
+  background: var(--slate-50);
+  font-size: 13.5px;
+  color: var(--slate-600);
+}
+blockquote.mycode_quote cite { display: block; margin-bottom: 4px; font-style: normal; font-size: 12px; font-weight: 700; color: var(--slate-700); }
+blockquote.mycode_quote cite > span { float: right; font-weight: 400; color: var(--text-3); }
+blockquote.mycode_quote cite a { color: var(--slate-700); text-decoration: none; }
+blockquote.mycode_quote .quick_jump::after { content: "\2197"; margin-left: 4px; color: var(--slate-400); }
+
+.codeblock {
+  margin: 0 0 14px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  overflow: hidden;
+  background: var(--slate-50);
+}
+.codeblock .title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 34px;
+  padding: 5px 8px 5px 14px;
+  border-bottom: 1px solid var(--border);
+  background: var(--slate-100);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--slate-500);
+}
+.codeblock .body {
+  max-height: 420px;
+  padding: 14px 16px;
+  overflow: auto;
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 12.5px;
+  line-height: 1.65;
+  color: var(--slate-800);
+  tab-size: 4;
+}
+.codeblock .body code { display: block; padding: 0; font-family: inherit; font-size: inherit; white-space: pre; background: none; border: 0; }
+.codeblock .body pre { margin: 0; }
+.code-copy {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 8px;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--slate-500);
+}
+.code-copy svg { width: 13px; height: 13px; }
+.code-copy:hover { background: var(--surface); color: var(--slate-900); }
+.code-copy.is-done { color: #3f7a63; }
+
+/* Konu öneki: ACP > Konu Önekleri > Görünüm stili: <span class="prefix">...</span> */
+.prefix {
+  flex-shrink: 0;
+  padding: 1px 7px;
+  border-radius: 5px;
+  border: 1px solid var(--slate-300);
+  background: var(--surface);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--slate-600);
+}
+.prefix.is-solved { border-color: #b7d3c6; background: #eef6f2; color: #3f7a63; }
+
+/* Avatar + çevrimiçi durumu (köşede küçük nokta) */
+.pa-avatar { position: relative; display: inline-block; line-height: 0; }
+.pa-status {
+  display: block;
+  position: absolute;
+  right: -3px;
+  bottom: -3px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--slate-300);
+  box-shadow: 0 0 0 3px var(--surface);
+}
+.pa-status.is-online { background: #3f7a63; }
+/* Kullanıcı yıldızları (1–3) */
+.pa-stars { display: inline-flex; gap: 2px; margin-top: 3px; color: var(--slate-500); }
+.pa-stars svg { width: 13px; height: 13px; }
+.pa-status.is-away { background: #b7791f; }
+
+/* =========================================================
+   MESAJ VE GİRİŞ SAYFALARI
+   (hata, yönlendirme, giriş, şifremi unuttum, aktivasyon)
+   ========================================================= */
+.msg-page {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 8px 0 56px;
+}
+.msg-card { padding: 32px 32px 28px; text-align: center; background: var(--surface); }
+.msg-card h1 { margin: 14px 0 8px; font-size: 20px; font-weight: 700; letter-spacing: -.02em; }
+.msg-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: #fbeeed;
+  color: #b4534b;
+}
+.msg-icon svg { width: 24px; height: 24px; }
+.msg-icon.is-ok { background: #eef6f2; color: #3f7a63; }
+.msg-body { font-size: 14px; line-height: 1.7; color: var(--text-2); text-align: left; }
+.msg-body > :first-child { margin-top: 0; }
+.msg-body > :last-child { margin-bottom: 0; }
+.msg-body ol, .msg-body ul { padding-left: 20px; }
+.msg-body a:not(.btn) { font-weight: 600; color: var(--slate-900); text-decoration: underline; text-underline-offset: 3px; }
+.msg-body:not(:has(ol, ul)) { text-align: center; }
+.msg-note { font-size: 13px; color: var(--text-3); }
+.msg-actions { display: flex; justify-content: center; gap: 10px; margin-top: 20px; }
+.msg-actions .btn { text-decoration: none; }
+.msg-link { display: inline-block; margin-top: 14px; font-size: 13px; font-weight: 600; color: var(--slate-600); }
+.msg-link:hover { color: var(--slate-900); }
+
+/* Yönlendirme: header/footer olmadan ekranın ortasında, 2 sn ilerleme çubuğu */
+/* Tam ortada değil, göz hizasına yakın (üstten ~%18) */
+.redirect-page .msg-page { flex: 1; justify-content: flex-start; padding: max(48px, 16vh) 16px 24px; }
+.msg-progress { height: 4px; margin-top: 20px; border-radius: 2px; background: var(--slate-100); overflow: hidden; }
+.msg-progress span { display: block; height: 100%; background: var(--slate-700); animation: msgProgress 2s linear forwards; }
+@keyframes msgProgress { from { width: 0; } to { width: 100%; } }
+
+/* Giriş ve şifre kartları (giriş modalının görünümü) */
+.auth-card { overflow: hidden; background: var(--surface); }
+.auth-card .modal-head { padding-top: 32px; }
+/* Geniş ekranda iki bölme: solda ikon + başlık + açıklama, sağda form */
+.msg-page:has(> .auth-card) { max-width: 880px; }
+@media (min-width: 760px) {
+  .auth-card { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
+  .auth-card .modal-head {
+    padding: 36px 32px;
+    border-right: 1px solid var(--border);
+    background: var(--surface-2);
+    text-align: left;
+  }
+  .auth-card .modal-head > .brand-logo { margin: 0 0 18px; width: 42px; height: 42px; border-radius: 11px; }
+  .auth-card .modal-head h1 { font-size: 21px; }
+  .auth-card .modal-head p { margin-top: 10px; line-height: 1.6; }
+  .auth-card .modal-form { align-content: center; padding: 32px; }
+  .auth-card > :last-child { border-radius: 0; }
+  .auth-card > :not(.modal-head, .modal-form) { grid-column: 1 / -1; }
+}
+.auth-captcha { width: 100%; border-spacing: 0; }
+.auth-captcha:empty { display: none; }
+.auth-captcha td { padding: 4px 0; background: none; border: 0; }
+.auth-captcha input.textbox { width: 100%; }
+
+/* Satır içi hata listesi (form hataları) */
+.inline-error { margin-bottom: 16px; }
+.inline-error .notice-text ul { margin: 4px 0 0; padding-left: 18px; }
+.inline-error .notice-text li { margin: 2px 0; }
+
+/* =========================================================
+   FORM SATIRLARI (mesaj yazma, hızlı yanıt, captcha)
+   ========================================================= */
+.form-rows { background: var(--surface); }
+.form-row {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 8px 24px;
+  padding: 16px 20px;
+  border-top: 1px solid var(--slate-100);
+}
+.form-row:first-child { border-top: 0; }
+.form-label { padding-top: 9px; font-size: 13px; font-weight: 600; color: var(--slate-700); }
+.form-desc { display: block; margin-top: 3px; font-size: 12px; font-weight: 400; line-height: 1.5; color: var(--text-3); }
+.form-field { min-width: 0; }
+.form-field > input.textbox,
+.form-field > textarea { width: 100%; }
+.form-field input.textbox { height: 38px; }
+.form-static { padding-top: 9px; font-size: 13.5px; }
+.form-link { margin-left: 8px; font-size: 12.5px; font-weight: 600; color: var(--slate-600); text-decoration: underline; text-underline-offset: 3px; }
+.form-checks { display: grid; gap: 8px; padding-top: 8px; }
+.form-checks .check { font-size: 13.5px; }
+.form-checks input[type="radio"] { margin: 0; accent-color: var(--slate-800); }
+.form-inline { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; font-size: 13px; color: var(--text-2); }
+.form-num { width: 80px; }
+.form-field.form-inline > input.form-num { width: 90px; }
+.form-field.form-inline { font-size: 13.5px; color: var(--text-2); }
+
+/* Görsel doğrulama */
+.captcha-box { display: grid; gap: 8px; }
+/* Görsel | cevap kutusu | yenile: tek satır */
+.captcha-line { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; max-width: 560px; }
+.captcha-img { flex: none; height: 44px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--surface); }
+.captcha-line .textbox { flex: 1 1 80px; min-width: 0; height: 44px; }
+.captcha-line .icon-btn { flex: none; width: 44px; height: 44px; }
+.captcha-line label.error { flex-basis: 100%; }
+.qr-main .captcha-row,
+.auth-card .captcha-row { grid-template-columns: 1fr; padding: 12px 0 0; border: 0; }
+.auth-card .captcha-row .form-label { padding-top: 0; }
+
+@media (max-width: 760px) {
+  .form-row { grid-template-columns: 1fr; gap: 6px; padding: 14px 16px; }
+  .form-label { padding-top: 0; }
+}
+.form-checks .check { display: block; line-height: 1.5; }
+.form-checks .check input { margin: 0 8px 0 0; vertical-align: -2px; }
+
+/* Bilgi listesi (profil, kullanıcı paneli) */
+.info-list dd small { display: block; margin-top: 1px; font-size: 11.5px; }
+.info-link { display: inline-block; margin-left: 8px; font-size: 12px; font-weight: 600; color: var(--slate-500); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--slate-300); }
+.info-link:hover { color: var(--slate-900); }
+.info-list dd .info-link { margin-left: 6px; }
+.info-list code { font-size: 12.5px; padding: 1px 6px; border-radius: 5px; background: var(--slate-100); color: var(--slate-800); }
+.info-list { margin: 0; padding: 6px 0; }
+.info-list > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding: 8px 20px;
+  font-size: 13px;
+}
+.info-list > div + div { border-top: 1px solid var(--slate-100); }
+.info-list dt { color: var(--text-3); flex-shrink: 0; }
+.info-list dd { margin: 0; font-weight: 600; text-align: right; color: var(--slate-800); }
+.info-list small { font-weight: 400; color: var(--text-3); }
+.info-warn dd { display: flex; align-items: center; gap: 8px; }
+.warn-bar { width: 80px; height: 6px; border-radius: 3px; background: var(--slate-200); overflow: hidden; }
+.warn-bar span { display: block; height: 100%; background: #b4534b; }
+.info-list dd a:not(.info-link) { color: var(--slate-900); }
+
+/* Mesaj alanı: editör + (varsa) ifade kutusu (mesaj yazma, imza, özel mesaj) */
+.form-row-message { grid-template-columns: 220px minmax(0, 1fr) auto; }
+.form-row-message .form-label { grid-column: 1; }
+.form-smilies:empty { display: none; }
+.form-row-message:has(.form-smilies:empty) { grid-template-columns: 220px minmax(0, 1fr); }
+.form-row-message textarea { min-height: 320px; }
+.sceditor-container { border-color: var(--border) !important; border-radius: var(--radius-sm) !important; overflow: hidden; }
+.sceditor-toolbar { background: var(--surface-2) !important; border-bottom-color: var(--border) !important; }
+.multiquote-note { margin-top: 8px; padding: 8px 12px; border-radius: var(--radius-sm); background: var(--slate-100); font-size: 13px; }
+.multiquote-note a { font-weight: 600; color: var(--slate-900); }
+
+/* İfade kutusu */
+.smilie-box { width: 168px; padding: 10px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--surface-2); }
+.smilie-title { display: block; margin-bottom: 8px; font-size: 11.5px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--slate-500); }
+.smilie-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; }
+.smilie-item { display: grid; place-items: center; height: 34px; border-radius: 6px; cursor: pointer; }
+.smilie-item:hover { background: var(--surface); }
+.smilie-more { display: block; margin-top: 8px; font-size: 12px; font-weight: 600; text-align: center; color: var(--slate-600); }
+
+/* Ek form öğeleri */
+.form-note { margin: 0; padding: 12px 20px; font-size: 13px; color: var(--text-2); background: var(--surface-2); border-bottom: 1px solid var(--slate-100); }
+.form-note + .form-row { border-top: 0; }
+.form-group-title { padding: 10px 20px; background: var(--surface-2); border-top: 1px solid var(--slate-100); font-size: 11.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--slate-500); }
+.form-group-title:first-child { border-top: 0; }
+.form-group-title + .form-row { border-top: 0; }
+.form-after { display: flex; margin-top: 8px; font-size: 13px; }
+.form-date { display: flex; flex-wrap: wrap; gap: 8px; }
+.form-date .select { flex: 0 1 140px; height: 38px; }
+.form-year { width: 90px !important; }
+.form-checks-inline { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+.form-field select:not(.select) {
+  height: 38px;
+  max-width: 100%;
+  padding: 0 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  font: inherit;
+  font-size: 13.5px;
+  color: var(--text);
+}
+.form-field .select { max-width: 100%; height: 38px; }
+.form-field input[type="file"] { max-width: 100%; font-size: 13px; }
+
+/* Kullanıcı adı alanları: MyBB select2 (otomatik tamamlama) görünümü */
+.form-field .select2-container { width: 100% !important; }
+.form-field .select2-container-multi .select2-choices {
+  min-height: 38px;
+  padding: 3px 6px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  background-image: none;
+}
+.form-field .select2-container-multi.select2-container-active .select2-choices { border-color: var(--slate-400); box-shadow: 0 0 0 3px rgba(100, 116, 139, .15); }
+.form-field .select2-container .select2-choice {
+  height: 38px;
+  line-height: 36px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  background-image: none;
+  box-shadow: none;
+  font-size: 13.5px;
+  color: var(--text);
+}
+.form-field .select2-container .select2-choice .select2-arrow { display: none; }
+.form-field .select2-container .select2-choice.select2-default { color: var(--slate-400); }
+.form-field .select2-container-active .select2-choice { border-color: var(--slate-400); box-shadow: 0 0 0 3px rgba(100, 116, 139, .15); }
+
+/* Dar panellerde etiket üstte, alan altta */
+.form-rows.is-stacked .form-row { grid-template-columns: 1fr; gap: 6px; }
+.form-rows.is-stacked .form-label { padding-top: 0; }
+.form-rows.is-stacked .form-checks { padding-top: 0; }
+.form-rows.is-stacked > .form-checks { padding: 14px 20px; }
+.form-rows.is-stacked > .form-checks + .form-row { border-top: 1px solid var(--slate-100); }
+
+@media (max-width: 760px) {
+  .form-row-message,
+  .form-row-message:has(.form-smilies:empty) { grid-template-columns: 1fr; }
+  .form-smilies { display: none; }
+}
+
+/* Hata ayıklama özeti (ACP > Ayarlar > "Hata ayıklama bilgisi"): footer'ın en altında ince bir çubuk */
+.debug-bar {
+  border-top: 1px solid rgba(255, 255, 255, .06);
+  background: #232b33;
+  /* Sayfa yüksekliği kesirli olunca en altta 1px açık renk zemin görünüyordu: alt kenarı uzat */
+  box-shadow: 0 3px 0 #232b33;
+}
+.debug-bar .wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 18px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 11.5px;
+  line-height: 18px;
+  color: #8c98a4;
+}
+.debug-bar a { margin-left: auto; font-weight: 600; color: #c3ccd5; }
+.debug-bar a:hover { color: #fff; }
+
+/* =========================================================
+   DURUM İKONLARI (forum ve konu listeleri, panel, arama)
+   ========================================================= */
+/* Forum durum simgesi */
+.forum-status {
+  width: 44px;
+  height: 44px;
+  border-radius: 11px;
+  display: grid;
+  place-items: center;
+  background: var(--slate-50);
+  color: var(--slate-400);
+  border: 1px solid var(--border);
+  font-style: normal;
+}
+.forum-status svg { width: 20px; height: 20px; }
+.forum-status.forum_on {
+  background: var(--slate-700);
+  color: #fff;
+  border-color: var(--slate-700);
+}
+.forum-status.forum_offclose,
+.forum-status.forum_offlink { color: var(--slate-500); }
+
+.forum-main h3 { margin: 0 0 3px; font-size: 15px; font-weight: 700; letter-spacing: -.01em; }
+.forum-main p  { margin: 0; color: var(--text-2); font-size: 13.5px; }
+
+/* Konu simgesi */
+.thread-icon {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  background: var(--slate-50);
+  border: 1px solid var(--border);
+  color: var(--slate-400);
+  font-style: normal;
+}
+.thread-icon svg { width: 18px; height: 18px; }
+.thread-icon[data-folder*="new"] { background: var(--slate-700); border-color: var(--slate-700); color: #fff; }
+.thread-icon[data-folder*="close"],
+.thread-icon[data-folder*="hot"] { color: var(--slate-500); }
+.thread-icon[data-folder*="newhot"] { color: #fff; }
+.thread-icon.is-announce { background: var(--head-tint); border-color: var(--head-tint); color: var(--slate-700); }
+.thread-icon[data-folder^="dot_"]::after {
+  content: "";
+  position: absolute;
+  right: -3px;
+  bottom: -3px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--slate-500);
+  box-shadow: 0 0 0 2px var(--surface);
+}
+
+/* =========================================================
+   HIZLI YANIT (konu sayfası, özel mesaj okuma)
+   ========================================================= */
+.quick-reply { scroll-margin-top: 84px; }
+/* Mesaj kutusu düzeni: 200px yazar sütunu (postbit ile aynı avatar boyu) + yazı alanı */
+.qr-body { display: grid; grid-template-columns: 200px minmax(0, 1fr); }
+.qr-author {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 24px;
+  border-right: 1px solid var(--border);
+}
+.qr-avatar { --size: 150px; border-radius: 14px; }
+.qr-name { font-size: 14.5px; font-weight: 700; color: var(--slate-900); text-align: center; overflow-wrap: anywhere; }
+.qr-main { min-width: 0; padding: 20px; }
+.quick-reply textarea {
+  display: block;
+  width: 100%;
+  min-height: 150px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  font: inherit;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text);
+  resize: vertical;
+}
+.quick-reply textarea:focus { outline: 2px solid var(--slate-300); border-color: var(--slate-400); }
+.qr-foot { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 18px; margin-top: 10px; }
+.qr-opt { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; color: var(--slate-600); cursor: pointer; }
+.qr-btns { display: flex; gap: 8px; margin-left: auto; }
+.qr-opts { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 18px; }
+.qr-mod { padding-left: 18px; border-left: 1px solid var(--border); }
+.qr-mod-label { display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--slate-400); }
+.qr-mod-label svg { width: 14px; height: 14px; }
+.qr-mod:empty { display: none; }
+.qr-multiquote { margin-top: 8px; padding: 8px 12px; border-radius: var(--radius-sm); background: var(--slate-100); font-size: 13px; }
+.qr-multiquote a { font-weight: 600; color: var(--slate-900); }
+.showthread_spinner { padding: 12px; text-align: center; }
+@media (max-width: 760px) {
+  .qr-mod { padding-left: 0; border-left: 0; }
+  .qr-body { grid-template-columns: 1fr; }
+  .qr-author { display: none; }
+  .qr-main { padding: 14px; }
+}
+
+/* Mesaj ikonları (konu/yanıt/düzenleme/özel mesaj): sadece ikon kutucukları, "ikon yok" başta; en fazla 2 satır, fazlası kayar */
+.posticons {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 38px);
+  grid-auto-rows: 38px;
+  gap: 6px;
+  max-height: calc(38px * 2 + 6px + 4px); /* 2 satır + aralık + üst/alt iç boşluk */
+  padding: 2px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+.posticon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  cursor: pointer;
+  justify-content: center;
+  min-height: 0;
+  padding: 0;
+  border-radius: 8px;
+}
+.posticons .posticon input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
+.posticons .posticon img { max-width: 20px; max-height: 20px; }
+.posticons .posticon-none { grid-column: span 2; padding: 0 10px; font-size: 12.5px; font-weight: 600; color: var(--slate-600); }
+.posticons .posticon:hover { border-color: var(--slate-300); }
+.posticons .posticon:has(input:checked) { border-color: var(--slate-800); background: var(--slate-100); box-shadow: inset 0 0 0 1px var(--slate-800); }
+.posticons .posticon:has(input:focus-visible) { outline: 2px solid var(--slate-400); outline-offset: 1px; }
+/* reCAPTCHA / hCaptcha / Turnstile kutusu (iframe kendi boyutunu belirler) */
+.captcha-widget { min-height: 78px; padding-top: 4px; }
+.captcha-widget iframe { max-width: 100%; }
